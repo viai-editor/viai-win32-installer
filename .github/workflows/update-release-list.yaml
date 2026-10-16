@@ -4,7 +4,7 @@ on:
   #release:
   #  types: [published]
   workflow_run:
-    workflows: ["Build Vim"]
+    workflows: ["Build ViAI"]
     branches: [master]
     types: [completed]
 
@@ -51,7 +51,7 @@ jobs:
           gh run cancel "${{ github.run_id }}" --repo "${{ github.repository }}"
           exit 0
         else
-          latest=$(cat ../main/vimver.txt)
+          latest=$(cat ../main/viaiver.txt)
           git config --local user.name ${USER_NAME}
           git config --local user.email ${USER_EMAIL}
           git commit -a -m "Update Release List to ${latest}"

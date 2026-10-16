@@ -1,23 +1,23 @@
-name: Build Vim
+name: Build ViAI
 
 on:
   push:
     branches:
       - master
     paths-ignore:
-      - vimrev.txt
-      - vimver.txt
+      - viairev.txt
+      - viaiver.txt
   pull_request:
   schedule:
     - cron: '0 22 * * *'
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag name (in vim repo) to create a release'
+        description: 'Tag name (in viai repo) to create a release'
         required: true
         type: string
       base_commit:
-        description: 'Base commit or tag in vim-win32-installer repo'
+        description: 'Base commit or tag in viai-win32-installer repo'
         required: true
         type: string
 
@@ -25,7 +25,7 @@ permissions:
   contents: read
 
 env:
-  VIMREPO: https://github.com/vim/vim
+  VIMREPO: https://github.com/viai-editor/viai
   DEPENDENCIES: 'C:\dependencies'
   GETTEXT_PATH: 'C:\dependencies\msys64\usr\bin'  # msgfmt, etc.
   VCPKG_ROOT: 'C:\vcpkg'
@@ -129,7 +129,7 @@ jobs:
     runs-on: ubuntu-slim
 
     # Don't run scheduled workflow on forks.
-    if: ${{ github.repository_owner == 'vim' || github.event_name != 'schedule' }}
+    if: ${{ github.repository_owner == 'viai-editor' || github.event_name != 'schedule' }}
 
     outputs:
       continue: ${{ steps.check.outputs.continue }}
@@ -144,11 +144,11 @@ jobs:
       with:
         ref: ${{inputs.base_commit}}
 
-    - name: Checkout Vim
+    - name: Checkout ViAI
       shell: bash
       run: |
-        if ! git clone ${VIMREPO}.git --shallow-exclude="$(cat vimver.txt)"; then
-          # No new commits since the version written in vimver.txt.
+        if ! git clone ${VIMREPO}.git --shallow-exclude="$(cat viaiver.txt)"; then
+          # No new commits since the version written in viaiver.txt.
           if [ "${{ github.event_name }}" = 'pull_request' ]; then
             git clone ${VIMREPO}.git --depth=5
           else
@@ -156,32 +156,32 @@ jobs:
           fi
         fi
         if [ "${{github.event_name}}" = 'workflow_dispatch' ]; then
-          git -C vim checkout "${{inputs.tag}}"
+          git -C viai checkout "${{inputs.tag}}"
         fi
-        git -C vim log -4 --color=always
+        git -C viai log -4 --color=always
 
     - name: Get changelog
       id: changelog
       shell: bash
       run: |
         mkdir -p package/artifacts/info
-        if [ ! -d vim ]; then
+        if [ ! -d viai ]; then
           # No new commits.
           exit 0
         fi
 
-        cd vim
+        cd viai
         git rev-parse HEAD > ../package/artifacts/info/latestrev.txt
         if [ "$(git tag)" = "" ]; then
           # No new tags.
-          cp ../vimver.txt ../package/artifacts/info/latesttag.txt
+          cp ../viaiver.txt ../package/artifacts/info/latesttag.txt
           exit 0
         fi
 
         latesttag=$(git describe --tags --abbrev=0)
         echo $latesttag > ../package/artifacts/info/latesttag.txt
-        echo $latesttag > ../vimver.txt
-        oldrev=$(cat ../vimrev.txt)
+        echo $latesttag > ../viaiver.txt
+        oldrev=$(cat ../viairev.txt)
         if git log --format='format:' $oldrev > /dev/null 2>&1; then
           logopt=$oldrev..HEAD
         else
@@ -206,7 +206,7 @@ jobs:
       env:
         SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
       run: |
-        if git diff --exit-code HEAD vimver.txt; then
+        if git diff --exit-code HEAD viaiver.txt; then
           # No updates found.
           echo ${COL_YELLOW}No updates.${COL_RESET}
           if [ "${{ github.event_name }}" = 'pull_request' ]; then
@@ -222,7 +222,7 @@ jobs:
         else
           # Updates found
           if { [ "${{ github.ref_name }}" = 'master' ] || [ "${{github.event_name}}" = 'workflow_dispatch' ]; } \
-              && [ "${{ github.repository_owner }}" = 'vim' ]; then
+              && [ "${{ github.repository_owner }}" = 'viai-editor' ]; then
             echo "continue=yes" >> $GITHUB_OUTPUT
             echo "create-release=yes" >> $GITHUB_OUTPUT
           else
@@ -338,21 +338,21 @@ jobs:
         name: repo-info
         path: repo-info
 
-    - name: Checkout Vim
+    - name: Checkout ViAI
       shell: bash
       run: |
-        if ! git clone ${VIMREPO}.git --shallow-exclude="$(cat vimver.txt)"; then
-          # No new commits since the version written in vimver.txt.
+        if ! git clone ${VIMREPO}.git --shallow-exclude="$(cat viaiver.txt)"; then
+          # No new commits since the version written in viaiver.txt.
           if [ "${{ github.event_name }}" = 'pull_request' ]; then
             git clone ${VIMREPO}.git --depth=5
           fi
         fi
-        git -C vim checkout "$(cat repo-info/latestrev.txt)"
+        git -C viai checkout "$(cat repo-info/latestrev.txt)"
 
     - name: Apply experimental patches
       shell: bash
       run: |
-        cd vim
+        cd viai
         for i in ../patch/*.patch; do
           if [[ $i =~ \*.patch ]]; then
             break
@@ -522,13 +522,13 @@ jobs:
         echo %COL_GREEN%Download winpty%COL_RESET%
         if "${{ matrix.arch }}"=="arm64" (
           call :vcpkg winpty
-          copy /Y %WINPTY_VCPKG%\bin\winpty.dll                 vim\src\winpty${{ matrix.bits }}.dll
-          copy /Y %WINPTY_VCPKG%\tools\winpty\winpty-agent.exe  vim\src\
+          copy /Y %WINPTY_VCPKG%\bin\winpty.dll                 viai\src\winpty${{ matrix.bits }}.dll
+          copy /Y %WINPTY_VCPKG%\tools\winpty\winpty-agent.exe  viai\src\
         ) else (
           call :downloadfile %WINPTY_URL% downloads\winpty.zip
           7z x -y downloads\winpty.zip -o%DEPENDENCIES%\winpty > nul || exit 1
-          copy /Y %DEPENDENCIES%\winpty\${{ matrix.warch }}\bin\winpty.dll        vim\src\winpty${{ matrix.bits }}.dll
-          copy /Y %DEPENDENCIES%\winpty\${{ matrix.warch }}\bin\winpty-agent.exe  vim\src\
+          copy /Y %DEPENDENCIES%\winpty\${{ matrix.warch }}\bin\winpty.dll        viai\src\winpty${{ matrix.bits }}.dll
+          copy /Y %DEPENDENCIES%\winpty\${{ matrix.warch }}\bin\winpty-agent.exe  viai\src\
         )
 
         echo %COL_GREEN%Download EnVar Plugin%COL_RESET%
@@ -537,7 +537,7 @@ jobs:
         echo %COL_GREEN%Download libsodium%COL_RESET%
         call :downloadfile %SODIUM_URL% downloads\libsodium.zip -z
         7z x -y downloads\libsodium.zip -o%SODIUM_DIR%\.. > nul || exit 1
-        copy /Y %SODIUM_DIR%\${{ matrix.sodiumarch }}\Release\%SODIUM_VC_VER%\dynamic\libsodium.dll  vim\src\
+        copy /Y %SODIUM_DIR%\${{ matrix.sodiumarch }}\Release\%SODIUM_VC_VER%\dynamic\libsodium.dll  viai\src\
 
         goto :eof
 
@@ -561,7 +561,7 @@ jobs:
       if: matrix.arch != 'arm64'
       shell: cmd
       run: |
-        call vim\src\msvc-latest ${{ matrix.vcarch }}
+        call viai\src\msvc-latest ${{ matrix.vcarch }}
         cd ..\ruby
         call win32\configure.bat
         nmake -nologo .config.h.time || exit 1
@@ -571,13 +571,13 @@ jobs:
       id: patchlevel
       shell: bash
       run: |
-        cd vim/src
-        patchlevel=$(sed -n -e '/included_patches/{n;n;n;s/ *\([0-9]*\).*/\1/p;q}' version.c)
-        sed -i -e "s/^\(# define VIM_VERSION_PATCHLEVEL\s\+\).*/\1$patchlevel/" version.h
+        cd viai/src
+        patchlevel=$(sed -n -e '/viai_included_patches/{n;n;n;s/ *\([0-9]*\).*/\1/p;q}' version.c)
+        sed -i -e "s/^\(# define VIAI_VERSION_PATCHLEVEL\s\+\).*/\1$patchlevel/" version.h
 
         # Set MAJOR, MINOR, PATCHLEVEL, PATCHLEVEL_PADDED
-        major=$(grep -o -P '#define VIM_VERSION_MAJOR\s+\K[0-9]+' version.h)
-        minor=$(grep -o -P '#define VIM_VERSION_MINOR\s+\K[0-9]+' version.h)
+        major=$(grep -o -P '#define VIAI_VERSION_MAJOR\s+\K[0-9]+' version.h)
+        minor=$(grep -o -P '#define VIAI_VERSION_MINOR\s+\K[0-9]+' version.h)
         echo "MAJOR=${major}" >> $GITHUB_ENV
         echo "MINOR=${minor}" >> $GITHUB_ENV
         echo "PATCHLEVEL=${patchlevel}" >> $GITHUB_ENV
@@ -589,18 +589,18 @@ jobs:
     - name: Copy src directory to src2
       shell: cmd
       run: |
-        cd vim
+        cd viai
         xcopy src src2\ /E > nul
 
     - name: Build
       shell: cmd
       run: |
-        call vim\src\msvc-latest ${{ matrix.vcarch }}
-        cd vim\src
+        call viai\src\msvc-latest ${{ matrix.vcarch }}
+        cd viai\src
 
         :: Create config
         if not exist auto\nmake mkdir auto\nmake
-        copy /Y ..\..\vimdll-huge.cfg auto\nmake\
+        copy /Y ..\..\viaidll-huge.cfg auto\nmake\
         (
           echo "PERL_VER=%PERL_VER%"
           echo "PERL=%PERL_DIR%"
@@ -619,11 +619,11 @@ jobs:
             echo "MZSCHEME=%RACKET_DIR%"
           )
           echo "SODIUM=%SODIUM_DIR%"
-        ) >> auto\nmake\vimdll-huge.cfg
+        ) >> auto\nmake\viaidll-huge.cfg
 
-        rem Build gvim/vim with VIMDLL
-        nmake -nologo -f Make_mvc.mak @auto\nmake\vimdll-huge.cfg || exit 1
-        if not exist vim${{ matrix.bits }}.dll (
+        rem Build gviai/viai with VIMDLL
+        nmake -nologo -f Make_mvc.mak @auto\nmake\viaidll-huge.cfg || exit 1
+        if not exist viai${{ matrix.bits }}.dll (
           echo %COL_RED%Build failure.%COL_RESET%
           exit 1
         )
@@ -637,46 +637,46 @@ jobs:
         path %LUA_DIR%;%PERL_DIR%\bin;%PYTHON3_DIR%;%PYTHON2_DIR%;%RUBY_DIR%\bin;%RUBY_DIR%\bin\ruby_builtin_dlls;%GETTEXT_DIR%;%RACKET_DIR%;%RACKET_DIR%\lib;%path%
         set "PLTCOLLECTS=%RACKET_DIR%\collects"
         set "PLTCONFIGDIR=%RACKET_DIR%\etc"
-        cd vim\src
-        start "" /wait .\gvim -silent -register
+        cd viai\src
+        start "" /wait .\gviai -silent -register
         echo.
-        echo %COL_GREEN%gvim version:%COL_RESET%
-        start /wait .\gvim -u NONE -c "redir @a | ver | put a | 1,3d | wq!" ver.txt
+        echo %COL_GREEN%gviai version:%COL_RESET%
+        start /wait .\gviai -u NONE -c "redir @a | ver | put a | 1,3d | wq!" ver.txt
         type ver.txt || exit 1
-        start /wait .\gvim -u NONE -S ..\..\scripts\if_ver.vim -c quit
+        start /wait .\gviai -u NONE -S ..\..\scripts\if_ver.vim -c quit
         type if_ver.txt
-        echo %COL_GREEN%vim version:%COL_RESET%
-        .\vim --version || exit 1
-        .\vim --not-a-term -u NONE -S ..\..\scripts\if_ver.vim -c quit
+        echo %COL_GREEN%viai version:%COL_RESET%
+        .\viai --version || exit 1
+        .\viai --not-a-term -u NONE -S ..\..\scripts\if_ver.vim -c quit
         type if_ver.txt
 
-    - name: Build GvimExt
+    - name: Build GviaiExt
       shell: cmd
       run: |
-        mkdir vim\runtime\GvimExt64
+        mkdir viai\runtime\GviaiExt64
 
         if "${{ matrix.arch }}"=="arm64" (
-          call vim\src\msvc-latest ${{ matrix.vcarch }}
-          pushd vim\src\GvimExt
+          call viai\src\msvc-latest ${{ matrix.vcarch }}
+          pushd viai\src\GviaiExt
           nmake.exe -nologo -f Make_mvc.mak CPU=ARM64 clean all || exit 1
           popd
-          robocopy vim\src\GvimExt vim\runtime\GvimExt64 ^
-            gvimext.dll gvimext.inf gvimext.reg README.txt /E /NP /NFL /NDL
+          robocopy viai\src\GviaiExt viai\runtime\GviaiExt64 ^
+            gviaiext.dll gviaiext.inf GviaiExt.reg README.txt /E /NP /NFL /NDL
           if ERRORLEVEL 8 exit 1
         ) else (
-          rem Build both 64- and 32-bit versions of gvimext.dll for the installer
+          rem Build both 64- and 32-bit versions of gviaiext.dll for the installer
 
           rem x64
-          cmd /C "vim\src\msvc-latest x64 && cd vim\src\GvimExt && nmake.exe -nologo -f Make_mvc.mak CPU=AMD64 clean all"
-          robocopy vim\src\GvimExt vim\runtime\GvimExt64 ^
-            gvimext.dll gvimext.inf gvimext.reg README.txt /E /NP /NFL /NDL
+          cmd /C "viai\src\msvc-latest x64 && cd viai\src\GviaiExt && nmake.exe -nologo -f Make_mvc.mak CPU=AMD64 clean all"
+          robocopy viai\src\GviaiExt viai\runtime\GviaiExt64 ^
+            gviaiext.dll gviaiext.inf GviaiExt.reg README.txt /E /NP /NFL /NDL
           if ERRORLEVEL 8 exit 1
 
           rem x86
-          mkdir vim\runtime\GvimExt32
-          cmd /C "vim\src\msvc-latest x86 && cd vim\src\GvimExt && nmake.exe -nologo -f Make_mvc.mak CPU=i386 clean all"
-          robocopy vim\src\GvimExt vim\runtime\GvimExt32 ^
-            gvimext.dll gvimext.inf gvimext.reg README.txt /E /NP /NFL /NDL
+          mkdir viai\runtime\GviaiExt32
+          cmd /C "viai\src\msvc-latest x86 && cd viai\src\GviaiExt && nmake.exe -nologo -f Make_mvc.mak CPU=i386 clean all"
+          robocopy viai\src\GviaiExt viai\runtime\GviaiExt32 ^
+            gviaiext.dll gviaiext.inf GviaiExt.reg README.txt /E /NP /NFL /NDL
           if ERRORLEVEL 8 exit 1
         )
         rem robocopy returns a non-zero error code even on success.
@@ -688,9 +688,9 @@ jobs:
 #        ping -n 3600 localhost>nul
 
     - parallel:
-      # Run gvim tests and vim tests in parallel
+      # Run gviai tests and viai tests in parallel
 
-      - name: Test gvim
+      - name: Test gviai
         shell: cmd
         timeout-minutes: 30
         run: |
@@ -702,13 +702,13 @@ jobs:
             set "TEST_SKIP_PAT=%TEST_SKIP_PAT_ARM64%"
           )
 
-          call vim\src\msvc-latest ${{ matrix.vcarch }}
+          call viai\src\msvc-latest ${{ matrix.vcarch }}
 
-          echo %COL_GREEN%Test gvim:%COL_RESET%
-          cd vim\src\testdir
-          nmake -nologo -f Make_mvc.mak VIMPROG=..\gvim || exit 1
+          echo %COL_GREEN%Test gviai:%COL_RESET%
+          cd viai\src\testdir
+          nmake -nologo -f Make_mvc.mak VIMPROG=..\gviai || exit 1
 
-      - name: Test vim
+      - name: Test viai
         shell: cmd
         timeout-minutes: 30
         run: |
@@ -720,36 +720,36 @@ jobs:
             set "TEST_SKIP_PAT=%TEST_SKIP_PAT_ARM64%"
           )
 
-          call vim\src\msvc-latest ${{ matrix.vcarch }}
+          call viai\src\msvc-latest ${{ matrix.vcarch }}
 
-          echo %COL_GREEN%Test vim:%COL_RESET%
-          cd vim\src2\testdir
-          nmake -nologo -f Make_mvc.mak VIMPROG=..\..\src\vim || exit 1
+          echo %COL_GREEN%Test viai:%COL_RESET%
+          cd viai\src2\testdir
+          nmake -nologo -f Make_mvc.mak VIMPROG=..\..\src\viai || exit 1
 
-    - name: Build Vim launcher
+    - name: Build ViAI launcher
       shell: cmd
       run: |
-        call vim\src\msvc-latest ${{ matrix.vcarch }}
+        call viai\src\msvc-latest ${{ matrix.vcarch }}
         cd viai-launcher
         nmake -f Make_mvc.mak
 
     - name: Package (zip)
       shell: cmd
       run: |
-        call vim\src\msvc-latest ${{ matrix.vcarch }}
+        call viai\src\msvc-latest ${{ matrix.vcarch }}
 
         cd package
 
-        set VIM_DIR=vim%MAJOR%%MINOR%
-        set PKG=vim-package-${{ matrix.arch }}
-        set DEST=%PKG%\vim\%VIM_DIR%
+        set VIM_DIR=viai%MAJOR%%MINOR%
+        set PKG=viai-package-${{ matrix.arch }}
+        set DEST=%PKG%\viai\%VIM_DIR%
         echo VIM_DIR=%VIM_DIR%>> %GITHUB_ENV%
         echo PKG=%PKG%>> %GITHUB_ENV%
 
-        copy ..\vim\src\*.pdb . || exit 1
+        copy ..\viai\src\*.pdb . || exit 1
 
         rem Prepare package directory
-        set VIM_SRC=..\vim
+        set VIM_SRC=..\viai
         set DIFFEXE=..
         set GETTEXT_TOP=C:\dependencies
         call ..\scripts\prepare_package_dir.bat ^
@@ -760,9 +760,9 @@ jobs:
         (echo INCLUDE_LIBGCC=%INCLUDE_LIBGCC%)>> %GITHUB_ENV%
 
         md artifacts\files
-        set BASENAME=gvim_${{ steps.patchlevel.outputs.ver }}_${{ matrix.arch }}
+        set BASENAME=gviai_${{ steps.patchlevel.outputs.ver }}_${{ matrix.arch }}
         cd %PKG%
-        7z a -mx=9 -xr@..\..\exclist.txt ..\artifacts\files\%BASENAME%.zip vim || exit 1
+        7z a -mx=9 -xr@..\..\exclist.txt ..\artifacts\files\%BASENAME%.zip viai || exit 1
         cd ..
         7z a -mx=9 artifacts\files\%BASENAME%_pdb.7z *.pdb || exit 1
 
@@ -777,7 +777,7 @@ jobs:
     - name: Package (installer)
       shell: cmd
       run: |
-        call vim\src\msvc-latest ${{ matrix.vcarch }}
+        call viai\src\msvc-latest ${{ matrix.vcarch }}
 
         if NOT "${{ matrix.arch }}"=="arm64" (
           winget upgrade --disable-interactivity --accept-source-agreements || exit 1
@@ -788,7 +788,7 @@ jobs:
         7z.exe x -y downloads\EnVar_plugin.zip -o.\EnVar_plugin > nul || exit 1
 
         rem Create license files for nsis
-        call msys2 scripts/create_nsis_lic_files.sh ./vim || exit 1
+        call msys2 scripts/create_nsis_lic_files.sh ./viai || exit 1
 
         cd nsis
 
@@ -798,7 +798,7 @@ jobs:
         if "${{ matrix.arch }}"=="x64" set WIN64=1
         if "${{ matrix.arch }}"=="arm64" set ARM64=1
 
-        set BASENAME=gvim_${{ steps.patchlevel.outputs.ver }}_${{ matrix.arch }}
+        set BASENAME=gviai_${{ steps.patchlevel.outputs.ver }}_${{ matrix.arch }}
 
         set PLUG_NSISMULTIUSER=..\NsisMultiUser
         set PLUG_ENVAR=..\EnVar_plugin
@@ -807,8 +807,8 @@ jobs:
           /INPUTCHARSET UTF8 ^
           /DPLUG_NSISMULTIUSER=%PLUG_NSISMULTIUSER% ^
           /DPLUG_ENVAR=%PLUG_ENVAR% ^
-          /DVIMBIN=..\package\%PKG%\vim\%VIM_DIR% ^
-          /DVIMRT=..\package\%PKG%\vim\%VIM_DIR% ^
+          /DVIMBIN=..\package\%PKG%\viai\%VIM_DIR% ^
+          /DVIMRT=..\package\%PKG%\viai\%VIM_DIR% ^
           /DINCLUDE_LIBGCC=%INCLUDE_LIBGCC% ^
           /DWIN64=%WIN64% ^
           /DARM64=%ARM64% ^
@@ -818,7 +818,7 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@v7.0.2
       with:
-        name: vim-package-${{ matrix.arch }}
+        name: viai-package-${{ matrix.arch }}
         path: ./package/artifacts/files
 
 
@@ -860,7 +860,7 @@ jobs:
     - name: Attest
       uses: actions/attest@v4.2.2
       with:
-        subject-path: ./vim-package-*/gvim_*
+        subject-path: ./viai-package-*/gviai_*
 
     - name: Copy files for code signing
       if: needs.check-updates.outputs.signing == 'yes'
@@ -868,14 +868,14 @@ jobs:
       run: |
         mkdir -p package/artifacts/files
         # Copy all the required files to a single directory
-        cp vim-package-*/gvim_*.{exe,zip} package/artifacts/files
+        cp viai-package-*/gviai_*.{exe,zip} package/artifacts/files
 
     - name: Upload Artifact (for code signing)
       if: needs.check-updates.outputs.signing == 'yes'
       id: upload-unsigned-zip
       uses: actions/upload-artifact@v7.0.2
       with:
-        name: vim-package-for-signing
+        name: viai-package-for-signing
         path: ./package/artifacts/files
 
     - name: SignPath code signing
@@ -929,7 +929,7 @@ jobs:
         latesttag=$(cat repo-info/latesttag.txt)
         ver=${latesttag#v}
         echo "tag=${latesttag}" >> $GITHUB_OUTPUT
-        cp repo-info/latesttag.txt vimver.txt
+        cp repo-info/latesttag.txt viaiver.txt
 
         URL=https://github.com/${{ github.repository }}/releases/download
 
@@ -950,37 +950,37 @@ jobs:
         ### Files:
         <!--  commented out, because will only be enabled once the signed files are uploaded manually.
         #### :lock: Signed Files:
-        * [![gvim_${ver}_x86_signed.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x86_signed.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x86_signed.exe)
+        * [![gviai_${ver}_x86_signed.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x86_signed.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x86_signed.exe)
           Signed 32-bit installer (*If you don't know what to use, use this one*)
-        * [![gvim_${ver}_x64_signed.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x64_signed.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x64_signed.exe)
+        * [![gviai_${ver}_x64_signed.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x64_signed.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x64_signed.exe)
           Signed 64-bit installer
-        * [![gvim_${ver}_arm64_signed.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_arm64_signed.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_arm64_signed.exe)
+        * [![gviai_${ver}_arm64_signed.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_arm64_signed.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_arm64_signed.exe)
           Signed ARM64-bit installer
-        * [![gvim_${ver}_x86_signed.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x86_signed.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x86_signed.zip)
+        * [![gviai_${ver}_x86_signed.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x86_signed.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x86_signed.zip)
           Signed 32-bit zip archive
-        * [![gvim_${ver}_x64_signed.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x64_signed.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x64_signed.zip)
+        * [![gviai_${ver}_x64_signed.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x64_signed.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x64_signed.zip)
           Signed 64-bit zip archive
-        * [![gvim_${ver}_arm64_signed.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_arm64_signed.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_arm64_signed.zip)
+        * [![gviai_${ver}_arm64_signed.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_arm64_signed.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_arm64_signed.zip)
           Signed ARM64-bit zip archive
         -->
         #### :unlock: Unsigned Files:
-        * [![gvim_${ver}_x86.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x86.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x86.exe)
+        * [![gviai_${ver}_x86.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x86.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x86.exe)
           32-bit installer (*If you don't know what to use, use this one*)
-        * [![gvim_${ver}_x64.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x64.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x64.exe)
+        * [![gviai_${ver}_x64.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x64.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x64.exe)
           64-bit installer
-        * [![gvim_${ver}_arm64.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_arm64.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_arm64.exe)
+        * [![gviai_${ver}_arm64.exe](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_arm64.exe.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_arm64.exe)
           ARM64-bit installer
-        * [![gvim_${ver}_x86.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x86.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x86.zip)
+        * [![gviai_${ver}_x86.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x86.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x86.zip)
           32-bit zip archive
-        * [![gvim_${ver}_x64.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x64.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x64.zip)
+        * [![gviai_${ver}_x64.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x64.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x64.zip)
           64-bit zip archive
-        * [![gvim_${ver}_arm64.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_arm64.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_arm64.zip)
+        * [![gviai_${ver}_arm64.zip](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_arm64.zip.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_arm64.zip)
           ARM 64-bit zip archive
-        * [![gvim_${ver}_x86_pdb.7z](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x86_pdb.7z.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x86_pdb.7z)
+        * [![gviai_${ver}_x86_pdb.7z](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x86_pdb.7z.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x86_pdb.7z)
           pdb files for debugging the corresponding 32-bit executable
-        * [![gvim_${ver}_x64_pdb.7z](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_x64_pdb.7z.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_x64_pdb.7z)
+        * [![gviai_${ver}_x64_pdb.7z](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_x64_pdb.7z.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_x64_pdb.7z)
           pdb files for debugging the corresponding 64-bit executable
-        * [![gvim_${ver}_arm64_pdb.7z](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gvim_${ver}_arm64_pdb.7z.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gvim_${ver}_arm64_pdb.7z)
+        * [![gviai_${ver}_arm64_pdb.7z](https://img.shields.io/github/downloads/${{ github.repository }}/${latesttag}/gviai_${ver}_arm64_pdb.7z.svg?label=downloads&logo=vim)](${URL}/${latesttag}/gviai_${ver}_arm64_pdb.7z)
           pdb files for debugging the corresponding ARM 64-bit executable
 
         <details>
@@ -1005,15 +1005,15 @@ jobs:
         if [ "${{github.event_name}}" = 'workflow_dispatch' ] && [ "${{inputs.base_commit}}" != 'master' ]; then
           git switch -c "work-${{inputs.tag}}"
         fi
-        if git diff --quiet HEAD vimver.txt; then
+        if git diff --quiet HEAD viaiver.txt; then
           echo ${COL_YELLOW}No updates.${COL_RESET}
           exit 1  # This should not happen.
         fi
-        cp repo-info/latestrev.txt vimrev.txt
+        cp repo-info/latestrev.txt viairev.txt
         git config --local user.name "$USER_NAME"
         git config --local user.email "$USER_EMAIL"
         git commit -a \
-          -m "Update Vim to ${{ steps.changelog.outputs.tag }}" \
+          -m "Update ViAI to ${{ steps.changelog.outputs.tag }}" \
           -m "$(head -n 50 repo-info/changelog.txt)"
         git tag "${{ steps.changelog.outputs.tag }}"
         git push origin HEAD --tags
@@ -1028,15 +1028,15 @@ jobs:
         prerelease: false
         #token: ${{ steps.app-token.outputs.token }}
         files: |
-          ./vim-package-x86/gvim_*.exe
-          ./vim-package-x86/gvim_*.zip
-          ./vim-package-x86/gvim_*_pdb.7z
-          ./vim-package-x64/gvim_*.exe
-          ./vim-package-x64/gvim_*.zip
-          ./vim-package-x64/gvim_*_pdb.7z
-          ./vim-package-arm64/gvim_*.exe
-          ./vim-package-arm64/gvim_*.zip
-          ./vim-package-arm64/gvim_*_pdb.7z
+          ./viai-package-x86/gviai_*.exe
+          ./viai-package-x86/gviai_*.zip
+          ./viai-package-x86/gviai_*_pdb.7z
+          ./viai-package-x64/gviai_*.exe
+          ./viai-package-x64/gviai_*.zip
+          ./viai-package-x64/gviai_*_pdb.7z
+          ./viai-package-arm64/gviai_*.exe
+          ./viai-package-arm64/gviai_*.zip
+          ./viai-package-arm64/gviai_*_pdb.7z
 
     - name: Post Summary
       run: |

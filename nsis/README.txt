@@ -97,7 +97,7 @@ Run the following commands in GitBash unless otherwise stated.
 If you want to build an installer without using a zip package, see the
 following scripts in this repository:
 
-	.github/workflow/build-vim.yml
+	.github/workflow/build-viai.yml
 	scripts/prepare_package_dir.bat
 
 

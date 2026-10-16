@@ -21,7 +21,7 @@ Unicode true  ; !include defaults to UTF-8 after Unicode True since 3.0 Alpha 2
 
 # Top directory of the ViAI repository
 !ifndef SRC
-  !define SRC "..\vim"
+  !define SRC "..\viai"
 !endif
 
 # Location of gviai.exe, viai.exe, etc.
