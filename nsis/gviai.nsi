@@ -211,8 +211,8 @@ VIAddVersionKey /LANG=0 "FileVersion"	  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}
 !define MUI_ABORTWARNING
 !define MUI_UNABORTWARNING
 
-!define MUI_ICON   "icons\in_vim_32bpp.ico"
-!define MUI_UNICON "icons\un_vim_32bpp.ico"
+!define MUI_ICON   "icons\in_viai_32bpp.ico"
+!define MUI_UNICON "icons\un_viai_32bpp.ico"
 
 # Show all languages, despite user's codepage:
 !define MUI_LANGDLL_ALLLANGUAGES
