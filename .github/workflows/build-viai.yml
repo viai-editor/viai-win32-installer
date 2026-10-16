@@ -9,7 +9,7 @@ on:
       - viaiver.txt
   pull_request:
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '16 23 * * *'  # 08:16 JST
   workflow_dispatch:
     inputs:
       tag:
