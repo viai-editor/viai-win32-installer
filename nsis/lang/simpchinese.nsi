@@ -26,20 +26,11 @@ LicenseLangString page_lic_file ${LANG_SIMPCHINESE} \
         "${SRC}\lang\LICENSE.zh_cn.nsis.txt"
 
 ##############################################################################
-# Translated README.txt file, which is opened after installation          {{{1
-##############################################################################
-
-LangString vim_readme_file ${LANG_SIMPCHINESE} "README.zh_cn.txt"
-
-##############################################################################
 # MUI Configuration Strings                                               {{{1
 ##############################################################################
 
 #LangString str_dest_folder          ${LANG_SIMPCHINESE} \
 #    "安装路径 (必须以 vim 结尾)"
-
-LangString str_show_readme          ${LANG_SIMPCHINESE} \
-    "安装完成后显示 README 文件"
 
 # Install types:
 LangString str_type_typical         ${LANG_SIMPCHINESE} \
@@ -59,22 +50,22 @@ LangString str_type_full            ${LANG_SIMPCHINESE} \
 LangString str_section_old_ver      ${LANG_SIMPCHINESE} \
     "卸载旧版本"
 LangString str_desc_old_ver         ${LANG_SIMPCHINESE} \
-    "卸载系统上已存在的 Vim 版本"
+    "卸载系统上已存在的 ViAI 版本"
 
 LangString str_section_exe          ${LANG_SIMPCHINESE} \
-    "安装 Vim 图形界面"
+    "安装 ViAI 图形界面"
 LangString str_desc_exe             ${LANG_SIMPCHINESE} \
-    "安装 Vim 图形界面及运行时文件。此项为必选。"
+    "安装 ViAI 图形界面及运行时文件。此项为必选。"
 
 LangString str_section_console      ${LANG_SIMPCHINESE} \
-    "安装 Vim 控制台版本"
+    "安装 ViAI 控制台版本"
 LangString str_desc_console         ${LANG_SIMPCHINESE} \
-    "安装 Vim 的控制台版本（vim.exe）。"
+    "安装 ViAI 的控制台版本（viai.exe）。"
 
 LangString str_group_cmdline        ${LANG_SIMPCHINESE} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_SIMPCHINESE} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_SIMPCHINESE} \
 #    "安装批处理文件"
@@ -82,30 +73,30 @@ LangString str_desc_cmdline         ${LANG_SIMPCHINESE} \
 #    "为 Vim 的各种变体创建批处理文件，以便在命令行下运行 Vim。"
 
 LangString str_section_launcher     ${LANG_SIMPCHINESE} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_SIMPCHINESE} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_SIMPCHINESE} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_SIMPCHINESE} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_SIMPCHINESE} \
     "创建图标"
 LangString str_desc_icons           ${LANG_SIMPCHINESE} \
-    "为 Vim 创建若干图标，以方便使用 Vim。"
+    "为 ViAI 创建若干图标，以方便使用 ViAI。"
 
 LangString str_section_desktop      ${LANG_SIMPCHINESE} \
     "桌面图标"
 LangString str_desc_desktop         ${LANG_SIMPCHINESE} \
-    "创建 Vim 的桌面快捷方式图标。"
+    "创建 ViAI 的桌面快捷方式图标。"
 
 LangString str_section_start_menu   ${LANG_SIMPCHINESE} \
     "「开始」菜单程序组"
 LangString str_desc_start_menu      ${LANG_SIMPCHINESE} \
-    "在开始菜单中添加 Vim 程序组（适用于 Windows 95 及以上版本）"
+    "在开始菜单中添加 ViAI 程序组（适用于 Windows 95 及以上版本）"
 
 #LangString str_section_quick_launch ${LANG_SIMPCHINESE} \
 #    "在快速启动启动栏中"
@@ -115,7 +106,7 @@ LangString str_desc_start_menu      ${LANG_SIMPCHINESE} \
 LangString str_section_edit_with    ${LANG_SIMPCHINESE} \
     "添加到快捷菜单"
 LangString str_desc_edit_with       ${LANG_SIMPCHINESE} \
-    "将“用 Vim 编辑”添加到快捷菜单中。"
+    "将“用 ViAI 编辑”添加到快捷菜单中。"
 
 #LangString str_section_edit_with32  ${LANG_SIMPCHINESE} \
 #    "32 位版本"
@@ -130,24 +121,19 @@ LangString str_desc_edit_with       ${LANG_SIMPCHINESE} \
 LangString str_section_vim_rc       ${LANG_SIMPCHINESE} \
     "创建默认配置文件"
 LangString str_desc_vim_rc          ${LANG_SIMPCHINESE} \
-    "在安装目录下生成默认的 Vim 配置文件(_vimrc)。\
+    "在安装目录下生成默认的 ViAI 配置文件(_vimrc)。\
      如果该文件已经存在，则跳过该项。"
 
 LangString str_group_plugin         ${LANG_SIMPCHINESE} \
     "创建插件目录"
 LangString str_desc_plugin          ${LANG_SIMPCHINESE} \
-    "创建(空的)插件目录结构。插件目录用于安装 Vim 扩展插件，\
+    "创建(空的)插件目录结构。插件目录用于安装 ViAI 扩展插件，\
      只要将文件复制到相关的子目录中即可。"
-
-LangString str_section_plugin_home  ${LANG_SIMPCHINESE} \
-    "私有插件目录"
-LangString str_desc_plugin_home     ${LANG_SIMPCHINESE} \
-    "在主目录创建私有插件目录。"
 
 LangString str_section_plugin_vim   ${LANG_SIMPCHINESE} \
     "公共插件目录"
 LangString str_desc_plugin_vim      ${LANG_SIMPCHINESE} \
-    "在 Vim 安装目录下创建(空的)插件目录结构，系统上所有用户都能使用安装在\
+    "在 ViAI 安装目录下创建(空的)插件目录结构，系统上所有用户都能使用安装在\
      该目录下的扩展插件。"
 
 LangString str_section_nls          ${LANG_SIMPCHINESE} \
@@ -156,34 +142,29 @@ LangString str_desc_nls             ${LANG_SIMPCHINESE} \
     "安装用于多语言支持的文件。"
 
 LangString str_unsection_register   ${LANG_SIMPCHINESE} \
-    "删除 Vim 系统配置"
+    "删除 ViAI 系统配置"
 LangString str_desc_unregister      ${LANG_SIMPCHINESE} \
-    "删除和 Vim 相关的系统配置。"
+    "删除和 ViAI 相关的系统配置。"
 
 LangString str_unsection_exe        ${LANG_SIMPCHINESE} \
-    "删除 Vim 执行文件以及脚本"
+    "删除 ViAI 执行文件以及脚本"
 LangString str_desc_rm_exe          ${LANG_SIMPCHINESE} \
-    "删除 Vim 的所有执行文件及脚本。"
+    "删除 ViAI 的所有执行文件及脚本。"
 
 LangString str_ungroup_plugin       ${LANG_SIMPCHINESE} \
     "移除插件目录"
 LangString str_desc_rm_plugin       ${LANG_SIMPCHINESE} \
     "移除插件目录（如果目录为空）。"
 
-LangString str_unsection_plugin_home ${LANG_SIMPCHINESE} \
-    "私有插件目录"
-LangString str_desc_rm_plugin_home  ${LANG_SIMPCHINESE} \
-    "从主目录中移除私有插件目录。"
-
 LangString str_unsection_plugin_vim ${LANG_SIMPCHINESE} \
     "公共插件目录"
 LangString str_desc_rm_plugin_vim   ${LANG_SIMPCHINESE} \
-    "从 Vim 安装目录下移除插件目录。"
+    "从 ViAI 安装目录下移除插件目录。"
 
 LangString str_unsection_rootdir    ${LANG_SIMPCHINESE} \
-    "移除 Vim 主目录"
+    "移除 ViAI 主目录"
 LangString str_desc_rm_rootdir      ${LANG_SIMPCHINESE} \
-    "移除 Vim 的主目录，该目录包含您的配置文件！"
+    "移除 ViAI 的主目录，该目录包含您的配置文件！"
 
 
 ##############################################################################

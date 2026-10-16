@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# french.nsi: French language strings for gvim NSIS installer.
+# french.nsi: French language strings for gviai NSIS installer.
 #
 # Locale ID    : 1036
 # Locale Name  : fr
@@ -28,7 +28,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_FRENCH} "README.fr.txt"
 
 ##############################################################################
@@ -37,9 +36,6 @@ LangString vim_readme_file 0 "README.txt"
 
 #LangString str_dest_folder          ${LANG_FRENCH} \
 #    "Dossier de destination (doit se terminer par $\"vim$\")"
-
-LangString str_show_readme          ${LANG_FRENCH} \
-    "Afficher le README à la fin de l'installation"
 
 # Install types:
 LangString str_type_typical         ${LANG_FRENCH} \
@@ -59,23 +55,23 @@ LangString str_type_full            ${LANG_FRENCH} \
 LangString str_section_old_ver      ${LANG_FRENCH} \
     "Désinstaller les versions existantes"
 LangString str_desc_old_ver         ${LANG_FRENCH} \
-    "Désinstalle les versions de Vim déjà présentes sur votre système."
+    "Désinstalle les versions de ViAI déjà présentes sur votre système."
 
 LangString str_section_exe          ${LANG_FRENCH} \
-    "Interface graphique de Vim"
+    "Interface graphique de ViAI"
 LangString str_desc_exe             ${LANG_FRENCH} \
-    "Interface graphique de Vim et fichiers d'exécution.  \
+    "Interface graphique de ViAI et fichiers d'exécution.  \
      Ce composant est obligatoire."
 
 LangString str_section_console      ${LANG_FRENCH} \
-    "Programme Vim en mode console"
+    "Programme ViAI en mode console"
 LangString str_desc_console         ${LANG_FRENCH} \
-    "Version console de Vim (vim.exe)."
+    "Version console de ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_FRENCH} \
     "Prise en charge de la lige de commande"
 LangString str_desc_cmdline         ${LANG_FRENCH} \
-    "Facilite l'utilisation de Vim depuis la ligne de commande."
+    "Facilite l'utilisation de ViAI depuis la ligne de commande."
 
 #LangString str_section_batch        ${LANG_FRENCH} \
 #    "Créer des fichiers .bat"
@@ -84,30 +80,30 @@ LangString str_desc_cmdline         ${LANG_FRENCH} \
 #     Windows, pour la ligne de commande."
 
 LangString str_section_launcher     ${LANG_FRENCH} \
-    "Lanceurs de Vim"
+    "Lanceurs de ViAI"
 LangString str_desc_launcher        ${LANG_FRENCH} \
-    "Installe de petits programmes pour les variantes de Vim dans le \
+    "Installe de petits programmes pour les variantes de ViAI dans le \
      répertoire Windows, pour la ligne de commande."
 
 LangString str_section_addpath      ${LANG_FRENCH} \
     "Ajouter au PATH"
 LangString str_desc_addpath         ${LANG_FRENCH} \
-    "Ajoute le répertoire de Vim à la variable d'environnement PATH."
+    "Ajoute le répertoire de ViAI à la variable d'environnement PATH."
 
 LangString str_group_icons          ${LANG_FRENCH} \
-    "Créer des raccourcis vers Vim"
+    "Créer des raccourcis vers ViAI"
 LangString str_desc_icons           ${LANG_FRENCH} \
-    "Créer des raccourcis pour lancer Vim facilement."
+    "Créer des raccourcis pour lancer ViAI facilement."
 
 LangString str_section_desktop      ${LANG_FRENCH} \
     "Sur le Bureau"
 LangString str_desc_desktop         ${LANG_FRENCH} \
-    "Crée des icônes pour les exécutables de gVim sur le Bureau."
+    "Crée des icônes pour les exécutables de GViAI sur le Bureau."
 
 LangString str_section_start_menu   ${LANG_FRENCH} \
     "Dans le menu Démarrer"
 LangString str_desc_start_menu      ${LANG_FRENCH} \
-    "Ajoute Vim dans le dossier Programmes du menu Démarrer."
+    "Ajoute ViAI dans le dossier Programmes du menu Démarrer."
 
 #LangString str_section_quick_launch ${LANG_FRENCH} \
 #    "Dans la barre de lancement rapide"
@@ -115,9 +111,9 @@ LangString str_desc_start_menu      ${LANG_FRENCH} \
 #    "Ajoute un raccourci vers Vim dans la barre de lancement rapide."
 
 LangString str_section_edit_with    ${LANG_FRENCH} \
-    "Ajouter Vim au menu contextuel"
+    "Ajouter ViAI au menu contextuel"
 LangString str_desc_edit_with       ${LANG_FRENCH} \
-    "Ajoute Vim à la liste $\"Ouvrir avec...$\" du menu contextuel."
+    "Ajoute ViAI à la liste $\"Ouvrir avec...$\" du menu contextuel."
 
 #LangString str_section_edit_with32  ${LANG_FRENCH} \
 #    "Version 32 bits"
@@ -140,19 +136,14 @@ LangString str_desc_vim_rc          ${LANG_FRENCH} \
 LangString str_group_plugin         ${LANG_FRENCH} \
     "Créer les répertoires de plugins"
 LangString str_desc_plugin          ${LANG_FRENCH} \
-    "Crée les répertoires de plugins. Ils permettent d'étendre Vim \
+    "Crée les répertoires de plugins. Ils permettent d'étendre ViAI \
      en y déposant simplement un fichier."
-
-LangString str_section_plugin_home  ${LANG_FRENCH} \
-    "Personnels"
-LangString str_desc_plugin_home     ${LANG_FRENCH} \
-    "Crée les répertoires de plugins dans le répertoire HOME."
 
 LangString str_section_plugin_vim   ${LANG_FRENCH} \
     "Partagés"
 LangString str_desc_plugin_vim      ${LANG_FRENCH} \
     "Crée les répertoires de plugins dans le répertoire d'installation \
-     de Vim, pour tous les utilisateurs."
+     de ViAI, pour tous les utilisateurs."
 
 LangString str_section_nls          ${LANG_FRENCH} \
     "Prise en charge des langues"
@@ -160,36 +151,31 @@ LangString str_desc_nls             ${LANG_FRENCH} \
     "Installe les fichiers de prise en charge des langues."
 
 LangString str_unsection_register   ${LANG_FRENCH} \
-    "Désinstaller Vim"
+    "Désinstaller ViAI"
 LangString str_desc_unregister      ${LANG_FRENCH} \
-    "Désinstaller Vim du système."
+    "Désinstaller ViAI du système."
 
 LangString str_unsection_exe        ${LANG_FRENCH} \
-    "Supprimer les exécutables et fichiers d'exécution de Vim"
+    "Supprimer les exécutables et fichiers d'exécution de ViAI"
 LangString str_desc_rm_exe          ${LANG_FRENCH} \
-    "Supprime tous les exécutables et fichiers d'exécution de Vim."
+    "Supprime tous les exécutables et fichiers d'exécution de ViAI."
 
 LangString str_ungroup_plugin       ${LANG_FRENCH} \
     "Supprimer les répertoires de plugins"
 LangString str_desc_rm_plugin       ${LANG_FRENCH} \
     "Supprime les répertoires de plugins s'ils sont vides."
 
-LangString str_unsection_plugin_home ${LANG_FRENCH} \
-    "Personnels"
-LangString str_desc_rm_plugin_home  ${LANG_FRENCH} \
-    "Supprime les répertoires de plugins du répertoire HOME."
-
 LangString str_unsection_plugin_vim ${LANG_FRENCH} \
     "Partagés"
 LangString str_desc_rm_plugin_vim   ${LANG_FRENCH} \
     "Supprime les répertoires de plugins du répertoire d'installation \
-     de Vim."
+     de ViAI."
 
 LangString str_unsection_rootdir    ${LANG_FRENCH} \
-    "Supprimer le répertoire d'installation de Vim"
+    "Supprimer le répertoire d'installation de ViAI"
 LangString str_desc_rm_rootdir      ${LANG_FRENCH} \
-    "Supprime le répertoire d'installation de Vim. Il contient les fichiers de \
-     configuration de Vim !"
+    "Supprime le répertoire d'installation de ViAI. Il contient les fichiers de \
+     configuration de ViAI !"
 
 
 ##############################################################################

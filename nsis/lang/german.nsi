@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# german.nsi : German language strings for gvim NSIS installer.
+# german.nsi : German language strings for gviai NSIS installer.
 #
 # Locale ID    : 1031
 # Locale Name  : de
@@ -28,7 +28,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_GERMAN} "README.de.txt"
 
 ##############################################################################
@@ -37,9 +36,6 @@ LangString vim_readme_file 0 "README.txt"
 
 #LangString str_dest_folder          ${LANG_GERMAN} \
 #    "Zielverzeichnis auswählen (muss auf $\"vim$\" enden)"
-
-LangString str_show_readme          ${LANG_GERMAN} \
-    "README-Datei nach der Installation anzeigen"
 
 # Install types:
 LangString str_type_typical         ${LANG_GERMAN} \
@@ -62,20 +58,20 @@ LangString str_desc_old_ver         ${LANG_GERMAN} \
     "Vorherige installierte Versionen auf diesem System deinstallieren."
 
 LangString str_section_exe          ${LANG_GERMAN} \
-    "Vim GUI"
+    "ViAI GUI"
 LangString str_desc_exe             ${LANG_GERMAN} \
-    "Vim (Anwendung) und Laufzeitdateien (Dieser Teil ist zwingend \
+    "ViAI (Anwendung) und Laufzeitdateien (Dieser Teil ist zwingend \
      erforderlich)."
 
 LangString str_section_console      ${LANG_GERMAN} \
-    "Vim Konsolenanwendung"
+    "ViAI Konsolenanwendung"
 LangString str_desc_console         ${LANG_GERMAN} \
-    "Konsolenversion von Vim."
+    "Konsolenversion von ViAI."
 
 LangString str_group_cmdline        ${LANG_GERMAN} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_GERMAN} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_GERMAN} \
 #    ".bat-Dateien erstellen"
@@ -83,20 +79,20 @@ LangString str_desc_cmdline         ${LANG_GERMAN} \
 #    ".bat-Dateien erstellen, um Vim in der Konsole auszuführen."
 
 LangString str_section_launcher     ${LANG_GERMAN} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_GERMAN} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_GERMAN} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_GERMAN} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_GERMAN} \
-    "Vim-Verknüpfungen erstellen"
+    "ViAI-Verknüpfungen erstellen"
 LangString str_desc_icons           ${LANG_GERMAN} \
-    "Verknüpfungen mit Vim für einfachen Aufruf erstellen."
+    "Verknüpfungen mit ViAI für einfachen Aufruf erstellen."
 
 LangString str_section_desktop      ${LANG_GERMAN} \
     "Auf dem Desktop"
@@ -106,7 +102,7 @@ LangString str_desc_desktop         ${LANG_GERMAN} \
 LangString str_section_start_menu   ${LANG_GERMAN} \
     "Im Startmenü"
 LangString str_desc_start_menu      ${LANG_GERMAN} \
-    "Vim im Programmverzeichnis des Startmenüs hinzufügen."
+    "ViAI im Programmverzeichnis des Startmenüs hinzufügen."
 
 #LangString str_section_quick_launch ${LANG_GERMAN} \
 #    "In der Schnellstartleiste"
@@ -114,9 +110,9 @@ LangString str_desc_start_menu      ${LANG_GERMAN} \
 #    "Verknüpfung zu Vim in der Schnellstartleiste ablegen."
 
 LangString str_section_edit_with    ${LANG_GERMAN} \
-    "Vim zum Kontextmenü hinzufügen"
+    "ViAI zum Kontextmenü hinzufügen"
 LangString str_desc_edit_with       ${LANG_GERMAN} \
-    "Vim in das $\"Öffnen mit...$\"-Kontextmenü einfügen."
+    "ViAI in das $\"Öffnen mit...$\"-Kontextmenü einfügen."
 
 #LangString str_section_edit_with32  ${LANG_GERMAN} \
 #    "32-Bit-Version"
@@ -139,18 +135,13 @@ LangString str_desc_vim_rc          ${LANG_GERMAN} \
 LangString str_group_plugin         ${LANG_GERMAN} \
     "Plugin-Verzeichnisse anlegen"
 LangString str_desc_plugin          ${LANG_GERMAN} \
-    "Plugin-Verzeichnisse anlegen. Plugins erlauben es, Vim \
+    "Plugin-Verzeichnisse anlegen. Plugins erlauben es, ViAI \
      um zusätzliche Funktionen zu erweitern."
-
-LangString str_section_plugin_home  ${LANG_GERMAN} \
-    "Privat"
-LangString str_desc_plugin_home     ${LANG_GERMAN} \
-    "Erstelle Plugin-Verzeichnis im HOME Benutzerverzeichnis."
 
 LangString str_section_plugin_vim   ${LANG_GERMAN} \
     "Freigegeben"
 LangString str_desc_plugin_vim      ${LANG_GERMAN} \
-    "Plugin-Verzeichnisse im Vim-Installationsverzeichnis erstellen. Diese werden \
+    "Plugin-Verzeichnisse im ViAI-Installationsverzeichnis erstellen. Diese werden \
      für alle Benutzer dieses Systems genutzt."
 
 LangString str_section_nls          ${LANG_GERMAN} \
@@ -159,34 +150,29 @@ LangString str_desc_nls             ${LANG_GERMAN} \
     "Dateien zur Unterstützung anderer Sprachen als Englisch installieren."
 
 LangString str_unsection_register   ${LANG_GERMAN} \
-    "Vim deinstallieren"
+    "ViAI deinstallieren"
 LangString str_desc_unregister      ${LANG_GERMAN} \
-    "Vim vom System entfernen."
+    "ViAI vom System entfernen."
 
 LangString str_unsection_exe        ${LANG_GERMAN} \
-    "Vim-Anwendung und Laufzeitdateien entfernen"
+    "ViAI-Anwendung und Laufzeitdateien entfernen"
 LangString str_desc_rm_exe          ${LANG_GERMAN} \
-    "Alle Vim-Anwendungen und Laufzeitdateien von diesem System entfernen."
+    "Alle ViAI-Anwendungen und Laufzeitdateien von diesem System entfernen."
 
 LangString str_ungroup_plugin       ${LANG_GERMAN} \
     "Entferne Plugin-Verzeichnisse"
 LangString str_desc_rm_plugin       ${LANG_GERMAN} \
     "Entferne Plugin-Verzeichnisse, falls sie leer sind."
 
-LangString str_unsection_plugin_home ${LANG_GERMAN} \
-    "Privat"
-LangString str_desc_rm_plugin_home  ${LANG_GERMAN} \
-    "Entfernt die Plugin-Verzeichnisse aus dem HOME Benutzerverzeichnis."
-
 LangString str_unsection_plugin_vim ${LANG_GERMAN} \
     "Freigegeben"
 LangString str_desc_rm_plugin_vim   ${LANG_GERMAN} \
-    "Entfernt das Plugin-Verzeichnis aus dem Vim-Installationsverzeichnis."
+    "Entfernt das Plugin-Verzeichnis aus dem ViAI-Installationsverzeichnis."
 
 LangString str_unsection_rootdir    ${LANG_GERMAN} \
-    "Entferne Vim Installationsverzeichnis"
+    "Entferne ViAI Installationsverzeichnis"
 LangString str_desc_rm_rootdir      ${LANG_GERMAN} \
-    "Entfernt das Vim Installationsverzeichnis. Es enthält die Vim Konfigurationsdateien!"
+    "Entfernt das ViAI Installationsverzeichnis. Es enthält die ViAI Konfigurationsdateien!"
 
 
 ##############################################################################

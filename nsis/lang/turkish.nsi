@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# turkish.nsi: Turkish language strings for gvim NSIS installer.
+# turkish.nsi: Turkish language strings for gviai NSIS installer.
 #
 # Locale ID    : 1055
 # Locale Name  : tr
@@ -27,13 +27,9 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_TURKISH} "README.tr.txt"
 
 ##############################################################################
-
-LangString str_show_readme          ${LANG_TURKISH} \
-    "Kurulum bittikten sonra README dosyasını aç"
 
 # Install types:
 LangString str_type_typical         ${LANG_TURKISH} \
@@ -52,22 +48,22 @@ LangString str_type_full            ${LANG_TURKISH} \
 LangString str_section_old_ver      ${LANG_TURKISH} \
     "Eski sürümü kaldır"
 LangString str_desc_old_ver         ${LANG_TURKISH} \
-    "Vim'in eski sürümünü sisteminizden kaldırır."
+    "ViAI'in eski sürümünü sisteminizden kaldırır."
 
 LangString str_section_exe          ${LANG_TURKISH} \
-    "Vim grafik arabirimi ve çalışma dosyaları"
+    "ViAI grafik arabirimi ve çalışma dosyaları"
 LangString str_desc_exe             ${LANG_TURKISH} \
-    "Vim program başlatıcı ve çalışma dosyaları. Bu bileşen zorunludur."
+    "ViAI program başlatıcı ve çalışma dosyaları. Bu bileşen zorunludur."
 
 LangString str_section_console      ${LANG_TURKISH} \
-    "Vim konsol sürümü"
+    "ViAI konsol sürümü"
 LangString str_desc_console         ${LANG_TURKISH} \
-    "Vim'in konsol sürümü (vim.exe)."
+    "ViAI'in konsol sürümü (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_TURKISH} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_TURKISH} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_TURKISH} \
 #    ".bat dosyaları oluştur"
@@ -75,35 +71,35 @@ LangString str_desc_cmdline         ${LANG_TURKISH} \
 #    "Vim için komut satırında kullanmak üzere .bat dosyaları oluşturur"
 
 LangString str_section_launcher     ${LANG_TURKISH} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_TURKISH} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_TURKISH} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_TURKISH} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_TURKISH} \
-    "Vim için kısayollar oluştur"
+    "ViAI için kısayollar oluştur"
 LangString str_desc_icons           ${LANG_TURKISH} \
-    "Kolay erişim için Vim kısayolları oluşturur."
+    "Kolay erişim için ViAI kısayolları oluşturur."
 
 LangString str_section_desktop      ${LANG_TURKISH} \
     "Masaüstünde"
 LangString str_desc_desktop         ${LANG_TURKISH} \
-    "gVim programı için Masaüstünde kısayol oluşturur."
+    "GViAI programı için Masaüstünde kısayol oluşturur."
 
 LangString str_section_start_menu   ${LANG_TURKISH} \
     "Başlat Menüsü - Programlar klasöründe"
 LangString str_desc_start_menu      ${LANG_TURKISH} \
-    "Vim kısayolunu Başlat Menüsüne ekler."
+    "ViAI kısayolunu Başlat Menüsüne ekler."
 
 LangString str_section_edit_with    ${LANG_TURKISH} \
-    "Vim ile Aç"
+    "ViAI ile Aç"
 LangString str_desc_edit_with       ${LANG_TURKISH} \
-    "Vim'i $\"Birlikte aç$\" sağ tık menüsüne ekler."
+    "ViAI'i $\"Birlikte aç$\" sağ tık menüsüne ekler."
 
  LangString str_section_vim_rc       ${LANG_TURKISH} \
     "Bir yapılandırma dosyası oluştur"
@@ -113,54 +109,44 @@ LangString str_desc_vim_rc          ${LANG_TURKISH} \
 LangString str_group_plugin         ${LANG_TURKISH} \
     "Eklenti dizinleri oluştur"
 LangString str_desc_plugin          ${LANG_TURKISH} \
-    "Bu dizinlere Vim eklentilerini yerleştirerek Vim'e yeni \
+    "Bu dizinlere ViAI eklentilerini yerleştirerek ViAI'e yeni \
      özellikler kazandırabilirsiniz."
-
-LangString str_section_plugin_home  ${LANG_TURKISH} \
-    "Gizli"
-LangString str_desc_plugin_home     ${LANG_TURKISH} \
-    "Eklenti dizinlerini EV dizininde oluşturur."
 
 LangString str_section_plugin_vim   ${LANG_TURKISH} \
     "Paylaşılan"
 LangString str_desc_plugin_vim      ${LANG_TURKISH} \
-    "Eklenti dizinlerini Vim yükleme dizininde oluşturur. Bu eklentilerden \
+    "Eklenti dizinlerini ViAI yükleme dizininde oluşturur. Bu eklentilerden \
      bilgisayarın tüm kullanıcıları yararlanabilir."
 
 LangString str_section_nls          ${LANG_TURKISH} \
     "Ek dil desteği"
 LangString str_desc_nls             ${LANG_TURKISH} \
-    "Mevcut olan Vim yerelleştirmelerini yükler."
+    "Mevcut olan ViAI yerelleştirmelerini yükler."
 
 LangString str_unsection_register   ${LANG_TURKISH} \
-    "Vim kaydını kaldır"
+    "ViAI kaydını kaldır"
 LangString str_desc_unregister      ${LANG_TURKISH} \
-    "Vim'in bu bilgisayardaki kaydını kaldırır."
+    "ViAI'in bu bilgisayardaki kaydını kaldırır."
 
 LangString str_unsection_exe        ${LANG_TURKISH} \
-    "Vim programını ve çalıştırma dosyalarını kaldır"
+    "ViAI programını ve çalıştırma dosyalarını kaldır"
 LangString str_desc_rm_exe          ${LANG_TURKISH} \
-    "Vim çalıştırılabilir dosyalarını ve diğer dosyaları kaldırır."
+    "ViAI çalıştırılabilir dosyalarını ve diğer dosyaları kaldırır."
 
 LangString str_ungroup_plugin       ${LANG_TURKISH} \
     "Eklenti dizinlerini kaldır"
 LangString str_desc_rm_plugin       ${LANG_TURKISH} \
     "Eklenti dizinlerini eğer boş ise kaldırır."
 
-LangString str_unsection_plugin_home ${LANG_TURKISH} \
-    "Gizli"
-LangString str_desc_rm_plugin_home  ${LANG_TURKISH} \
-    "Eklenti dizinlerini EV dizininden kaldırır."
-
 LangString str_unsection_plugin_vim ${LANG_TURKISH} \
     "Paylaşılan"
 LangString str_desc_rm_plugin_vim   ${LANG_TURKISH} \
-    "Eklenti dizinlerini Vim yükleme dizininden kaldırır."
+    "Eklenti dizinlerini ViAI yükleme dizininden kaldırır."
 
 LangString str_unsection_rootdir    ${LANG_TURKISH} \
-    "Vim kök dizinini kaldır"
+    "ViAI kök dizinini kaldır"
 LangString str_desc_rm_rootdir      ${LANG_TURKISH} \
-    "Vim kök dizinini kaldırır. Bu dizin Vim yapılandırma dosyalarını içerir!"
+    "ViAI kök dizinini kaldırır. Bu dizin ViAI yapılandırma dosyalarını içerir!"
 
  LangString str_msg_install_fail  ${LANG_TURKISH} \
     "Yükleme başarısız oldu. Yeniden deneyin."

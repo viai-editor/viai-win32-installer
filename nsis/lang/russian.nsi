@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# russian.nsi: Russian language strings for gvim NSIS installer.
+# russian.nsi: Russian language strings for gviai NSIS installer.
 #
 # Locale ID    : 1049
 # Locale name  : ru
@@ -24,20 +24,11 @@ LangString ^UninstallCaption ${LANG_RUSSIAN} \
 LicenseLangString page_lic_file ${LANG_RUSSIAN} "${SRC}\lang\LICENSE.ru.nsis.txt"
 
 ##############################################################################
-# Translated README.txt file, which is opened after installation          {{{1
-##############################################################################
-
-LangString vim_readme_file ${LANG_RUSSIAN} "README.ru.txt"
-
-##############################################################################
 # MUI Configuration Strings                                               {{{1
 ##############################################################################
 
 #LangString str_dest_folder          ${LANG_RUSSIAN} \
 #    "Маршрут установки программы (должен завершаться каталогом $\"vim$\")"
-
-LangString str_show_readme          ${LANG_RUSSIAN} \
-    " Ознакомиться с кратким описанием программы"
 
 # Install types:
 LangString str_type_typical         ${LANG_RUSSIAN} \
@@ -66,15 +57,15 @@ LangString str_desc_exe             ${LANG_RUSSIAN} \
     Это обязательный компонент"
 
 LangString str_section_console      ${LANG_RUSSIAN} \
-    "Консольная программа Vim"
+    "Консольная программа ViAI"
 LangString str_desc_console         ${LANG_RUSSIAN} \
-    "Вариант редактора Vim (vim.exe), используемый для работы в командной \
+    "Вариант редактора ViAI (viai.exe), используемый для работы в командной \
     оболочке"
 
 LangString str_group_cmdline        ${LANG_RUSSIAN} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_RUSSIAN} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_RUSSIAN} \
 #    "Создать командные файлы"
@@ -83,30 +74,30 @@ LangString str_desc_cmdline         ${LANG_RUSSIAN} \
 #    Vim из командной строки"
 
 LangString str_section_launcher     ${LANG_RUSSIAN} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_RUSSIAN} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_RUSSIAN} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_RUSSIAN} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_RUSSIAN} \
-    "Создать ярлыки для редактора Vim"
+    "Создать ярлыки для редактора ViAI"
 LangString str_desc_icons           ${LANG_RUSSIAN} \
-    "Создание ярлыков программы для удобного и быстрого запуска редактора Vim"
+    "Создание ярлыков программы для удобного и быстрого запуска редактора ViAI"
 
 LangString str_section_desktop      ${LANG_RUSSIAN} \
     "На Рабочем столе"
 LangString str_desc_desktop         ${LANG_RUSSIAN} \
-    "Создание ярлыков редактора Vim на Рабочем столе"
+    "Создание ярлыков редактора ViAI на Рабочем столе"
 
 LangString str_section_start_menu   ${LANG_RUSSIAN} \
     "В меню кнопки Пуск"
 LangString str_desc_start_menu      ${LANG_RUSSIAN} \
-    "Создание ярлыков редактора Vim в меню кнопки Пуск"
+    "Создание ярлыков редактора ViAI в меню кнопки Пуск"
 
 #LangString str_section_quick_launch ${LANG_RUSSIAN} \
 #    "На панели быстрого запуска"
@@ -114,7 +105,7 @@ LangString str_desc_start_menu      ${LANG_RUSSIAN} \
 #    "Создание ярлыков редактора Vim на панели быстрого запуска"
 
 LangString str_section_edit_with    ${LANG_RUSSIAN} \
-    "Запуск редактора Vim из контекстного меню"
+    "Запуск редактора ViAI из контекстного меню"
 LangString str_desc_edit_with       ${LANG_RUSSIAN} \
     "Добавление необходимой строки в пункт контекстного меню \
     «Открыть с помощью...»"
@@ -141,18 +132,12 @@ LangString str_group_plugin         ${LANG_RUSSIAN} \
     "Создать каталог для подключаемых модулей"
 LangString str_desc_plugin          ${LANG_RUSSIAN} \
     "Создание каталога для подключаемых модулей, которые расширяют возможности \
-    редактора Vim"
-
-LangString str_section_plugin_home  ${LANG_RUSSIAN} \
-    "Личный каталог"
-LangString str_desc_plugin_home     ${LANG_RUSSIAN} \
-    "В домашнем каталоге пользователя. Модули в этом каталоге доступны только \
-    этому пользователю"
+    редактора ViAI"
 
 LangString str_section_plugin_vim   ${LANG_RUSSIAN} \
     "Общий каталог"
 LangString str_desc_plugin_vim      ${LANG_RUSSIAN} \
-    "В каталоге установки редактора Vim. Модули в этом каталоге доступны для \
+    "В каталоге установки редактора ViAI. Модули в этом каталоге доступны для \
     всех пользователей"
 
 #LangString str_section_vis_vim      ${LANG_RUSSIAN} \
@@ -167,34 +152,29 @@ LangString str_desc_nls             ${LANG_RUSSIAN} \
     "Установка файлов для работы программе на различных региональных языках"
 
 LangString str_unsection_register   ${LANG_RUSSIAN} \
-    "Отменить регистрацию компонентов программы Vim"
+    "Отменить регистрацию компонентов программы ViAI"
 LangString str_desc_unregister      ${LANG_RUSSIAN} \
-    "Отмена регистрации компонентов программы Vim в операционной системе"
+    "Отмена регистрации компонентов программы ViAI в операционной системе"
 
 LangString str_unsection_exe        ${LANG_RUSSIAN} \
-    "Удалить файлы редактора Vim"
+    "Удалить файлы редактора ViAI"
 LangString str_desc_rm_exe          ${LANG_RUSSIAN} \
-    "Удаление всех исполняемых и вспомогательных файлов редактора Vim"
+    "Удаление всех исполняемых и вспомогательных файлов редактора ViAI"
 
 LangString str_ungroup_plugin       ${LANG_RUSSIAN} \
     "Удалить каталог подключаемых модулей"
 LangString str_desc_rm_plugin       ${LANG_RUSSIAN} \
     "Удаление каталога подключаемых модулей, если в нём нет файлов"
 
-LangString str_unsection_plugin_home ${LANG_RUSSIAN} \
-    "Личный каталог"
-LangString str_desc_rm_plugin_home  ${LANG_RUSSIAN} \
-    "Удаление каталога подключаемых модулей из домашнего каталога пользователя"
-
 LangString str_unsection_plugin_vim ${LANG_RUSSIAN} \
     "Общий каталог"
 LangString str_desc_rm_plugin_vim   ${LANG_RUSSIAN} \
-    "Удаление каталога подключаемых модулей из каталога установки редактора Vim"
+    "Удаление каталога подключаемых модулей из каталога установки редактора ViAI"
 
 LangString str_unsection_rootdir    ${LANG_RUSSIAN} \
-    "Удалить основной каталог программы Vim"
+    "Удалить основной каталог программы ViAI"
 LangString str_desc_rm_rootdir      ${LANG_RUSSIAN} \
-    "Удаление основного каталога программы Vim. В этом каталоге находятся \
+    "Удаление основного каталога программы ViAI. В этом каталоге находятся \
     файлы настроек!"
 
 
@@ -304,7 +284,7 @@ LangString str_msg_keymap_title   ${LANG_RUSSIAN} \
 LangString str_msg_keymap_desc    ${LANG_RUSSIAN} \
     "Изменение клавиатурных команд CTRL+V, CTRL+C, CTRL+S, CTRL+F и т. п."
 LangString str_msg_keymap_default ${LANG_RUSSIAN} \
-    "Без изменения, использовать как принято в редакторе Vim"
+    "Без изменения, использовать как принято в редакторе ViAI"
 LangString str_msg_keymap_windows ${LANG_RUSSIAN} \
     "Изменить и использовать как принято в ОС Windows"
 
@@ -313,7 +293,7 @@ LangString str_msg_mouse_title   ${LANG_RUSSIAN} \
 LangString str_msg_mouse_desc    ${LANG_RUSSIAN} \
     "Действия правой и левой кнопки манипулятора «мышь»"
 LangString str_msg_mouse_default ${LANG_RUSSIAN} \
-    "Правая — всплывающее меню, левая — режим визуальный (Vim)"
+    "Правая — всплывающее меню, левая — режим визуальный (ViAI)"
 LangString str_msg_mouse_windows ${LANG_RUSSIAN} \
     "Правая — всплывающее меню, левая — режим выборки (Windows)"
 LangString str_msg_mouse_unix    ${LANG_RUSSIAN} \

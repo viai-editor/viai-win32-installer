@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# serbian.nsi: Serbian language strings for gvim NSIS installer.
+# serbian.nsi: Serbian language strings for gviai NSIS installer.
 #
 # Locale ID    : 3098
 # Locale Name  : sr
@@ -28,7 +28,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_SERBIAN} "README.sr.txt"
 
 ##############################################################################
@@ -37,9 +36,6 @@ LangString vim_readme_file 0 "README.txt"
 
 #LangString str_dest_folder          ${LANG_SERBIAN} \
 #    "Destination Folder (Must end with $\"vim$\")"
-
-LangString str_show_readme          ${LANG_SERBIAN} \
-    "Прикажи ПРОЧИТАЈМЕ када се заврши инсталација"
 
 # Install types:
 LangString str_type_typical         ${LANG_SERBIAN} \
@@ -59,22 +55,22 @@ LangString str_type_full            ${LANG_SERBIAN} \
 LangString str_section_old_ver      ${LANG_SERBIAN} \
     "Уклањање постојећ(е/их) верзиј(е/а)"
 LangString str_desc_old_ver         ${LANG_SERBIAN} \
-    "Уклања постојећ(у/е) Vim верзииј(у/е) из вашег система."
+    "Уклања постојећ(у/е) ViAI верзииј(у/е) из вашег система."
 
 LangString str_section_exe          ${LANG_SERBIAN} \
-    "Vim ГКИ и фајлови потребни за извршавање"
+    "ViAI ГКИ и фајлови потребни за извршавање"
 LangString str_desc_exe             ${LANG_SERBIAN} \
-    "Vim ГКИ извршни фајлови и фајлови потребни током извршавања. Ова компонента је неопходна."
+    "ViAI ГКИ извршни фајлови и фајлови потребни током извршавања. Ова компонента је неопходна."
 
 LangString str_section_console      ${LANG_SERBIAN} \
-    "Vim конзолни програм"
+    "ViAI конзолни програм"
 LangString str_desc_console         ${LANG_SERBIAN} \
-    "Конзолна верзија програма Vim (vim.exe)."
+    "Конзолна верзија програма ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_SERBIAN} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_SERBIAN} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_SERBIAN} \
 #    "Креирај .bat фајлове"
@@ -83,30 +79,30 @@ LangString str_desc_cmdline         ${LANG_SERBIAN} \
 #     у циљу коришћења из командне линије."
 
 LangString str_section_launcher     ${LANG_SERBIAN} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_SERBIAN} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_SERBIAN} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_SERBIAN} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_SERBIAN} \
-    "Креирај иконе за Vim"
+    "Креирај иконе за ViAI"
 LangString str_desc_icons           ${LANG_SERBIAN} \
-    "Креира иконе за Vim на различитим местима, како би се олакшао приступ."
+    "Креира иконе за ViAI на различитим местима, како би се олакшао приступ."
 
 LangString str_section_desktop      ${LANG_SERBIAN} \
     "На радној површини"
 LangString str_desc_desktop         ${LANG_SERBIAN} \
-    "Креира иконе за gVim извршне фајлове на радној површини."
+    "Креира иконе за GViAI извршне фајлове на радној површини."
 
 LangString str_section_start_menu   ${LANG_SERBIAN} \
     "У фасцикли Програми унутар Старт менија"
 LangString str_desc_start_menu      ${LANG_SERBIAN} \
-    "Додаје Vim у фолдер Програми Старт менија."
+    "Додаје ViAI у фолдер Програми Старт менија."
 
 #LangString str_section_quick_launch ${LANG_SERBIAN} \
 #    "In the Quick Launch Bar"
@@ -114,9 +110,9 @@ LangString str_desc_start_menu      ${LANG_SERBIAN} \
 #    "Add Vim shortcut in the quick launch bar."
 
 LangString str_section_edit_with    ${LANG_SERBIAN} \
-    "Додај Vim контекстни мени"
+    "Додај ViAI контекстни мени"
 LangString str_desc_edit_with       ${LANG_SERBIAN} \
-    "Додаје Vim у $\"Отвори помоћу...$\" листу контекстног менија."
+    "Додаје ViAI у $\"Отвори помоћу...$\" листу контекстног менија."
 
 #LangString str_section_edit_with32  ${LANG_SERBIAN} \
 #    "32-bit Version"
@@ -138,18 +134,13 @@ LangString str_desc_vim_rc          ${LANG_SERBIAN} \
 LangString str_group_plugin         ${LANG_SERBIAN} \
     "Креира директоријуме додатака"
 LangString str_desc_plugin          ${LANG_SERBIAN} \
-    "Креира директоријуме додатака. Ови директоријуми омогућавају проширење програма Vim \
+    "Креира директоријуме додатака. Ови директоријуми омогућавају проширење програма ViAI \
      убацивањем фајла у директоријум."
-
-LangString str_section_plugin_home  ${LANG_SERBIAN} \
-    "Приватне"
-LangString str_desc_plugin_home     ${LANG_SERBIAN} \
-    "Креира директоријуме додатака у HOME директоријуму."
 
 LangString str_section_plugin_vim   ${LANG_SERBIAN} \
     "Дељене"
 LangString str_desc_plugin_vim      ${LANG_SERBIAN} \
-    "Креира директоријуме додатака у Vim инсталационом директоријуму, користе их сви \
+    "Креира директоријуме додатака у ViAI инсталационом директоријуму, користе их сви \
      на систему."
 
 LangString str_section_nls          ${LANG_SERBIAN} \
@@ -158,34 +149,29 @@ LangString str_desc_nls             ${LANG_SERBIAN} \
     "Инсталира фајлове за домаћу језичку подршку."
 
 LangString str_unsection_register   ${LANG_SERBIAN} \
-    "Поништи регистрацију Vim"
+    "Поништи регистрацију ViAI"
 LangString str_desc_unregister      ${LANG_SERBIAN} \
-    "Поништава регистрацију програма Vim на систему."
+    "Поништава регистрацију програма ViAI на систему."
 
 LangString str_unsection_exe        ${LANG_SERBIAN} \
-    "Уклони Vim извршне фајлове/фајлове потребне у време извршавања"
+    "Уклони ViAI извршне фајлове/фајлове потребне у време извршавања"
 LangString str_desc_rm_exe          ${LANG_SERBIAN} \
-    "Уклања све Vim извршне фајлове и оне потребне у време извршавања."
+    "Уклања све ViAI извршне фајлове и оне потребне у време извршавања."
 
 LangString str_ungroup_plugin       ${LANG_SERBIAN} \
     "Укони директоријуме додатака"
 LangString str_desc_rm_plugin       ${LANG_SERBIAN} \
     "Уклања директоријуме додатака ако су празни."
 
-LangString str_unsection_plugin_home ${LANG_SERBIAN} \
-    "Приватне"
-LangString str_desc_rm_plugin_home  ${LANG_SERBIAN} \
-    "Уклања директоријуме додатака из HOME директоријума."
-
 LangString str_unsection_plugin_vim ${LANG_SERBIAN} \
     "Дељене"
 LangString str_desc_rm_plugin_vim   ${LANG_SERBIAN} \
-    "Уклања директоријуме додатака из Vim инсталациониг директоријума."
+    "Уклања директоријуме додатака из ViAI инсталациониг директоријума."
 
 LangString str_unsection_rootdir    ${LANG_SERBIAN} \
-    "Уклони Vim корени директоријум"
+    "Уклони ViAI корени директоријум"
 LangString str_desc_rm_rootdir      ${LANG_SERBIAN} \
-    "Уклања Vim корени директоријум. Он садржи ваше Vim конфигурационе фајлове!"
+    "Уклања ViAI корени директоријум. Он садржи ваше ViAI конфигурационе фајлове!"
 
 
 ##############################################################################

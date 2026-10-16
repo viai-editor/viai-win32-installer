@@ -30,7 +30,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_TRADCHINESE} "README.zh_tw.txt"
 
 ##############################################################################
@@ -39,9 +38,6 @@ LangString vim_readme_file 0 "README.txt"
 
 #LangString str_dest_folder          ${LANG_TRADCHINESE} \
 #    "安裝資料夾 (必須以 vim 結尾)"
-
-LangString str_show_readme          ${LANG_TRADCHINESE} \
-    "安裝完成後顯示 README 檔案"
 
 # Install types:
 LangString str_type_typical         ${LANG_TRADCHINESE} \
@@ -61,22 +57,22 @@ LangString str_type_full            ${LANG_TRADCHINESE} \
 LangString str_section_old_ver      ${LANG_TRADCHINESE} \
     "移除舊版本"
 LangString str_desc_old_ver         ${LANG_TRADCHINESE} \
-    "移除閣下電腦上舊版本的 Vim。"
+    "移除閣下電腦上舊版本的 ViAI。"
 
 LangString str_section_exe          ${LANG_TRADCHINESE} \
-    "安裝 Vim 圖形界面程式"
+    "安裝 ViAI 圖形界面程式"
 LangString str_desc_exe             ${LANG_TRADCHINESE} \
-    "安裝 Vim 圖形界面程式及腳本。此為必選安裝。"
+    "安裝 ViAI 圖形界面程式及腳本。此為必選安裝。"
 
 LangString str_section_console      ${LANG_TRADCHINESE} \
-    "安裝 Vim 命令行程式"
+    "安裝 ViAI 命令行程式"
 LangString str_desc_console         ${LANG_TRADCHINESE} \
-    "安裝 Vim 命令行程式 (vim.exe)。該程式在控制臺窗口中運行。"
+    "安裝 ViAI 命令行程式 (viai.exe)。該程式在控制臺窗口中運行。"
 
 LangString str_group_cmdline        ${LANG_TRADCHINESE} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_TRADCHINESE} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_TRADCHINESE} \
 #    "安裝批次檔案"
@@ -84,30 +80,30 @@ LangString str_desc_cmdline         ${LANG_TRADCHINESE} \
 #    "為 Vim 的各種變體創建批次檔，以便在命令行下啟動 Vim。"
 
 LangString str_section_launcher     ${LANG_TRADCHINESE} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_TRADCHINESE} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_TRADCHINESE} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_TRADCHINESE} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_TRADCHINESE} \
-    "建立 Vim 圖示"
+    "建立 ViAI 圖示"
 LangString str_desc_icons           ${LANG_TRADCHINESE} \
-    "建立若干 Vim 圖示，以便于使用 Vim。"
+    "建立若干 ViAI 圖示，以便于使用 ViAI。"
 
 LangString str_section_desktop      ${LANG_TRADCHINESE} \
     "於桌面"
 LangString str_desc_desktop         ${LANG_TRADCHINESE} \
-    "建立若干 Vim 圖示於桌面上，以方便啟動 Vim。"
+    "建立若干 ViAI 圖示於桌面上，以方便啟動 ViAI。"
 
 LangString str_section_start_menu   ${LANG_TRADCHINESE} \
     "於「開始」功能表的「程式」集"
 LangString str_desc_start_menu      ${LANG_TRADCHINESE} \
-    "在「開始」功能表的「程式」集中建立 Vim 啟動組。\
+    "在「開始」功能表的「程式」集中建立 ViAI 啟動組。\
      適用于 Windows 95 及以上版本。"
 
 #LangString str_section_quick_launch ${LANG_TRADCHINESE} \
@@ -118,7 +114,7 @@ LangString str_desc_start_menu      ${LANG_TRADCHINESE} \
 LangString str_section_edit_with    ${LANG_TRADCHINESE} \
     "安裝快捷選單"
 LangString str_desc_edit_with       ${LANG_TRADCHINESE} \
-    "在「打開方式」快捷選單中添加 Vim 項。"
+    "在「打開方式」快捷選單中添加 ViAI 項。"
 
 #LangString str_section_edit_with32  ${LANG_TRADCHINESE} \
 #    "32 位元版本"
@@ -133,24 +129,19 @@ LangString str_desc_edit_with       ${LANG_TRADCHINESE} \
 LangString str_section_vim_rc       ${LANG_TRADCHINESE} \
     "建立默認設定檔"
 LangString str_desc_vim_rc          ${LANG_TRADCHINESE} \
-    "在安裝資料夾下建立默認的 Vim 設定檔(_vimrc)。\
+    "在安裝資料夾下建立默認的 ViAI 設定檔(_vimrc)。\
      若該設定檔已經存在，則略過此項。"
 
 LangString str_group_plugin         ${LANG_TRADCHINESE} \
     "建立插件資料夾"
 LangString str_desc_plugin          ${LANG_TRADCHINESE} \
-    "建立(空的)插件資料夾結構。插件資料夾用于安裝 Vim 的擴展插件，\
+    "建立(空的)插件資料夾結構。插件資料夾用于安裝 ViAI 的擴展插件，\
      只要將檔案復制到相關的子資料夾中即可。"
-
-LangString str_section_plugin_home  ${LANG_TRADCHINESE} \
-    "建立插件資料夾"
-LangString str_desc_plugin_home     ${LANG_TRADCHINESE} \
-    "Create plugin directories in HOME directory."
 
 LangString str_section_plugin_vim   ${LANG_TRADCHINESE} \
     "建立共享插件資料夾"
 LangString str_desc_plugin_vim      ${LANG_TRADCHINESE} \
-    "在 Vim 安裝資料夾下建立(空的)插件資料夾結構，電腦上所有用戶都能使用安裝\
+    "在 ViAI 安裝資料夾下建立(空的)插件資料夾結構，電腦上所有用戶都能使用安裝\
      在該資料夾里的擴展插件。"
 
 LangString str_section_nls          ${LANG_TRADCHINESE} \
@@ -159,34 +150,29 @@ LangString str_desc_nls             ${LANG_TRADCHINESE} \
     "安裝用于支持本地語言的檔案。"
 
 LangString str_unsection_register   ${LANG_TRADCHINESE} \
-    "移除 Vim 系統設定"
+    "移除 ViAI 系統設定"
 LangString str_desc_unregister      ${LANG_TRADCHINESE} \
-    "移除與 Vim 相關的系統設定。"
+    "移除與 ViAI 相關的系統設定。"
 
 LangString str_unsection_exe        ${LANG_TRADCHINESE} \
-    "移除 Vim 程式及腳本"
+    "移除 ViAI 程式及腳本"
 LangString str_desc_rm_exe          ${LANG_TRADCHINESE} \
-    "移除所有的 Vim 程式及腳本。"
+    "移除所有的 ViAI 程式及腳本。"
 
 LangString str_ungroup_plugin       ${LANG_TRADCHINESE} \
     "Remove plugin directories"
 LangString str_desc_rm_plugin       ${LANG_TRADCHINESE} \
     "Remove the plugin directories if they are empty."
 
-LangString str_unsection_plugin_home ${LANG_TRADCHINESE} \
-    "Private"
-LangString str_desc_rm_plugin_home  ${LANG_TRADCHINESE} \
-    "Remove the vimfiles directory in HOME directory."
-
 LangString str_unsection_plugin_vim ${LANG_TRADCHINESE} \
     "Shared"
 LangString str_desc_rm_plugin_vim   ${LANG_TRADCHINESE} \
-    "Remove the vimfiles directory in Vim install directory."
+    "Remove the vimfiles directory in ViAI install directory."
 
 LangString str_unsection_rootdir    ${LANG_TRADCHINESE} \
-    "Remove the Vim root directory"
+    "Remove the ViAI root directory"
 LangString str_desc_rm_rootdir      ${LANG_TRADCHINESE} \
-    "Remove the Vim root directory. It contains your Vim configuration files!"
+    "Remove the ViAI root directory. It contains your ViAI configuration files!"
 
 
 ##############################################################################

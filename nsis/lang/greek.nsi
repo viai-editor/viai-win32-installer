@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# greek.nsi: Greek language strings for gvim NSIS installer.
+# greek.nsi: Greek language strings for gviai NSIS installer.
 #
 # Locale ID    : 1032
 # Locale Name  : el
@@ -28,7 +28,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_GREEK} "README.el.txt"
 
 ##############################################################################
@@ -37,9 +36,6 @@ LangString vim_readme_file 0 "README.txt"
 
 #LangString str_dest_folder          ${LANG_GREEK} \
 #    "Φάκελος προορισμός (Πρέπει να τελειώνει σε $\"vim$\")"
-
-LangString str_show_readme          ${LANG_GREEK} \
-    "Εμφάνιση README μετά την ολοκλήρωση της εγκατάστασης"
 
 # Install types:
 LangString str_type_typical         ${LANG_GREEK} \
@@ -59,22 +55,22 @@ LangString str_type_full            ${LANG_GREEK} \
 LangString str_section_old_ver      ${LANG_GREEK} \
     "Απεγκατάσταση υπάρχουσων εκδόσεων"
 LangString str_desc_old_ver         ${LANG_GREEK} \
-    "Απεγκατάσταση υπάρχουσων εκδόσεων Vim από το σύστημά σας."
+    "Απεγκατάσταση υπάρχουσων εκδόσεων ViAI από το σύστημά σας."
 
 LangString str_section_exe          ${LANG_GREEK} \
-    "Vim GUI and runtime files"
+    "ViAI GUI and runtime files"
 LangString str_desc_exe             ${LANG_GREEK} \
-    "Vim GUI executables and runtime files.  This component is required."
+    "ViAI GUI executables and runtime files.  This component is required."
 
 LangString str_section_console      ${LANG_GREEK} \
-    "Vim console program"
+    "ViAI console program"
 LangString str_desc_console         ${LANG_GREEK} \
-    "Console version of Vim (vim.exe)."
+    "Console version of ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_GREEK} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_GREEK} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_GREEK} \
 #    "Δημιουργία αρχείων .bat"
@@ -83,30 +79,30 @@ LangString str_desc_cmdline         ${LANG_GREEK} \
 #     χρήση γραμμής εντολών."
 
 LangString str_section_launcher     ${LANG_GREEK} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_GREEK} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_GREEK} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_GREEK} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_GREEK} \
-    "Δημιουργία  εικονιδίων Vim"
+    "Δημιουργία  εικονιδίων ViAI"
 LangString str_desc_icons           ${LANG_GREEK} \
-    "Δημιουργία εικονιδίων για τον Vim σε διάφορες τοποθεσίες για την διευκόλυνση της προσβασιμότητας."
+    "Δημιουργία εικονιδίων για τον ViAI σε διάφορες τοποθεσίες για την διευκόλυνση της προσβασιμότητας."
 
 LangString str_section_desktop      ${LANG_GREEK} \
     "Στην επιφάνεια εργασίας"
 LangString str_desc_desktop         ${LANG_GREEK} \
-    "Δημιουργία εικονιδίων για gVim εκτελέσιμα στην επιφάνεια εργασίας."
+    "Δημιουργία εικονιδίων για GViAI εκτελέσιμα στην επιφάνεια εργασίας."
 
 LangString str_section_start_menu   ${LANG_GREEK} \
     "In the Start Menu Programs Folder"
 LangString str_desc_start_menu      ${LANG_GREEK} \
-    "Προσθήκη του Vim στον φάκελο προγραμμάτων του μενού εκκίνησης."
+    "Προσθήκη του ViAI στον φάκελο προγραμμάτων του μενού εκκίνησης."
 
 #LangString str_section_quick_launch ${LANG_GREEK} \
 #    "In the Quick Launch Bar"
@@ -114,9 +110,9 @@ LangString str_desc_start_menu      ${LANG_GREEK} \
 #    "Add Vim shortcut in the quick launch bar."
 
 LangString str_section_edit_with    ${LANG_GREEK} \
-    "Add Vim Context Menu"
+    "Add ViAI Context Menu"
 LangString str_desc_edit_with       ${LANG_GREEK} \
-    "Add Vim to the $\"Open With...$\" context menu list."
+    "Add ViAI to the $\"Open With...$\" context menu list."
 
 #LangString str_section_edit_with32  ${LANG_GREEK} \
 #    "32-bit Version"
@@ -138,18 +134,13 @@ LangString str_desc_vim_rc          ${LANG_GREEK} \
 LangString str_group_plugin         ${LANG_GREEK} \
     "Δημιουργία καταλόγων Plugin"
 LangString str_desc_plugin          ${LANG_GREEK} \
-    "Δημιουργία καταλόγων plugin.  Οι κατάλογοι Plugin επιτρέπουν την επέκταση του Vim \
+    "Δημιουργία καταλόγων plugin.  Οι κατάλογοι Plugin επιτρέπουν την επέκταση του ViAI \
      με την μεταφορά ενός αρχείου σε έναν κατάλογο."
-
-LangString str_section_plugin_home  ${LANG_GREEK} \
-    "Private"
-LangString str_desc_plugin_home     ${LANG_GREEK} \
-    "Δημιουργία καταλόγων plugin στον κατάλογο HOME."
 
 LangString str_section_plugin_vim   ${LANG_GREEK} \
     "Shared"
 LangString str_desc_plugin_vim      ${LANG_GREEK} \
-    "Δημιουργία καταλόγων plugin στον κατάλογο εγκατάστασης του Vim, χρησιμοποιείται από \
+    "Δημιουργία καταλόγων plugin στον κατάλογο εγκατάστασης του ViAI, χρησιμοποιείται από \
      όλους στο σύστημα."
 
 LangString str_section_nls          ${LANG_GREEK} \
@@ -158,34 +149,29 @@ LangString str_desc_nls             ${LANG_GREEK} \
     "Install files for native language support."
 
 LangString str_unsection_register   ${LANG_GREEK} \
-    "Unregister Vim"
+    "Unregister ViAI"
 LangString str_desc_unregister      ${LANG_GREEK} \
-    "Unregister Vim from the system."
+    "Unregister ViAI from the system."
 
 LangString str_unsection_exe        ${LANG_GREEK} \
-    "Remove Vim Executables/Runtime Files"
+    "Remove ViAI Executables/Runtime Files"
 LangString str_desc_rm_exe          ${LANG_GREEK} \
-    "Remove all Vim executables and runtime files."
+    "Remove all ViAI executables and runtime files."
 
 LangString str_ungroup_plugin       ${LANG_GREEK} \
     "Remove plugin directories"
 LangString str_desc_rm_plugin       ${LANG_GREEK} \
     "Remove the plugin directories if they are empty."
 
-LangString str_unsection_plugin_home ${LANG_GREEK} \
-    "Private"
-LangString str_desc_rm_plugin_home  ${LANG_GREEK} \
-    "Remove the plugin directories from HOME directory."
-
 LangString str_unsection_plugin_vim ${LANG_GREEK} \
     "Shared"
 LangString str_desc_rm_plugin_vim   ${LANG_GREEK} \
-    "Remove the plugin directories from Vim install directory."
+    "Remove the plugin directories from ViAI install directory."
 
 LangString str_unsection_rootdir    ${LANG_GREEK} \
-    "Remove the Vim root directory"
+    "Remove the ViAI root directory"
 LangString str_desc_rm_rootdir      ${LANG_GREEK} \
-    "Remove the Vim root directory. It contains your Vim configuration files!"
+    "Remove the ViAI root directory. It contains your ViAI configuration files!"
 
 
 ##############################################################################

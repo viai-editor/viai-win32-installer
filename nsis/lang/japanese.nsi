@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# japanese.nsi: Japanese language strings for gvim NSIS installer.
+# japanese.nsi: Japanese language strings for gviai NSIS installer.
 #
 # Locale ID    : 1041
 # Locale Name  : ja
@@ -34,12 +34,6 @@ LangString ^InstallBtn       ${LANG_JAPANESE} \
 LicenseLangString page_lic_file ${LANG_JAPANESE} "${SRC}\lang\LICENSE.ja.nsis.txt"
 
 ##############################################################################
-# Translated README.txt file, which is opened after installation          {{{1
-##############################################################################
-
-LangString vim_readme_file ${LANG_JAPANESE} "README.ja.txt"
-
-##############################################################################
 # MUI Configuration Strings                                               {{{1
 ##############################################################################
 
@@ -47,7 +41,7 @@ LangString vim_readme_file ${LANG_JAPANESE} "README.ja.txt"
 #    "Destination Folder (Must end with $\"vim$\")"
 
 LangString str_show_readme          ${LANG_JAPANESE} \
-    "インストール完了後に README を表示する"
+    "インストール完了後に ViAI のヘルプを表示する"
 
 # Install types:
 LangString str_type_typical         ${LANG_JAPANESE} \
@@ -67,22 +61,22 @@ LangString str_type_full            ${LANG_JAPANESE} \
 LangString str_section_old_ver      ${LANG_JAPANESE} \
     "既存のバージョンをアンインストール"
 LangString str_desc_old_ver         ${LANG_JAPANESE} \
-    "すでにインストールされている Vim をシステムから削除します。"
+    "すでにインストールされている ViAI をシステムから削除します。"
 
 LangString str_section_exe          ${LANG_JAPANESE} \
-    "Vim GUI とランタイムファイル"
+    "ViAI GUI とランタイムファイル"
 LangString str_desc_exe             ${LANG_JAPANESE} \
-    "Vim GUI 実行ファイルとラインタイムファイル。このコンポーネントは必須です。"
+    "ViAI GUI 実行ファイルとラインタイムファイル。このコンポーネントは必須です。"
 
 LangString str_section_console      ${LANG_JAPANESE} \
-    "Vim コンソールプログラム"
+    "ViAI コンソールプログラム"
 LangString str_desc_console         ${LANG_JAPANESE} \
-    "コンソール版の Vim (vim.exe)。"
+    "コンソール版の ViAI (viai.exe)。"
 
 LangString str_group_cmdline        ${LANG_JAPANESE} \
     "コマンドラインのサポート"
 LangString str_desc_cmdline         ${LANG_JAPANESE} \
-    "コマンドラインから Vim を使いやすくします。"
+    "コマンドラインから ViAI を使いやすくします。"
 
 #LangString str_section_batch        ${LANG_JAPANESE} \
 #    ".bat ファイルを作成"
@@ -90,29 +84,29 @@ LangString str_desc_cmdline         ${LANG_JAPANESE} \
 #    "コマンドラインから Vim と関連コマンドを実行できるように、.bat ファイルを Windows ディレクトリに作成します。"
 
 LangString str_section_launcher     ${LANG_JAPANESE} \
-    "Vim ランチャー"
+    "ViAI ランチャー"
 LangString str_desc_launcher        ${LANG_JAPANESE} \
-    "コマンドラインから Vim と関連コマンドを実行できるよう、小さなプログラムを Windows ディレクトリに登録します。"
+    "コマンドラインから ViAI と関連コマンドを実行できるよう、小さなプログラムを Windows ディレクトリに登録します。"
 
 LangString str_section_addpath      ${LANG_JAPANESE} \
     "PATH に追加"
 LangString str_desc_addpath         ${LANG_JAPANESE} \
-    "Vim ディレクトリを PATH 環境変数に追加します。"
+    "ViAI ディレクトリを PATH 環境変数に追加します。"
 
 LangString str_group_icons          ${LANG_JAPANESE} \
-    "Vim のアイコンを作成"
+    "ViAI のアイコンを作成"
 LangString str_desc_icons           ${LANG_JAPANESE} \
-    "Vim を簡単に実行できるように、いくつかの場所にアイコンを作成します。"
+    "ViAI を簡単に実行できるように、いくつかの場所にアイコンを作成します。"
 
 LangString str_section_desktop      ${LANG_JAPANESE} \
     "デスクトップ上"
 LangString str_desc_desktop         ${LANG_JAPANESE} \
-    "gVim 実行ファイルのアイコンをデスクトップ上に作成します。"
+    "GViAI 実行ファイルのアイコンをデスクトップ上に作成します。"
 
 LangString str_section_start_menu   ${LANG_JAPANESE} \
     "スタートメニューのプログラムフォルダー上"
 LangString str_desc_start_menu      ${LANG_JAPANESE} \
-    "Vim のアイコンをスタートメニューのプログラムフォルダー上に作成します。"
+    "ViAI のアイコンをスタートメニューのプログラムフォルダー上に作成します。"
 
 #LangString str_section_quick_launch ${LANG_JAPANESE} \
 #    "In the Quick Launch Bar"
@@ -120,9 +114,9 @@ LangString str_desc_start_menu      ${LANG_JAPANESE} \
 #    "Add Vim shortcut in the quick launch bar."
 
 LangString str_section_edit_with    ${LANG_JAPANESE} \
-    "Vim のコンテキストメニューを追加"
+    "ViAI のコンテキストメニューを追加"
 LangString str_desc_edit_with       ${LANG_JAPANESE} \
-    "$\"Vimで編集する$\" をコンテキストメニューに追加します。"
+    "$\"ViAIで編集する$\" をコンテキストメニューに追加します。"
 
 #LangString str_section_edit_with32  ${LANG_JAPANESE} \
 #    "32-bit Version"
@@ -144,17 +138,22 @@ LangString str_desc_vim_rc          ${LANG_JAPANESE} \
 LangString str_group_plugin         ${LANG_JAPANESE} \
     "プラグインディレクトリを作成"
 LangString str_desc_plugin          ${LANG_JAPANESE} \
-    "プラグインディレクトリを作成します。そこにプラグインファイルを置くことで Vim を拡張することができます。"
+    "プラグインディレクトリを作成します。そこにプラグインファイルを置くことで ViAI を拡張することができます。"
 
 LangString str_section_plugin_home  ${LANG_JAPANESE} \
-    "個人用"
+    "個人用 (viaifiles)"
 LangString str_desc_plugin_home     ${LANG_JAPANESE} \
-    "プラグインディレクトリをホームディレクトリに作成します。"
+    "ViAI のプラグインディレクトリ (viaifiles) をホームディレクトリに作成します。"
+
+LangString str_section_plugin_home_vim ${LANG_JAPANESE} \
+    "個人用 (vimfiles)"
+LangString str_desc_plugin_home_vim ${LANG_JAPANESE} \
+    "Vim と共有するプラグインディレクトリ (vimfiles) をホームディレクトリに作成します。"
 
 LangString str_section_plugin_vim   ${LANG_JAPANESE} \
     "共用"
 LangString str_desc_plugin_vim      ${LANG_JAPANESE} \
-    "プラグインディレクトリを Vim のインストールディレクトリに作成します。システムの全員で共有されます。"
+    "プラグインディレクトリを ViAI のインストールディレクトリに作成します。システムの全員で共有されます。"
 
 LangString str_section_nls          ${LANG_JAPANESE} \
     "多言語サポート"
@@ -162,14 +161,14 @@ LangString str_desc_nls             ${LANG_JAPANESE} \
     "多言語サポート用のファイルをインストールします。"
 
 LangString str_unsection_register   ${LANG_JAPANESE} \
-    "Vim を登録解除"
+    "ViAI を登録解除"
 LangString str_desc_unregister      ${LANG_JAPANESE} \
-    "Vim をシステムから登録解除します。"
+    "ViAI をシステムから登録解除します。"
 
 LangString str_unsection_exe        ${LANG_JAPANESE} \
-    "Vim の実行ファイル/ランタイムファイルを削除"
+    "ViAI の実行ファイル/ランタイムファイルを削除"
 LangString str_desc_rm_exe          ${LANG_JAPANESE} \
-    "全ての Vim の実行ファイルとランタイムファイルを削除します。"
+    "全ての ViAI の実行ファイルとランタイムファイルを削除します。"
 
 LangString str_ungroup_plugin       ${LANG_JAPANESE} \
     "プラグインディレクトリを削除"
@@ -177,19 +176,19 @@ LangString str_desc_rm_plugin       ${LANG_JAPANESE} \
     "プラグインディレクトリが空であればそれを削除します。"
 
 LangString str_unsection_plugin_home ${LANG_JAPANESE} \
-    "個人用"
+    "個人用 (viaifiles)"
 LangString str_desc_rm_plugin_home  ${LANG_JAPANESE} \
-    "プラグインディレクトリをホームディレクトリから削除します。"
+    "ViAI のプラグインディレクトリ (viaifiles) をホームディレクトリから削除します。"
 
 LangString str_unsection_plugin_vim ${LANG_JAPANESE} \
     "共用"
 LangString str_desc_rm_plugin_vim   ${LANG_JAPANESE} \
-    "プラグインディレクトリを Vim のインストールディレクトリから削除します。"
+    "プラグインディレクトリを ViAI のインストールディレクトリから削除します。"
 
 LangString str_unsection_rootdir    ${LANG_JAPANESE} \
-    "Vim のトップディレクトリを削除"
+    "ViAI のトップディレクトリを削除"
 LangString str_desc_rm_rootdir      ${LANG_JAPANESE} \
-    "Vim のトップディレクトリを削除します。あなたの Vim の設定ファイルも含まれていることに注意してください！"
+    "ViAI のトップディレクトリを削除します。あなたの ViAI の設定ファイルも含まれていることに注意してください！"
 
 
 ##############################################################################

@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# dutch.nsi : Dutch language strings for gvim NSIS installer.
+# dutch.nsi : Dutch language strings for gviai NSIS installer.
 #
 # Locale ID    : 1043
 # Locale Name  : nl
@@ -28,7 +28,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_DUTCH} "README.nl.txt"
 
 ##############################################################################
@@ -37,9 +36,6 @@ LangString vim_readme_file 0 "README.txt"
 
 #LangString str_dest_folder          ${LANG_DUTCH} \
 #    "Doelmap (moet eindigen op $\"vim$\")"
-
-LangString str_show_readme          ${LANG_DUTCH} \
-    "README weergeven na installatie"
 
 # Install types:
 LangString str_type_typical         ${LANG_DUTCH} \
@@ -59,22 +55,22 @@ LangString str_type_full            ${LANG_DUTCH} \
 LangString str_section_old_ver      ${LANG_DUTCH} \
     "Bestaande versie(s) de-installeren"
 LangString str_desc_old_ver         ${LANG_DUTCH} \
-    "Bestaande Vim versie(s) van je systeem verwijderen."
+    "Bestaande ViAI versie(s) van je systeem verwijderen."
 
 LangString str_section_exe          ${LANG_DUTCH} \
-    "Vim GUI"
+    "ViAI GUI"
 LangString str_desc_exe             ${LANG_DUTCH} \
-    "Vim GUI uitvoerbare bestanden en runtime bestanden.  Dit component is vereist."
+    "ViAI GUI uitvoerbare bestanden en runtime bestanden.  Dit component is vereist."
 
 LangString str_section_console      ${LANG_DUTCH} \
-    "Vim console programma"
+    "ViAI console programma"
 LangString str_desc_console         ${LANG_DUTCH} \
-    "Console versie van Vim (vim.exe)."
+    "Console versie van ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_DUTCH} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_DUTCH} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_DUTCH} \
 #    "Creëer .bat bestanden"
@@ -83,30 +79,30 @@ LangString str_desc_cmdline         ${LANG_DUTCH} \
 #     commando regel gebruik."
 
 LangString str_section_launcher     ${LANG_DUTCH} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_DUTCH} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_DUTCH} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_DUTCH} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_DUTCH} \
-    "Creëer pictogrammen for Vim"
+    "Creëer pictogrammen for ViAI"
 LangString str_desc_icons           ${LANG_DUTCH} \
-    "Creëer pictogrammen voor Vim op verschillende locaties voor gemakkelijke toegang."
+    "Creëer pictogrammen voor ViAI op verschillende locaties voor gemakkelijke toegang."
 
 LangString str_section_desktop      ${LANG_DUTCH} \
     "Op het bureaublad"
 LangString str_desc_desktop         ${LANG_DUTCH} \
-    "Creëer pictogrammen voor Vim uitvoerbare bestanden op het bureaublad."
+    "Creëer pictogrammen voor ViAI uitvoerbare bestanden op het bureaublad."
 
 LangString str_section_start_menu   ${LANG_DUTCH} \
     "In de Programma's map in het start menu"
 LangString str_desc_start_menu      ${LANG_DUTCH} \
-    "Voeg Vim toe aan de programma's map in het start menu.  \
+    "Voeg ViAI toe aan de programma's map in het start menu.  \
      Van toepassing op Windows 95 en later."
 
 #LangString str_section_quick_launch ${LANG_DUTCH} \
@@ -115,9 +111,9 @@ LangString str_desc_start_menu      ${LANG_DUTCH} \
 #    "Voeg Vim snelkoppeling toe aan de snel starten balk."
 
 LangString str_section_edit_with    ${LANG_DUTCH} \
-    "Voeg Vim contextmenu toe"
+    "Voeg ViAI contextmenu toe"
 LangString str_desc_edit_with       ${LANG_DUTCH} \
-    "Voeg Vim toe aan de $\"Openen met...$\" contextmenu lijst."
+    "Voeg ViAI toe aan de $\"Openen met...$\" contextmenu lijst."
 
 #LangString str_section_edit_with32  ${LANG_DUTCH} \
 #    "32-bit versie"
@@ -140,17 +136,12 @@ LangString str_group_plugin         ${LANG_DUTCH} \
     "Creëer Plugin mappen"
 LangString str_desc_plugin          ${LANG_DUTCH} \
     "Creëer plugin mappen.  Plugin mappen maken het mogelijk om \
-     Vim uit te breiden door een bestand in een map te plaatsen."
-
-LangString str_section_plugin_home  ${LANG_DUTCH} \
-    "Privé"
-LangString str_desc_plugin_home     ${LANG_DUTCH} \
-    "Create plugin directories in HOME directory."
+     ViAI uit te breiden door een bestand in een map te plaatsen."
 
 LangString str_section_plugin_vim   ${LANG_DUTCH} \
     "Gedeeld"
 LangString str_desc_plugin_vim      ${LANG_DUTCH} \
-    "Creëer plugin mappen in Vim installatie map, deze worden gebruikt \
+    "Creëer plugin mappen in ViAI installatie map, deze worden gebruikt \
      voor iedereen op het systeem."
 
 LangString str_section_nls          ${LANG_DUTCH} \
@@ -159,34 +150,29 @@ LangString str_desc_nls             ${LANG_DUTCH} \
     "Bestanden voor ondersteuning van andere talen dan Engels installeren."
 
 LangString str_unsection_register   ${LANG_DUTCH} \
-    "Vim afmelden"
+    "ViAI afmelden"
 LangString str_desc_unregister      ${LANG_DUTCH} \
-    "Registratie van Vim in het systeem ongedaan maken."
+    "Registratie van ViAI in het systeem ongedaan maken."
 
 LangString str_unsection_exe        ${LANG_DUTCH} \
-    "Vim uitvoerbare/runtime bestanden verwijderen"
+    "ViAI uitvoerbare/runtime bestanden verwijderen"
 LangString str_desc_rm_exe          ${LANG_DUTCH} \
-    "Verwijder alle Vim uitvoerbare bestanden en runtime bestanden."
+    "Verwijder alle ViAI uitvoerbare bestanden en runtime bestanden."
 
 LangString str_ungroup_plugin       ${LANG_DUTCH} \
     "Remove plugin directories"
 LangString str_desc_rm_plugin       ${LANG_DUTCH} \
     "Remove the plugin directories if they are empty."
 
-LangString str_unsection_plugin_home ${LANG_DUTCH} \
-    "Privé"
-LangString str_desc_rm_plugin_home  ${LANG_DUTCH} \
-    "Remove the plugin directories from HOME directory."
-
 LangString str_unsection_plugin_vim ${LANG_DUTCH} \
     "Gedeeld"
 LangString str_desc_rm_plugin_vim   ${LANG_DUTCH} \
-    "Remove the plugin directories from Vim install directory."
+    "Remove the plugin directories from ViAI install directory."
 
 LangString str_unsection_rootdir    ${LANG_DUTCH} \
-    "Remove the Vim root directory"
+    "Remove the ViAI root directory"
 LangString str_desc_rm_rootdir      ${LANG_DUTCH} \
-    "Remove the Vim root directory. It contains your Vim configuration files!"
+    "Remove the ViAI root directory. It contains your ViAI configuration files!"
 
 
 ##############################################################################

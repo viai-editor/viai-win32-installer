@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# english.nsi: English language strings for gvim NSIS installer.
+# english.nsi: English language strings for gviai NSIS installer.
 #
 # Locale ID    : 1033
 # Locale Name  : en
@@ -24,12 +24,6 @@ LangString ^UninstallCaption ${LANG_ENGLISH} \
 LicenseLangString page_lic_file ${LANG_ENGLISH} "${SRC}\lang\LICENSE.nsis.txt"
 
 ##############################################################################
-# README.txt file, which is opened after installation                     {{{1
-##############################################################################
-
-LangString vim_readme_file ${LANG_ENGLISH} "README.txt"
-
-##############################################################################
 # MUI Configuration Strings                                               {{{1
 ##############################################################################
 
@@ -37,7 +31,7 @@ LangString vim_readme_file ${LANG_ENGLISH} "README.txt"
 #    "Destination Folder (Must end with $\"vim$\")"
 
 LangString str_show_readme          ${LANG_ENGLISH} \
-    "Show README after installation finished"
+    "Show the ViAI help after installation finished"
 
 # Install types:
 LangString str_type_typical         ${LANG_ENGLISH} \
@@ -57,22 +51,22 @@ LangString str_type_full            ${LANG_ENGLISH} \
 LangString str_section_old_ver      ${LANG_ENGLISH} \
     "Uninstall Existing Version(s)"
 LangString str_desc_old_ver         ${LANG_ENGLISH} \
-    "Uninstall existing Vim version(s) from your system."
+    "Uninstall existing ViAI version(s) from your system."
 
 LangString str_section_exe          ${LANG_ENGLISH} \
-    "Vim GUI and runtime files"
+    "ViAI GUI and runtime files"
 LangString str_desc_exe             ${LANG_ENGLISH} \
-    "Vim GUI executables and runtime files.  This component is required."
+    "ViAI GUI executables and runtime files.  This component is required."
 
 LangString str_section_console      ${LANG_ENGLISH} \
-    "Vim console program"
+    "ViAI console program"
 LangString str_desc_console         ${LANG_ENGLISH} \
-    "Console version of Vim (vim.exe)."
+    "Console version of ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_ENGLISH} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_ENGLISH} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_ENGLISH} \
 #    "Create .bat files"
@@ -81,30 +75,30 @@ LangString str_desc_cmdline         ${LANG_ENGLISH} \
 #     command line use."
 
 LangString str_section_launcher     ${LANG_ENGLISH} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_ENGLISH} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_ENGLISH} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_ENGLISH} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_ENGLISH} \
-    "Create icons for Vim"
+    "Create icons for ViAI"
 LangString str_desc_icons           ${LANG_ENGLISH} \
-    "Create icons for Vim at various locations to facilitate easy access."
+    "Create icons for ViAI at various locations to facilitate easy access."
 
 LangString str_section_desktop      ${LANG_ENGLISH} \
     "On the Desktop"
 LangString str_desc_desktop         ${LANG_ENGLISH} \
-    "Create icons for gVim executables on the desktop."
+    "Create icons for GViAI executables on the desktop."
 
 LangString str_section_start_menu   ${LANG_ENGLISH} \
     "In the Start Menu Programs Folder"
 LangString str_desc_start_menu      ${LANG_ENGLISH} \
-    "Add Vim in the programs folder of the start menu."
+    "Add ViAI in the programs folder of the start menu."
 
 #LangString str_section_quick_launch ${LANG_ENGLISH} \
 #    "In the Quick Launch Bar"
@@ -112,9 +106,9 @@ LangString str_desc_start_menu      ${LANG_ENGLISH} \
 #    "Add Vim shortcut in the quick launch bar."
 
 LangString str_section_edit_with    ${LANG_ENGLISH} \
-    "Add Vim Context Menu"
+    "Add ViAI Context Menu"
 LangString str_desc_edit_with       ${LANG_ENGLISH} \
-    "Add Vim to the $\"Open With...$\" context menu list."
+    "Add ViAI to the $\"Open With...$\" context menu list."
 
 #LangString str_section_edit_with32  ${LANG_ENGLISH} \
 #    "32-bit Version"
@@ -136,7 +130,7 @@ LangString str_desc_vim_rc          ${LANG_ENGLISH} \
 LangString str_group_plugin         ${LANG_ENGLISH} \
     "Create Plugin Directories"
 LangString str_desc_plugin          ${LANG_ENGLISH} \
-    "Create plugin directories.  Plugin directories allow extending Vim \
+    "Create plugin directories.  Plugin directories allow extending ViAI \
      by dropping a file into a directory."
 
 LangString str_section_plugin_home  ${LANG_ENGLISH} \
@@ -152,7 +146,7 @@ LangString str_desc_plugin_home_vim ${LANG_ENGLISH} \
 LangString str_section_plugin_vim   ${LANG_ENGLISH} \
     "Shared"
 LangString str_desc_plugin_vim      ${LANG_ENGLISH} \
-    "Create plugin directories in Vim install directory, it is used for \
+    "Create plugin directories in ViAI install directory, it is used for \
      everybody on the system."
 
 LangString str_section_nls          ${LANG_ENGLISH} \
@@ -161,14 +155,14 @@ LangString str_desc_nls             ${LANG_ENGLISH} \
     "Install files for native language support."
 
 LangString str_unsection_register   ${LANG_ENGLISH} \
-    "Unregister Vim"
+    "Unregister ViAI"
 LangString str_desc_unregister      ${LANG_ENGLISH} \
-    "Unregister Vim from the system."
+    "Unregister ViAI from the system."
 
 LangString str_unsection_exe        ${LANG_ENGLISH} \
-    "Remove Vim Executables/Runtime Files"
+    "Remove ViAI Executables/Runtime Files"
 LangString str_desc_rm_exe          ${LANG_ENGLISH} \
-    "Remove all Vim executables and runtime files."
+    "Remove all ViAI executables and runtime files."
 
 LangString str_ungroup_plugin       ${LANG_ENGLISH} \
     "Remove plugin directories"
@@ -176,19 +170,19 @@ LangString str_desc_rm_plugin       ${LANG_ENGLISH} \
     "Remove the plugin directories if they are empty."
 
 LangString str_unsection_plugin_home ${LANG_ENGLISH} \
-    "Private"
+    "Private (viaifiles)"
 LangString str_desc_rm_plugin_home  ${LANG_ENGLISH} \
-    "Remove the plugin directories from HOME directory."
+    "Remove the plugin directories of ViAI (viaifiles) from HOME directory."
 
 LangString str_unsection_plugin_vim ${LANG_ENGLISH} \
     "Shared"
 LangString str_desc_rm_plugin_vim   ${LANG_ENGLISH} \
-    "Remove the plugin directories from Vim install directory."
+    "Remove the plugin directories from ViAI install directory."
 
 LangString str_unsection_rootdir    ${LANG_ENGLISH} \
-    "Remove the Vim root directory"
+    "Remove the ViAI root directory"
 LangString str_desc_rm_rootdir      ${LANG_ENGLISH} \
-    "Remove the Vim root directory. It contains your Vim configuration files!"
+    "Remove the ViAI root directory. It contains your ViAI configuration files!"
 
 
 ##############################################################################

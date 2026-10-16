@@ -24,20 +24,11 @@ LangString ^UninstallCaption ${LANG_SWEDISH} \
 LicenseLangString page_lic_file ${LANG_SWEDISH} "${SRC}\lang\LICENSE.sv.nsis.txt"
 
 ##############################################################################
-# README.txt-fil, som öppnas efter installationen                     {{{1
-##############################################################################
-
-LangString vim_readme_file ${LANG_SWEDISH} "README.sv.txt"
-
-##############################################################################
 # MUI-konfigurationssträngar                                               {{{1
 ##############################################################################
 
 #LangString str_dest_folder          ${LANG_SWEDISH} \
 #    "Målmapp (måste sluta med $\"vim$\")"
-
-LangString str_show_readme          ${LANG_SWEDISH} \
-    "Visa README efter avslutad installation"
 
 # Installationstyper:
 LangString str_type_typical         ${LANG_SWEDISH} \
@@ -57,22 +48,22 @@ LangString str_type_full            ${LANG_SWEDISH} \
 LangString str_section_old_ver      ${LANG_SWEDISH} \
     "Avinstallera befintliga versioner"
 LangString str_desc_old_ver         ${LANG_SWEDISH} \
-    "Avinstallera befintliga Vim-versioner från ditt system."
+    "Avinstallera befintliga ViAI-versioner från ditt system."
 
 LangString str_section_exe          ${LANG_SWEDISH} \
-    "Vim GUI och runtime-filer"
+    "ViAI GUI och runtime-filer"
 LangString str_desc_exe             ${LANG_SWEDISH} \
-    "Vim GUI-körbara filer och runtime-filer.  Denna komponent krävs."
+    "ViAI GUI-körbara filer och runtime-filer.  Denna komponent krävs."
 
 LangString str_section_console      ${LANG_SWEDISH} \
-    "Vim-konsolprogram"
+    "ViAI-konsolprogram"
 LangString str_desc_console         ${LANG_SWEDISH} \
-    "Konsolversion av Vim (vim.exe)."
+    "Konsolversion av ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_SWEDISH} \
     "Command line support"
 LangString str_desc_cmdline         ${LANG_SWEDISH} \
-    "Make Vim easier to use from the command line."
+    "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_SWEDISH} \
 #    "Skapa .bat-filer"
@@ -81,30 +72,30 @@ LangString str_desc_cmdline         ${LANG_SWEDISH} \
 #     kommandoradsanvändning."
 
 LangString str_section_launcher     ${LANG_SWEDISH} \
-    "Vim launchers"
+    "ViAI launchers"
 LangString str_desc_launcher        ${LANG_SWEDISH} \
-    "Install small programs for Vim variants in the Windows directory \
+    "Install small programs for ViAI variants in the Windows directory \
      for command line use."
 
 LangString str_section_addpath      ${LANG_SWEDISH} \
     "Add to PATH"
 LangString str_desc_addpath         ${LANG_SWEDISH} \
-    "Add the Vim directory to the PATH environment variable."
+    "Add the ViAI directory to the PATH environment variable."
 
 LangString str_group_icons          ${LANG_SWEDISH} \
-    "Skapa ikoner för Vim"
+    "Skapa ikoner för ViAI"
 LangString str_desc_icons           ${LANG_SWEDISH} \
-    "Skapa ikoner för Vim på olika platser för att underlätta åtkomsten."
+    "Skapa ikoner för ViAI på olika platser för att underlätta åtkomsten."
 
 LangString str_section_desktop      ${LANG_SWEDISH} \
     "På skrivbordet"
 LangString str_desc_desktop         ${LANG_SWEDISH} \
-    "Skapa ikoner för gVim-körbara filer på skrivbordet."
+    "Skapa ikoner för GViAI-körbara filer på skrivbordet."
 
 LangString str_section_start_menu   ${LANG_SWEDISH} \
     "I startmenyns programmapp"
 LangString str_desc_start_menu      ${LANG_SWEDISH} \
-    "Lägg till Vim i programmappen i startmenyn."
+    "Lägg till ViAI i programmappen i startmenyn."
 
 #LangString str_section_quick_launch ${LANG_SWEDISH} \
 #    "I snabbstartfältet"
@@ -112,9 +103,9 @@ LangString str_desc_start_menu      ${LANG_SWEDISH} \
 #    "Lägg till Vim-genväg i snabbstartfältet."
 
 LangString str_section_edit_with    ${LANG_SWEDISH} \
-    "Lägg till Vim-kontextmeny"
+    "Lägg till ViAI-kontextmeny"
 LangString str_desc_edit_with       ${LANG_SWEDISH} \
-    "Lägg till Vim i listan över snabbmenyn $\"Öppna med...$\"."
+    "Lägg till ViAI i listan över snabbmenyn $\"Öppna med...$\"."
 
 #LangString str_section_edit_with32  ${LANG_SWEDISH} \
 #    "32-bitarsversion"
@@ -136,18 +127,13 @@ LangString str_desc_vim_rc          ${LANG_SWEDISH} \
 LangString str_group_plugin         ${LANG_SWEDISH} \
     "Skapa plugin-kataloger"
 LangString str_desc_plugin          ${LANG_SWEDISH} \
-    "Skapa plugin-kataloger.  Plugin-kataloger gör det möjligt att utöka Vim \
+    "Skapa plugin-kataloger.  Plugin-kataloger gör det möjligt att utöka ViAI \
      genom att släppa en fil i en katalog."
-
-LangString str_section_plugin_home  ${LANG_SWEDISH} \
-    "Privat"
-LangString str_desc_plugin_home     ${LANG_SWEDISH} \
-    "Skapa plugin-kataloger i HOME-katalogen."
 
 LangString str_section_plugin_vim   ${LANG_SWEDISH} \
     "Delad"
 LangString str_desc_plugin_vim      ${LANG_SWEDISH} \
-    "Skapa plugin-kataloger i Vim-installationskatalogen, den används för \
+    "Skapa plugin-kataloger i ViAI-installationskatalogen, den används för \
      alla på systemet."
 
 LangString str_section_nls          ${LANG_SWEDISH} \
@@ -156,34 +142,29 @@ LangString str_desc_nls             ${LANG_SWEDISH} \
     "Installera filer för stöd för modersmål."
 
 LangString str_unsection_register   ${LANG_SWEDISH} \
-    "Avregistrera Vim"
+    "Avregistrera ViAI"
 LangString str_desc_unregister      ${LANG_SWEDISH} \
-    "Avregistrera Vim från systemet."
+    "Avregistrera ViAI från systemet."
 
 LangString str_unsection_exe        ${LANG_SWEDISH} \
-    "Ta bort Vim-körbara filer/körningsfiler"
+    "Ta bort ViAI-körbara filer/körningsfiler"
 LangString str_desc_rm_exe          ${LANG_SWEDISH} \
-    "Ta bort alla Vim-körbara filer och runtime-filer."
+    "Ta bort alla ViAI-körbara filer och runtime-filer."
 
 LangString str_ungroup_plugin       ${LANG_SWEDISH} \
     "Ta bort plugin-kataloger"
 LangString str_desc_rm_plugin       ${LANG_SWEDISH} \
     "Ta bort plugin-katalogerna om de är tomma."
 
-LangString str_unsection_plugin_home ${LANG_SWEDISH} \
-    "Privat"
-LangString str_desc_rm_plugin_home  ${LANG_SWEDISH} \
-    "Ta bort plugin-katalogerna från HOME-katalogen."
-
 LangString str_unsection_plugin_vim ${LANG_SWEDISH} \
     "Delad"
 LangString str_desc_rm_plugin_vim   ${LANG_SWEDISH} \
-    "Ta bort plugin-katalogerna från Vim-installationskatalogen."
+    "Ta bort plugin-katalogerna från ViAI-installationskatalogen."
 
 LangString str_unsection_rootdir    ${LANG_SWEDISH} \
-    "Ta bort Vim-rotkatalogen"
+    "Ta bort ViAI-rotkatalogen"
 LangString str_desc_rm_rootdir      ${LANG_SWEDISH} \
-    "Ta bort Vim-rotkatalogen. Den innehåller dina Vim-konfigurationsfiler!"
+    "Ta bort ViAI-rotkatalogen. Den innehåller dina ViAI-konfigurationsfiler!"
 
 
 ##############################################################################

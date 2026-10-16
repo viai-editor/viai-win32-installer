@@ -1,6 +1,6 @@
 # vi:set ts=8 sts=4 sw=4 et fdm=marker:
 #
-# danish.nsi: Danish language strings for gvim NSIS installer.
+# danish.nsi: Danish language strings for gviai NSIS installer.
 #
 # Locale ID    : 1030
 # Locale Name  : da
@@ -26,7 +26,6 @@ LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 # Translated README.txt file, which is opened after installation          {{{1
 ##############################################################################
 
-LangString vim_readme_file 0 "README.txt"
 #LangString vim_readme_file ${LANG_DANISH} "README.da.txt"
 
 ##############################################################################
@@ -34,8 +33,6 @@ LangString vim_readme_file 0 "README.txt"
 ##############################################################################
 
 #LangString str_dest_folder          ${LANG_DANISH}     "Destinationsmappe (skal slutte med $\"vim$\")"
-
-LangString str_show_readme          ${LANG_DANISH}     "Vis README efter installationen er gennemført"
 
 # Install types:
 LangString str_type_typical         ${LANG_DANISH}     "Typisk"
@@ -50,40 +47,40 @@ LangString str_type_full            ${LANG_DANISH}     "Fuld"
 ##############################################################################
 
 LangString str_section_old_ver      ${LANG_DANISH}     "Afinstaller eksisterende version(er)"
-LangString str_desc_old_ver         ${LANG_DANISH}     "Afinstaller eksisterende Vim-version(er) fra dit system."
+LangString str_desc_old_ver         ${LANG_DANISH}     "Afinstaller eksisterende ViAI-version(er) fra dit system."
 
-LangString str_section_exe          ${LANG_DANISH}     "Vim GUI og afviklingsfiler"
-LangString str_desc_exe             ${LANG_DANISH}     "Vim GUI-eksekverbare- og afviklingsfiler. Komponenten kræves."
+LangString str_section_exe          ${LANG_DANISH}     "ViAI GUI og afviklingsfiler"
+LangString str_desc_exe             ${LANG_DANISH}     "ViAI GUI-eksekverbare- og afviklingsfiler. Komponenten kræves."
 
-LangString str_section_console      ${LANG_DANISH}     "Vim-konsolprogram"
-LangString str_desc_console         ${LANG_DANISH}     "Konsolversion af Vim (vim.exe)."
+LangString str_section_console      ${LANG_DANISH}     "ViAI-konsolprogram"
+LangString str_desc_console         ${LANG_DANISH}     "Konsolversion af ViAI (viai.exe)."
 
 LangString str_group_cmdline        ${LANG_DANISH}     "Command line support"
-LangString str_desc_cmdline         ${LANG_DANISH}     "Make Vim easier to use from the command line."
+LangString str_desc_cmdline         ${LANG_DANISH}     "Make ViAI easier to use from the command line."
 
 #LangString str_section_batch        ${LANG_DANISH}     "Opret .bat-filer"
 #LangString str_desc_batch           ${LANG_DANISH}     "Opret .bat-filer til Vim-varianter i Windows-mappen til brug fra kommandolinjen."
 
-LangString str_section_launcher     ${LANG_DANISH}     "Vim launchers"
-LangString str_desc_launcher        ${LANG_DANISH}     "Install small programs for Vim variants in the Windows directory for command line use."
+LangString str_section_launcher     ${LANG_DANISH}     "ViAI launchers"
+LangString str_desc_launcher        ${LANG_DANISH}     "Install small programs for ViAI variants in the Windows directory for command line use."
 
 LangString str_section_addpath      ${LANG_DANISH}     "Add to PATH"
-LangString str_desc_addpath         ${LANG_DANISH}     "Add the Vim directory to the PATH environment variable."
+LangString str_desc_addpath         ${LANG_DANISH}     "Add the ViAI directory to the PATH environment variable."
 
-LangString str_group_icons          ${LANG_DANISH}     "Opret ikoner til Vim"
-LangString str_desc_icons           ${LANG_DANISH}     "Opret ikoner til Vim diverse steder for at hjælpe med at gøre adgangen let."
+LangString str_group_icons          ${LANG_DANISH}     "Opret ikoner til ViAI"
+LangString str_desc_icons           ${LANG_DANISH}     "Opret ikoner til ViAI diverse steder for at hjælpe med at gøre adgangen let."
 
 LangString str_section_desktop      ${LANG_DANISH}     "På skrivebordet"
-LangString str_desc_desktop         ${LANG_DANISH}     "Opret ikoner til gVim-eksekverbare på skrivebordet."
+LangString str_desc_desktop         ${LANG_DANISH}     "Opret ikoner til GViAI-eksekverbare på skrivebordet."
 
 LangString str_section_start_menu   ${LANG_DANISH}     "I Programmer-mappen i menuen Start"
-LangString str_desc_start_menu      ${LANG_DANISH}     "Tilføj Vim i Programmer-mappen i menuen Start."
+LangString str_desc_start_menu      ${LANG_DANISH}     "Tilføj ViAI i Programmer-mappen i menuen Start."
 
 #LangString str_section_quick_launch ${LANG_DANISH}     "I værktøjslinjen Hurtig start"
 #LangString str_desc_quick_launch    ${LANG_DANISH}     "Tilføj Vim-genvej i værktøjslinjen Hurtig start."
 
-LangString str_section_edit_with    ${LANG_DANISH}     "Tilføj Vim-genvejsmenu"
-LangString str_desc_edit_with       ${LANG_DANISH}     "Tilføj Vim til listen i $\"Åbn med...$\"-genvejsmenuen."
+LangString str_section_edit_with    ${LANG_DANISH}     "Tilføj ViAI-genvejsmenu"
+LangString str_desc_edit_with       ${LANG_DANISH}     "Tilføj ViAI til listen i $\"Åbn med...$\"-genvejsmenuen."
 
 #LangString str_section_edit_with32  ${LANG_DANISH}     "32-bit-version"
 #LangString str_desc_edit_with32     ${LANG_DANISH}     "Tilføj Vim til listen i $\"Åbn med...$\"-genvejsmenuen for 32-bit-programmer."
@@ -95,34 +92,28 @@ LangString str_section_vim_rc       ${LANG_DANISH}     "Opret standardkonfigurat
 LangString str_desc_vim_rc          ${LANG_DANISH}     "Opret en standardkonfigurationsfil (_vimrc) hvis der ikke allerede findes en."
 
 LangString str_group_plugin         ${LANG_DANISH}     "Opret plugin-mapper"
-LangString str_desc_plugin          ${LANG_DANISH}     "Opret plugin-mapper. Plugin-mapper giver mulighed for at udvide Vim ved at slippe en fil i en mappen."
-
-LangString str_section_plugin_home  ${LANG_DANISH}     "Private"
-LangString str_desc_plugin_home     ${LANG_DANISH}     "Opret plugin-mapper i HOME (hvis du har defineret et) eller Vim-installationsmappe."
+LangString str_desc_plugin          ${LANG_DANISH}     "Opret plugin-mapper. Plugin-mapper giver mulighed for at udvide ViAI ved at slippe en fil i en mappen."
 
 LangString str_section_plugin_vim   ${LANG_DANISH}     "Delte"
-LangString str_desc_plugin_vim      ${LANG_DANISH}     "Opret plugin-mapper i Vim-installationsmappe, det bruges af alle på systemet."
+LangString str_desc_plugin_vim      ${LANG_DANISH}     "Opret plugin-mapper i ViAI-installationsmappe, det bruges af alle på systemet."
 
 LangString str_section_nls          ${LANG_DANISH}     "Understøttelse af modersmål"
 LangString str_desc_nls             ${LANG_DANISH}     "Installer filer til understøttelse af modersmål."
 
-LangString str_unsection_register   ${LANG_DANISH}     "Afregistrer Vim"
-LangString str_desc_unregister      ${LANG_DANISH}     "Afregistrer Vim fra systemet."
+LangString str_unsection_register   ${LANG_DANISH}     "Afregistrer ViAI"
+LangString str_desc_unregister      ${LANG_DANISH}     "Afregistrer ViAI fra systemet."
 
-LangString str_unsection_exe        ${LANG_DANISH}     "Fjern Vim-eksekverbare-/afviklingsfiler"
-LangString str_desc_rm_exe          ${LANG_DANISH}     "Fjern alle Vim-eksekverbare- og afviklingsfiler."
+LangString str_unsection_exe        ${LANG_DANISH}     "Fjern ViAI-eksekverbare-/afviklingsfiler"
+LangString str_desc_rm_exe          ${LANG_DANISH}     "Fjern alle ViAI-eksekverbare- og afviklingsfiler."
 
 LangString str_ungroup_plugin       ${LANG_DANISH}     "Fjern plugin-mapper"
 LangString str_desc_rm_plugin       ${LANG_DANISH}     "Fjern plugin-mapperne, hvis de er tomme."
 
-LangString str_unsection_plugin_home ${LANG_DANISH}     "Private"
-LangString str_desc_rm_plugin_home  ${LANG_DANISH}     "Fjern plugin-mapperne fra HOME-mappen."
-
 LangString str_unsection_plugin_vim ${LANG_DANISH}     "Delte"
-LangString str_desc_rm_plugin_vim   ${LANG_DANISH}     "Fjern plugin-mapperne fra Vim-installationsmappen."
+LangString str_desc_rm_plugin_vim   ${LANG_DANISH}     "Fjern plugin-mapperne fra ViAI-installationsmappen."
 
-LangString str_unsection_rootdir    ${LANG_DANISH}     "Fjern Vim-rodmappen"
-LangString str_desc_rm_rootdir      ${LANG_DANISH}     "Fjern Vim-rodmappen. Den indeholder dine Vim-konfigurationsfiler!"
+LangString str_unsection_rootdir    ${LANG_DANISH}     "Fjern ViAI-rodmappen"
+LangString str_desc_rm_rootdir      ${LANG_DANISH}     "Fjern ViAI-rodmappen. Den indeholder dine ViAI-konfigurationsfiler!"
 
 
 ##############################################################################
