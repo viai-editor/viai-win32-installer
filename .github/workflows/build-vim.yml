@@ -730,7 +730,7 @@ jobs:
       shell: cmd
       run: |
         call vim\src\msvc-latest ${{ matrix.vcarch }}
-        cd vim-launcher
+        cd viai-launcher
         nmake -f Make_mvc.mak
 
     - name: Package (zip)
@@ -812,7 +812,7 @@ jobs:
           /DINCLUDE_LIBGCC=%INCLUDE_LIBGCC% ^
           /DWIN64=%WIN64% ^
           /DARM64=%ARM64% ^
-          gvim.nsi ^
+          gviai.nsi ^
           /X"OutFile ..\package\artifacts\files\%BASENAME%.exe"
 
     - name: Upload Artifact

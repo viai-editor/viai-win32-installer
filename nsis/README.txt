@@ -44,7 +44,7 @@ Run the following commands in GitBash unless otherwise stated.
 6. Build the Vim launcher
    Open a Visual Studio Command Prompt for the target you want to build, then:
 
-	cd %WORKDIR%\vim-launcher
+	cd %WORKDIR%\viai-launcher
 	nmake -f Make_mvc.mak
 
 7. Build the installer
@@ -55,7 +55,7 @@ Run the following commands in GitBash unless otherwise stated.
 	    + NsisMultiUser/
 	    + nsis/
 	    |	README.txt (This file)
-	    |	gvim.nsi
+	    |	gviai.nsi
 	    |
 	    + package/
 	    |	vim-package-x64/
@@ -65,7 +65,7 @@ Run the following commands in GitBash unless otherwise stated.
 	    |	lang/
 	    |	    LICENSE.*.nsis.txt
 	    |
-	    + vim-launcher/
+	    + viai-launcher/
 		gvim.exe
 		vim.exe
 
@@ -80,7 +80,7 @@ Run the following commands in GitBash unless otherwise stated.
 		/DWIN64=1 ^
 		/DARM64=0 ^
 		/DDEBUG ^
-		gvim.nsi
+		gviai.nsi
 
    If you build an x86 or arm64 package, set PKG, /DWIN64, and /DARM64
    correctly.

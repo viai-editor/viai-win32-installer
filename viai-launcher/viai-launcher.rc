@@ -1,6 +1,6 @@
 // vi:set ts=8 sts=4 sw=4 noet:
 //
-// VIM - Vi IMproved	Vim launcher
+// VIM - Vi IMproved	ViAI launcher
 
 #include <winver.h>
 #include <winresrc.h>
@@ -11,7 +11,7 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 //
 // Icons
 //
-IDR_VIM		ICON "vim-launcher.ico"
+IDR_VIM		ICON "viai-launcher.ico"
 
 //
 // WinXP theme support
@@ -23,7 +23,7 @@ IDR_VIM		ICON "vim-launcher.ico"
 # define RT_MANIFEST 24
 #endif
 
-CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "vim-launcher.manifest"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "viai-launcher.manifest"
 
 //
 // Version
@@ -42,18 +42,18 @@ BEGIN
     // 0x0409 == U.S. English; 0x04E4 => Windows Multilingual
     BLOCK "040904E4"
     BEGIN
-	VALUE "CompanyName",		"Vim Developers"
-	VALUE "FileDescription",	"Vim launcher"
+	VALUE "CompanyName",		"ViAI Developers"
+	VALUE "FileDescription",	"ViAI launcher"
 	VALUE "FileVersion",		"1.0.0"
-	VALUE "InternalName",		"Vim launcher"
+	VALUE "InternalName",		"ViAI launcher"
 	VALUE "LegalCopyright",		"Copyright \251 2026"
-	VALUE "LegalTrademarks",	"Vim"
+	VALUE "LegalTrademarks",	"ViAI"
 #ifdef FEAT_GUI
-	VALUE "OriginalFilename",	"gvim.exe"
+	VALUE "OriginalFilename",	"gviai.exe"
 #else
-	VALUE "OriginalFilename",	"vim.exe"
+	VALUE "OriginalFilename",	"viai.exe"
 #endif
-	VALUE "ProductName",		"Vim launcher"
+	VALUE "ProductName",		"ViAI launcher"
 	VALUE "ProductVersion",		"1.0.0"
     END
   END

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# NSIS file to create a self-installing exe for Vim.
+# NSIS file to create a self-installing exe for ViAI.
 # It requires NSIS version 3.0 or later.
 # Last Change:	2026-06-19
 #
@@ -19,17 +19,17 @@ Unicode true  ; !include defaults to UTF-8 after Unicode True since 3.0 Alpha 2
 !addplugindir /x86-unicode "${PLUG_NSISMULTIUSER}\Plugins\x86-unicode"
 !addincludedir "${PLUG_NSISMULTIUSER}\Include"
 
-# Top directory of the Vim repository
+# Top directory of the ViAI repository
 !ifndef SRC
   !define SRC "..\vim"
 !endif
 
-# Location of gvim.exe, vim.exe, etc.
+# Location of gviai.exe, viai.exe, etc.
 !ifndef VIMBIN
   !define VIMBIN "${SRC}\src"
 !endif
 
-# Location of runtime files and GvimExt*/*
+# Location of runtime files and GviaiExt*/*
 !ifndef VIMRT
   !define VIMRT "${SRC}\runtime"
 !endif
@@ -39,9 +39,9 @@ Unicode true  ; !include defaults to UTF-8 after Unicode True since 3.0 Alpha 2
   !define VIMTOOLS "${VIMBIN}"
 !endif
 
-# Location of vim-launcher
+# Location of viai-launcher
 !ifndef VIMLAUNCHER
-  !define VIMLAUNCHER "..\vim-launcher"
+  !define VIMLAUNCHER "..\viai-launcher"
 !endif
 
 # If you have UPX, use the switch /DHAVE_UPX=1 on the command line makensis.exe.
@@ -75,8 +75,8 @@ Unicode true  ; !include defaults to UTF-8 after Unicode True since 3.0 Alpha 2
 !endif
 
 # Get version numbers
-!getdllversion "${VIMBIN}\gvim.exe" VimVer_
-!echo "Vim version MAJOR=${VimVer_1} MINOR=${VimVer_2} PATCHLEVEL=${VimVer_3}"
+!getdllversion "${VIMBIN}\gviai.exe" VimVer_
+!echo "ViAI version MAJOR=${VimVer_1} MINOR=${VimVer_2} PATCHLEVEL=${VimVer_3}"
 
 !ifndef VER_MAJOR
   !define VER_MAJOR  ${VimVer_1}
@@ -136,13 +136,13 @@ ManifestSupportedOS \
   !define PLATFORM  "x86"
 !endif
 
-!define PRODUCT_NAME	"Vim"
+!define PRODUCT_NAME	"ViAI"
 !define VERSION_SHORT	"${VER_MAJOR}.${VER_MINOR}"
 !define VERSION		"${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}"
 !define PRODUCT_AND_VER	"${PRODUCT_NAME} ${VERSION_SHORT}"
 !define PRODUCT_FULL	"${PRODUCT_NAME} ${VERSION_SHORT} (${PLATFORM})"
-!define PROGEXE		"gvim.exe"
-!define COMPANY_NAME	"The Vim Project"
+!define PROGEXE		"gviai.exe"
+!define COMPANY_NAME	"The ViAI Project"
 !define PRODUCT_REG_KEY	"Software\${PRODUCT_NAME}"
 !define INSTDIR_REG_VALNAME   "path"
 !define INSTMODE_REG_VALNAME  "mode"
@@ -150,7 +150,7 @@ ManifestSupportedOS \
 !define UNINST_REG_KEY	      "Software\Microsoft\Windows\CurrentVersion\Uninstall"
 !define UNINST_REG_KEY_NAME   "${PRODUCT_NAME}"
 !define UNINST_REG_KEY_VIM    "${UNINST_REG_KEY}\${UNINST_REG_KEY_NAME}"
-!define GVIMEXT_CLSID	      "{51EEE242-AD87-11d3-9C1E-0090278BBD99}"
+!define GVIMEXT_CLSID	      "{F191A2A2-D786-484E-A3F4-8A75FDD9AC00}"
 !define VIMRUNTIME_DIR_NAME   "runtime"	  # "vim${VER_MAJOR}${VER_MINOR}"
 !define UNINSTALL_FILENAME    "uninstall-gui.exe"
 
@@ -167,8 +167,8 @@ ManifestSupportedOS \
 !define MULTIUSER_INSTALLMODE_NO_HELP_DIALOG 1	# Use our own cmdline help
 
 Name "${PRODUCT_FULL}"
-OutFile gvim${VER_MAJOR}${VER_MINOR}.exe
-BrandingText "Vim - The text editor"
+OutFile gviai${VER_MAJOR}${VER_MINOR}.exe
+BrandingText "ViAI - Vim Advanced Integrated"
 
 # Types of installs we can perform:
 InstType $(str_type_typical)
@@ -184,9 +184,9 @@ VIFileVersion ${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0
 VIProductVersion ${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0
 VIAddVersionKey /LANG=0 "ProductName" "${PRODUCT_NAME}"
 VIAddVersionKey /LANG=0 "CompanyName" "${COMPANY_NAME}"
-VIAddVersionKey /LANG=0 "LegalTrademarks" "Vim"
+VIAddVersionKey /LANG=0 "LegalTrademarks" "ViAI"
 VIAddVersionKey /LANG=0 "LegalCopyright"  "Copyright (C) 1996"
-VIAddVersionKey /LANG=0 "FileDescription" "Vi Improved - A Text Editor"
+VIAddVersionKey /LANG=0 "FileDescription" "ViAI - Vim Advanced Integrated"
 VIAddVersionKey /LANG=0 "ProductVersion"  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0"
 VIAddVersionKey /LANG=0 "FileVersion"	  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0"
 
@@ -313,7 +313,7 @@ Var settings_loaded
 ##########################################################
 # Functions
 
-# Find uninstaller of old versions of Vim.
+# Find uninstaller of old versions of ViAI.
 # return: uninstall command. If not found, it will be empty.
 Function FindOldUninstaller
   Push $0
@@ -342,10 +342,10 @@ Function FindOldUninstaller
     # Move to the next sub-key:
     IntOp $R0 $R0 + 1
 
-    # Check if the key is Vim uninstall key or not:
-    StrCpy $R2 $R1 4
-    ${If} $R1 S!= "Vim"
-    ${AndIf} $R2 S!= "Vim "  # For old versions
+    # Check if the key is ViAI uninstall key or not:
+    StrCpy $R2 $R1 5
+    ${If} $R1 S!= "ViAI"
+    ${AndIf} $R2 S!= "ViAI "  # Installed by install.exe
       ${Continue}
     ${EndIf}
 
@@ -394,11 +394,7 @@ Function LaunchApplication
     System::Call "User32::SetWindowPos(i, i, i, i, i, i, i) b ($HWNDPARENT, 0, -1000, -1000, 0, 0, ${SWP_NOZORDER}|${SWP_NOSIZE})"
   ${EndIf}
 
-  ${If} ${FileExists} "$INSTDIR\lang\$(vim_readme_file)"
-    !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\${PROGEXE}" '-R "$INSTDIR\lang\$(vim_readme_file)"' "" ""
-  ${Else}
-    !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\${PROGEXE}" '-R "$INSTDIR\README.txt"' "" ""
-  ${EndIf}
+  !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\${PROGEXE}" '-c "help viai"' "" ""
 FunctionEnd
 
 ##########################################################
@@ -454,7 +450,7 @@ Section "$(str_section_old_ver)" id_section_old_ver
 SectionEnd
 
 ##########################################################
-# gVim and runtime files
+# GViAI and runtime files
 Section "$(str_section_exe)" id_section_exe
   SectionIn 1 2 3 RO
 
@@ -464,21 +460,19 @@ Section "$(str_section_exe)" id_section_exe
 
   # Binary files
   SetOutPath $INSTDIR
-  File ${VIMBIN}\gvim.exe
-  !if /FileExists "${VIMBIN}\vim${BIT}.dll"
-    File ${VIMBIN}\vim${BIT}.dll
+  File ${VIMBIN}\gviai.exe
+  !if /FileExists "${VIMBIN}\viai${BIT}.dll"
+    File ${VIMBIN}\viai${BIT}.dll
   !endif
-  File ${VIMBIN}\vimrun.exe
+  File ${VIMBIN}\viairun.exe
   File ${VIMBIN}\tee.exe
   File ${VIMBIN}\xxd.exe
 
   # Create hard links
   ReadEnvStr $3 "COMSPEC"
-  nsExec::Exec '"$3" /c mklink /h gview.exe gvim.exe'
+  nsExec::Exec '"$3" /c mklink /h gviaidiff.exe gviai.exe'
   Pop $4
-  nsExec::Exec '"$3" /c mklink /h gvimdiff.exe gvim.exe'
-  Pop $4
-  nsExec::Exec '"$3" /c mklink /h evim.exe gvim.exe'
+  nsExec::Exec '"$3" /c mklink /h eviai.exe gviai.exe'
   Pop $4
 
   !if /FileExists "${VIMTOOLS}\diff.exe"
@@ -494,14 +488,12 @@ Section "$(str_section_exe)" id_section_exe
     File ${VIMTOOLS}\libsodium.dll
   !endif
 
-  File ${SRC}\vimtutor.bat
-
-  File ${SRC}\README.txt
   !if /FileExists "${SRC}\LICENSE"
     File /oname=LICENSE.txt ${SRC}\LICENSE
   !else
     File /oname=LICENSE.txt ${SRC}\LICENSE.txt
   !endif
+  File /oname=LICENSE-APACHE.txt ${SRC}\LICENSE-APACHE
   File ${SRC}\uninstall.txt
 
   # Runtime files
@@ -545,7 +537,7 @@ Section "$(str_section_exe)" id_section_exe
   File ${VIMRT}\import\dist\*.*
 
   SetOutPath $0\bitmaps
-  File ${VIMBIN}\vim.ico
+  File ${VIMBIN}\viai.ico
 
   SetOutPath $0\syntax
   File /r /x testdir /x generator /x Makefile ${VIMRT}\syntax\*.*
@@ -564,7 +556,7 @@ Section "$(str_section_exe)" id_section_exe
 
   # OLE
   ${If} $MultiUser.InstallMode == "AllUsers"
-    ExecShellWait "" "$INSTDIR\gvim.exe" "-silent -register" SW_HIDE
+    ExecShellWait "" "$INSTDIR\gviai.exe" "-silent -register" SW_HIDE
   ${EndIf}
 SectionEnd
 
@@ -574,55 +566,49 @@ Section "$(str_section_console)" id_section_console
   SectionIn 1 3
 
   SetOutPath $INSTDIR
-  File ${VIMBIN}\vim.exe
+  File ${VIMBIN}\viai.exe
 
   # Create hard links
   ReadEnvStr $3 "COMSPEC"
-  nsExec::Exec '"$3" /c mklink /h view.exe vim.exe'
-  Pop $4
-  nsExec::Exec '"$3" /c mklink /h vimdiff.exe vim.exe'
+  nsExec::Exec '"$3" /c mklink /h viaidiff.exe viai.exe'
   Pop $4
 SectionEnd
 
 ##########################################################
 # Command line support
 SectionGroup $(str_group_cmdline) id_group_cmdline
-  # Vim launcher
+  # ViAI launcher
   Section "$(str_section_launcher)" id_section_launcher
     SectionIn 3
 
     ReadEnvStr $5 "SystemRoot"  ; Normally "C:\WINDOWS"
     SetOutPath $5
-    File ${VIMLAUNCHER}\gvim.exe
+    File ${VIMLAUNCHER}\gviai.exe
 
     # Create hard links
     ReadEnvStr $3 "COMSPEC"
-    nsExec::Exec '"$3" /c mklink /h gview.exe gvim.exe'
+    nsExec::Exec '"$3" /c mklink /h gviaidiff.exe gviai.exe'
     Pop $4
-    nsExec::Exec '"$3" /c mklink /h gvimdiff.exe gvim.exe'
-    Pop $4
-    nsExec::Exec '"$3" /c mklink /h evim.exe gvim.exe'
+    nsExec::Exec '"$3" /c mklink /h eviai.exe gviai.exe'
     Pop $4
 
     ${If} ${SectionIsSelected} ${id_section_console}
-      File ${VIMLAUNCHER}\vim.exe
+      File ${VIMLAUNCHER}\viai.exe
 
       # Create hard links
-      nsExec::Exec '"$3" /c mklink /h view.exe vim.exe'
-      Pop $4
-      nsExec::Exec '"$3" /c mklink /h vimdiff.exe vim.exe'
+      nsExec::Exec '"$3" /c mklink /h viaidiff.exe viai.exe'
       Pop $4
     ${EndIf}
 
     # Register the path in case the editwith menu is not installed.
     ${If} ${RunningX64}
       SetRegView 64
-      WriteRegStr SHCTX "Software\Vim\Gvim" "path" "$INSTDIR\${PROGEXE}"
+      WriteRegStr SHCTX "Software\ViAI\Gviai" "path" "$INSTDIR\${PROGEXE}"
       SetRegView lastused
     ${EndIf}
     !if ! ${ARM64}
       SetRegView 32
-      WriteRegStr SHCTX "Software\Vim\Gvim" "path" "$INSTDIR\${PROGEXE}"
+      WriteRegStr SHCTX "Software\ViAI\Gviai" "path" "$INSTDIR\${PROGEXE}"
       SetRegView lastused
     !endif
   SectionEnd
@@ -648,9 +634,9 @@ SectionGroup $(str_group_icons) id_group_icons
     SectionIn 1 3
 
     SetOutPath "%HOMEDRIVE%%HOMEPATH%"	; Set workdir for the shortcuts
-    CreateShortCut "$DESKTOP\gVim ${VERSION_SHORT}.lnk"		  "$INSTDIR\gvim.exe"
-    CreateShortCut "$DESKTOP\gVim Easy ${VERSION_SHORT}.lnk"	  "$INSTDIR\gvim.exe" "-y"
-    CreateShortCut "$DESKTOP\gVim Read-only ${VERSION_SHORT}.lnk" "$INSTDIR\gvim.exe" "-R"
+    CreateShortCut "$DESKTOP\GViAI ${VERSION_SHORT}.lnk"		  "$INSTDIR\gviai.exe"
+    CreateShortCut "$DESKTOP\GViAI Easy ${VERSION_SHORT}.lnk"	  "$INSTDIR\gviai.exe" "-y"
+    CreateShortCut "$DESKTOP\GViAI Read only ${VERSION_SHORT}.lnk" "$INSTDIR\gviai.exe" "-R"
   SectionEnd
 
   # Start Menu
@@ -661,51 +647,48 @@ SectionGroup $(str_group_icons) id_group_icons
 
     SetOutPath "%HOMEDRIVE%%HOMEPATH%"	; Set workdir for the shortcuts
     ${If} ${SectionIsSelected} ${id_section_console}
-      CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Vim.lnk"		"$INSTDIR\vim.exe"
-      CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Vim Read-only.lnk" "$INSTDIR\vim.exe" "-R"
-      CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Vim Diff.lnk"	"$INSTDIR\vim.exe" "-d"
+      CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\ViAI.lnk"		"$INSTDIR\viai.exe"
+      CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\ViAI Read only.lnk" "$INSTDIR\viai.exe" "-R"
+      CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\ViAI Diff.lnk"	"$INSTDIR\viai.exe" "-d"
     ${EndIf}
-    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\gVim.lnk"		"$INSTDIR\gvim.exe"
-    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\gVim Easy.lnk"	"$INSTDIR\gvim.exe" "-y"
-    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\gVim Read-only.lnk"	"$INSTDIR\gvim.exe" "-R"
-    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\gVim Diff.lnk"	"$INSTDIR\gvim.exe" "-d"
-    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Help.lnk"		"$INSTDIR\gvim.exe" "-c h"
-
-    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Vim tutor.lnk"	"$INSTDIR\vimtutor.bat" \
-	"" "" "" SW_SHOWMINIMIZED
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\GViAI.lnk"		"$INSTDIR\gviai.exe"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\GViAI Easy.lnk"	"$INSTDIR\gviai.exe" "-y"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\GViAI Read only.lnk"	"$INSTDIR\gviai.exe" "-R"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\GViAI Diff.lnk"	"$INSTDIR\gviai.exe" "-d"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Help.lnk"		"$INSTDIR\gviai.exe" "-c h"
 
     SetOutPath $0   ; Set workdir for the shortcuts
     CreateShortCut "$SMPROGRAMS\${PRODUCT_AND_VER}\Uninstall.lnk"	"$INSTDIR\uninstall-gui.exe"
 
-    WriteINIStr "$SMPROGRAMS\${PRODUCT_AND_VER}\Vim Online.url" "InternetShortcut" "URL" \
-	"https://www.vim.org/"
+    WriteINIStr "$SMPROGRAMS\${PRODUCT_AND_VER}\ViAI Online.url" "InternetShortcut" "URL" \
+	"https://github.com/viai-editor/viai"
   SectionEnd
 SectionGroupEnd
 
 ##########################################################
-# Vim context menu
+# ViAI context menu
 Section "$(str_section_edit_with)" id_section_editwith
   SectionIn 1 3
 
   ${If} ${RunningX64}
-    # Install 64-bit gvimext.dll into the GvimExt64 directory.
-    SetOutPath $0\GvimExt64
+    # Install 64-bit gviaiext.dll into the GviaiExt64 directory.
+    SetOutPath $0\GviaiExt64
     ClearErrors
     !define LIBRARY_SHELL_EXTENSION
     !define LIBRARY_X64
     !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	"${VIMRT}\GvimExt64\gvimext.dll" "$0\GvimExt64\gvimext.dll" "$0"
+	"${VIMRT}\GviaiExt64\gviaiext.dll" "$0\GviaiExt64\gviaiext.dll" "$0"
     !undef LIBRARY_X64
     !undef LIBRARY_SHELL_EXTENSION
   ${EndIf}
 
   !if ! ${ARM64}
-    # Install 32-bit gvimext.dll into the GvimExt32 directory.
-    SetOutPath $0\GvimExt32
+    # Install 32-bit gviaiext.dll into the GviaiExt32 directory.
+    SetOutPath $0\GviaiExt32
     ClearErrors
     !define LIBRARY_SHELL_EXTENSION
     !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	"${VIMRT}\GvimExt32\gvimext.dll" "$0\GvimExt32\gvimext.dll" "$0"
+	"${VIMRT}\GviaiExt32\gviaiext.dll" "$0\GviaiExt32\gviaiext.dll" "$0"
     !undef LIBRARY_SHELL_EXTENSION
   !endif
 
@@ -715,15 +698,15 @@ Section "$(str_section_edit_with)" id_section_editwith
   # Register servers
   ${If} ${RunningX64}
     SetRegView 64
-    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}" "" "Vim Shell Extension"
-    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}\InProcServer32" "" "$0\GvimExt64\gvimext.dll"
+    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}" "" "ViAI Shell Extension"
+    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}\InProcServer32" "" "$0\GviaiExt64\gviaiext.dll"
     WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}\InProcServer32" "ThreadingModel" "Apartment"
     SetRegView lastused
   ${EndIf}
   !if ! ${ARM64}
     SetRegView 32
-    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}" "" "Vim Shell Extension"
-    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}\InProcServer32" "" "$0\GvimExt32\gvimext.dll"
+    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}" "" "ViAI Shell Extension"
+    WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}\InProcServer32" "" "$0\GviaiExt32\gviaiext.dll"
     WriteRegStr SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}\InProcServer32" "ThreadingModel" "Apartment"
     SetRegView lastused
   !endif
@@ -731,32 +714,32 @@ Section "$(str_section_edit_with)" id_section_editwith
   # Register context menu
   ${If} ${RunningX64}
     SetRegView 64
-    WriteRegStr SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gvim" "" "${GVIMEXT_CLSID}"
-    WriteRegStr SHCTX "Software\Vim\Gvim" "path" "$INSTDIR\${PROGEXE}"
+    WriteRegStr SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gviai" "" "${GVIMEXT_CLSID}"
+    WriteRegStr SHCTX "Software\ViAI\Gviai" "path" "$INSTDIR\${PROGEXE}"
     SetRegView lastused
   ${EndIf}
   !if ! ${ARM64}
     SetRegView 32
-    WriteRegStr SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gvim" "" "${GVIMEXT_CLSID}"
-    WriteRegStr SHCTX "Software\Vim\Gvim" "path" "$INSTDIR\${PROGEXE}"
+    WriteRegStr SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gviai" "" "${GVIMEXT_CLSID}"
+    WriteRegStr SHCTX "Software\ViAI\Gviai" "path" "$INSTDIR\${PROGEXE}"
     SetRegView lastused
   !endif
 
   # Register openwith
   ${If} ${RunningX64}
     SetRegView 64
-    WriteRegStr SHCTX "Software\Classes\Applications\gvim.exe\shell\edit\command" "" '"$INSTDIR\${PROGEXE}" "%1"'
-    WriteRegStr SHCTX "Software\Classes\.htm\OpenWithList\gvim.exe" "" ""
-    WriteRegStr SHCTX "Software\Classes\.vim\OpenWithList\gvim.exe" "" ""
-    WriteRegStr SHCTX "Software\Classes\*\OpenWithList\gvim.exe" "" ""
+    WriteRegStr SHCTX "Software\Classes\Applications\gviai.exe\shell\edit\command" "" '"$INSTDIR\${PROGEXE}" "%1"'
+    WriteRegStr SHCTX "Software\Classes\.htm\OpenWithList\gviai.exe" "" ""
+    WriteRegStr SHCTX "Software\Classes\.vim\OpenWithList\gviai.exe" "" ""
+    WriteRegStr SHCTX "Software\Classes\*\OpenWithList\gviai.exe" "" ""
     SetRegView lastused
   ${EndIf}
   !if ! ${ARM64}
     SetRegView 32
-    WriteRegStr SHCTX "Software\Classes\Applications\gvim.exe\shell\edit\command" "" '"$INSTDIR\${PROGEXE}" "%1"'
-    WriteRegStr SHCTX "Software\Classes\.htm\OpenWithList\gvim.exe" "" ""
-    WriteRegStr SHCTX "Software\Classes\.vim\OpenWithList\gvim.exe" "" ""
-    WriteRegStr SHCTX "Software\Classes\*\OpenWithList\gvim.exe" "" ""
+    WriteRegStr SHCTX "Software\Classes\Applications\gviai.exe\shell\edit\command" "" '"$INSTDIR\${PROGEXE}" "%1"'
+    WriteRegStr SHCTX "Software\Classes\.htm\OpenWithList\gviai.exe" "" ""
+    WriteRegStr SHCTX "Software\Classes\.vim\OpenWithList\gviai.exe" "" ""
+    WriteRegStr SHCTX "Software\Classes\*\OpenWithList\gviai.exe" "" ""
     SetRegView lastused
   !endif
 SectionEnd
@@ -863,12 +846,12 @@ ${StrTok}
 !define PLUG_DIR_LIST "colors compiler doc ftdetect ftplugin indent keymap plugin syntax"
 
 # Create plugin directories
-# param: $R0 = target directory
+# param: $R0 = target directory, $R1 = name of the plugin directory
 Function CreatePluginDirs
   Push $3
   Push $5
 
-  CreateDirectory $R0\vimfiles
+  CreateDirectory $R0\$R1
 
   StrCpy $3 0	  ; index
   ${Do}
@@ -876,7 +859,7 @@ Function CreatePluginDirs
     ${If} $5 == ""
       ${ExitDo}
     ${EndIf}
-    CreateDirectory $R0\vimfiles\$5
+    CreateDirectory $R0\$R1\$5
     IntOp $3 $3 + 1
   ${Loop}
 
@@ -892,6 +875,16 @@ SectionGroup $(str_group_plugin) id_group_plugin
     ReadEnvStr $3 "COMSPEC"
     Call GetHomeDir
     Pop $R0
+    StrCpy $R1 "viaifiles"
+    !insertmacro UAC_AsUser_Call Function CreatePluginDirs ${UAC_SYNCREGISTERS}
+  SectionEnd
+
+  # Create plugin dir shared with Vim in $HOME
+  Section /o "$(str_section_plugin_home_vim)" id_section_pluginhomevim
+    ReadEnvStr $3 "COMSPEC"
+    Call GetHomeDir
+    Pop $R0
+    StrCpy $R1 "vimfiles"
     !insertmacro UAC_AsUser_Call Function CreatePluginDirs ${UAC_SYNCREGISTERS}
   SectionEnd
 
@@ -900,6 +893,7 @@ SectionGroup $(str_group_plugin) id_group_plugin
     SectionIn 3
 
     StrCpy $R0 $INSTDIR
+    StrCpy $R1 "vimfiles"
     Call CreatePluginDirs
   SectionEnd
 SectionGroupEnd
@@ -940,35 +934,35 @@ Section "$(str_section_nls)" id_section_nls
   SetOutPath $0
   ${If} ${SectionIsSelected} ${id_section_editwith}
     ${If} ${RunningX64}
-      # Install DLLs for 64-bit gvimext.dll into the GvimExt64 directory.
-      SetOutPath $0\GvimExt64
+      # Install DLLs for 64-bit gviaiext.dll into the GviaiExt64 directory.
+      SetOutPath $0\GviaiExt64
       ClearErrors
       !define LIBRARY_X64
       !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "${VIMRT}\GvimExt64\libintl-8.dll" \
-	  "$0\GvimExt64\libintl-8.dll" "$0\GvimExt64"
+	  "${VIMRT}\GviaiExt64\libintl-8.dll" \
+	  "$0\GviaiExt64\libintl-8.dll" "$0\GviaiExt64"
       !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "${VIMRT}\GvimExt64\libiconv-2.dll" \
-	  "$0\GvimExt64\libiconv-2.dll" "$0\GvimExt64"
+	  "${VIMRT}\GviaiExt64\libiconv-2.dll" \
+	  "$0\GviaiExt64\libiconv-2.dll" "$0\GviaiExt64"
       !undef LIBRARY_X64
     ${EndIf}
 
     !if ! ${ARM64}
-      # Install DLLs for 32-bit gvimext.dll into the GvimExt32 directory.
-      SetOutPath $0\GvimExt32
+      # Install DLLs for 32-bit gviaiext.dll into the GviaiExt32 directory.
+      SetOutPath $0\GviaiExt32
       ClearErrors
       !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "${VIMRT}\GvimExt32\libintl-8.dll" \
-	  "$0\GvimExt32\libintl-8.dll" "$0\GvimExt32"
+	  "${VIMRT}\GviaiExt32\libintl-8.dll" \
+	  "$0\GviaiExt32\libintl-8.dll" "$0\GviaiExt32"
       !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "${VIMRT}\GvimExt32\libiconv-2.dll" \
-	  "$0\GvimExt32\libiconv-2.dll" "$0\GvimExt32"
+	  "${VIMRT}\GviaiExt32\libiconv-2.dll" \
+	  "$0\GviaiExt32\libiconv-2.dll" "$0\GviaiExt32"
       # Install libgcc_s_sjlj-1.dll only if it is needed.
       !if ${INCLUDE_LIBGCC}
-	!if /FileExists "${VIMRT}\GvimExt32\libgcc_s_sjlj-1.dll"
+	!if /FileExists "${VIMRT}\GviaiExt32\libgcc_s_sjlj-1.dll"
 	    !insertmacro InstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-		"${VIMRT}\GvimExt32\libgcc_s_sjlj-1.dll" \
-		"$0\GvimExt32\libgcc_s_sjlj-1.dll" "$0\GvimExt32"
+		"${VIMRT}\GviaiExt32\libgcc_s_sjlj-1.dll" \
+		"$0\GviaiExt32\libgcc_s_sjlj-1.dll" "$0\GviaiExt32"
 	!endif
       !endif
     !endif
@@ -1015,6 +1009,7 @@ Section -post
   !insertmacro SaveSectionSelection $5 ${id_section_editwith}   "select_editwith"
   !insertmacro SaveSectionSelection $5 ${id_section_vimrc}      "select_vimrc"
   !insertmacro SaveSectionSelection $5 ${id_section_pluginhome} "select_pluginhome"
+  !insertmacro SaveSectionSelection $5 ${id_section_pluginhomevim} "select_pluginhomevim"
   !insertmacro SaveSectionSelection $5 ${id_section_pluginvim}  "select_pluginvim"
   !insertmacro SaveSectionSelection $5 ${id_section_nls}        "select_nls"
 
@@ -1034,6 +1029,7 @@ Function LoadSelections
   !insertmacro LoadSectionSelection $5 ${id_section_editwith}   "select_editwith"
   !insertmacro LoadSectionSelection $5 ${id_section_vimrc}      "select_vimrc"
   !insertmacro LoadSectionSelection $5 ${id_section_pluginhome} "select_pluginhome"
+  !insertmacro LoadSectionSelection $5 ${id_section_pluginhomevim} "select_pluginhomevim"
   !insertmacro LoadSectionSelection $5 ${id_section_pluginvim}  "select_pluginvim"
   !insertmacro LoadSectionSelection $5 ${id_section_nls}        "select_nls"
   # Load the default _vimrc settings from the registry (if any).
@@ -1051,6 +1047,7 @@ Function LoadSelections
   !insertmacro ParseCmdSectionSelection $5 "/editwith="	  ${id_section_editwith}
   !insertmacro ParseCmdSectionSelection $5 "/vimrc="	  ${id_section_vimrc}
   !insertmacro ParseCmdSectionSelection $5 "/pluginhome=" ${id_section_pluginhome}
+  !insertmacro ParseCmdSectionSelection $5 "/pluginhomevim=" ${id_section_pluginhomevim}
   !insertmacro ParseCmdSectionSelection $5 "/pluginvim="  ${id_section_pluginvim}
   !insertmacro ParseCmdSectionSelection $5 "/nls="	  ${id_section_nls}
   !insertmacro ParseCmdVimrc $5 "/compat=" $vim_compat_stat
@@ -1079,15 +1076,16 @@ Function .onInit
       /?$\t- display this message$\r$\n\
       $\r$\n\
       Component selection:$\r$\n\
-      /console={1,0}$\tinstall vim.exe$\r$\n\
-      /launcher={1,0}$\tinstall Vim launcher to $3$\r$\n\
-      /addpath={1,0}$\tadd the Vim directory to PATH$\r$\n\
+      /console={1,0}$\tinstall viai.exe$\r$\n\
+      /launcher={1,0}$\tinstall ViAI launcher to $3$\r$\n\
+      /addpath={1,0}$\tadd the ViAI directory to PATH$\r$\n\
       /desktop={1,0}$\tcreate desktop icons$\r$\n\
       /startmenu={1,0}$\tcreate startmenu icons$\r$\n\
       /editwith={1,0}$\tinstall editwith menu$\r$\n\
       /vimrc={1,0}$\tcreate _vimrc$\r$\n\
       /pluginhome={1,0}$\tcreate plugin dirs in home dir$\r$\n\
-      /pluginvim={1,0}$\tcreate plugin dirs in Vim dir$\r$\n\
+      /pluginhomevim={1,0}  create plugin dirs shared with Vim in home dir$\r$\n\
+      /pluginvim={1,0}$\tcreate plugin dirs in ViAI dir$\r$\n\
       /nls={1,0}$\t$\tinstall multilingual support$\r$\n\
       /compat={vi,vim,defaults,all}$\tVi compatibility$\r$\n\
       /keymap={default,windows}$\tkey mappings$\r$\n\
@@ -1124,7 +1122,7 @@ FunctionEnd
 
 Function PageComponentsPre
   ${If} $MultiUser.InstallMode == "CurrentUser"
-    # Unselect and hide Vim launcher
+    # Unselect and hide ViAI launcher
     !insertmacro UnselectSection ${id_section_launcher}
     SectionSetInstTypes ${id_section_launcher} 0
     SectionSetText ${id_section_launcher} ""
@@ -1140,7 +1138,7 @@ Function PageComponentsPre
     call FindOldUninstaller
     Pop $3
     ${If} $3 == ""
-      # No old versions of Vim found. Unselect and hide the section.
+      # No old versions of ViAI found. Unselect and hide the section.
       !insertmacro UnselectSection ${id_section_old_ver}
       SectionSetInstTypes ${id_section_old_ver} 0
       SectionSetText ${id_section_old_ver} ""
@@ -1290,6 +1288,7 @@ FunctionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${id_section_vimrc}	      $(str_desc_vim_rc)
   !insertmacro MUI_DESCRIPTION_TEXT ${id_group_plugin}	      $(str_desc_plugin)
   !insertmacro MUI_DESCRIPTION_TEXT ${id_section_pluginhome}  $(str_desc_plugin_home)
+  !insertmacro MUI_DESCRIPTION_TEXT ${id_section_pluginhomevim} $(str_desc_plugin_home_vim)
   !insertmacro MUI_DESCRIPTION_TEXT ${id_section_pluginvim}   $(str_desc_plugin_vim)
   !insertmacro MUI_DESCRIPTION_TEXT ${id_section_nls}	      $(str_desc_nls)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
@@ -1319,23 +1318,23 @@ Section "un.$(str_unsection_register)" id_unsection_register
   ${If} ${RunningX64}
     SetRegView 64
     DeleteRegKey SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}"
-    DeleteRegKey SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gvim"
-    DeleteRegKey SHCTX "Software\Vim"
-    DeleteRegKey SHCTX "Software\Classes\Applications\gvim.exe"
-    DeleteRegKey SHCTX "Software\Classes\.htm\OpenWithList\gvim.exe"
-    DeleteRegKey SHCTX "Software\Classes\.vim\OpenWithList\gvim.exe"
-    DeleteRegKey SHCTX "Software\Classes\*\OpenWithList\gvim.exe"
+    DeleteRegKey SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gviai"
+    DeleteRegKey SHCTX "Software\ViAI"
+    DeleteRegKey SHCTX "Software\Classes\Applications\gviai.exe"
+    DeleteRegKey SHCTX "Software\Classes\.htm\OpenWithList\gviai.exe"
+    DeleteRegKey SHCTX "Software\Classes\.vim\OpenWithList\gviai.exe"
+    DeleteRegKey SHCTX "Software\Classes\*\OpenWithList\gviai.exe"
     SetRegView lastused
   ${EndIf}
   !if ! ${ARM64}
     SetRegView 32
     DeleteRegKey SHCTX "Software\Classes\CLSID\${GVIMEXT_CLSID}"
-    DeleteRegKey SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gvim"
-    DeleteRegKey SHCTX "Software\Vim"
-    DeleteRegKey SHCTX "Software\Classes\Applications\gvim.exe"
-    DeleteRegKey SHCTX "Software\Classes\.htm\OpenWithList\gvim.exe"
-    DeleteRegKey SHCTX "Software\Classes\.vim\OpenWithList\gvim.exe"
-    DeleteRegKey SHCTX "Software\Classes\*\OpenWithList\gvim.exe"
+    DeleteRegKey SHCTX "Software\Classes\*\shellex\ContextMenuHandlers\gviai"
+    DeleteRegKey SHCTX "Software\ViAI"
+    DeleteRegKey SHCTX "Software\Classes\Applications\gviai.exe"
+    DeleteRegKey SHCTX "Software\Classes\.htm\OpenWithList\gviai.exe"
+    DeleteRegKey SHCTX "Software\Classes\.vim\OpenWithList\gviai.exe"
+    DeleteRegKey SHCTX "Software\Classes\*\OpenWithList\gviai.exe"
     SetRegView lastused
   !endif
 
@@ -1344,9 +1343,9 @@ Section "un.$(str_unsection_register)" id_unsection_register
 
   # Delete shortcuts
   RMDir /r "$SMPROGRAMS\${PRODUCT_AND_VER}"
-  Delete "$DESKTOP\gVim ${VERSION_SHORT}.lnk"
-  Delete "$DESKTOP\gVim Easy ${VERSION_SHORT}.lnk"
-  Delete "$DESKTOP\gVim Read-only ${VERSION_SHORT}.lnk"
+  Delete "$DESKTOP\GViAI ${VERSION_SHORT}.lnk"
+  Delete "$DESKTOP\GViAI Easy ${VERSION_SHORT}.lnk"
+  Delete "$DESKTOP\GViAI Read only ${VERSION_SHORT}.lnk"
 
   # Delete from PATH
   ${If} $MultiUser.InstallMode == "AllUsers"
@@ -1367,7 +1366,7 @@ Section "un.$(str_unsection_exe)" id_unsection_exe
 
   # OLE
   ${If} $MultiUser.InstallMode == "AllUsers"
-    ExecShellWait "" "$INSTDIR\gvim.exe" "-silent -unregister" SW_HIDE
+    ExecShellWait "" "$INSTDIR\gviai.exe" "-silent -unregister" SW_HIDE
   ${EndIf}
 
   # Delete gettext and iconv DLLs
@@ -1387,53 +1386,53 @@ Section "un.$(str_unsection_exe)" id_unsection_exe
   # Delete other DLLs
   Delete /REBOOTOK $INSTDIR\*.dll
 
-  # Delete 64-bit GvimExt
+  # Delete 64-bit GviaiExt
   ${If} ${RunningX64}
     !define LIBRARY_X64
-    ${If} ${FileExists} "$0\GvimExt64\gvimext.dll"
+    ${If} ${FileExists} "$0\GviaiExt64\gviaiext.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt64\gvimext.dll"
+	  "$0\GviaiExt64\gviaiext.dll"
     ${EndIf}
-    ${If} ${FileExists} "$0\GvimExt64\libiconv-2.dll"
+    ${If} ${FileExists} "$0\GviaiExt64\libiconv-2.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt64\libiconv-2.dll"
+	  "$0\GviaiExt64\libiconv-2.dll"
     ${EndIf}
-    ${If} ${FileExists} "$0\GvimExt64\libintl-8.dll"
+    ${If} ${FileExists} "$0\GviaiExt64\libintl-8.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt64\libintl-8.dll"
+	  "$0\GviaiExt64\libintl-8.dll"
     ${EndIf}
-    ${If} ${FileExists} "$0\GvimExt64\libwinpthread-1.dll"
+    ${If} ${FileExists} "$0\GviaiExt64\libwinpthread-1.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt64\libwinpthread-1.dll"
+	  "$0\GviaiExt64\libwinpthread-1.dll"
     ${EndIf}
     !undef LIBRARY_X64
-    RMDir /r $0\GvimExt64
+    RMDir /r $0\GviaiExt64
   ${EndIf}
 
-  # Delete 32-bit GvimExt
+  # Delete 32-bit GviaiExt
   !if ! ${ARM64}
-    ${If} ${FileExists} "$0\GvimExt32\gvimext.dll"
+    ${If} ${FileExists} "$0\GviaiExt32\gviaiext.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt32\gvimext.dll"
+	  "$0\GviaiExt32\gviaiext.dll"
     ${EndIf}
-    ${If} ${FileExists} "$0\GvimExt32\libiconv-2.dll"
+    ${If} ${FileExists} "$0\GviaiExt32\libiconv-2.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt32\libiconv-2.dll"
+	  "$0\GviaiExt32\libiconv-2.dll"
     ${EndIf}
-    ${If} ${FileExists} "$0\GvimExt32\libintl-8.dll"
+    ${If} ${FileExists} "$0\GviaiExt32\libintl-8.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt32\libintl-8.dll"
+	  "$0\GviaiExt32\libintl-8.dll"
     ${EndIf}
-    ${If} ${FileExists} "$0\GvimExt32\libgcc_s_sjlj-1.dll"
+    ${If} ${FileExists} "$0\GviaiExt32\libgcc_s_sjlj-1.dll"
       !insertmacro UninstallLib DLL NOTSHARED REBOOT_NOTPROTECTED \
-	  "$0\GvimExt32\libgcc_s_sjlj-1.dll"
+	  "$0\GviaiExt32\libgcc_s_sjlj-1.dll"
     ${EndIf}
-    RMDir /r $0\GvimExt32
+    RMDir /r $0\GviaiExt32
   !endif
 
   ClearErrors
   # Remove everything but *.dll files.  Avoids that
-  # a lot remains when gvimext.dll cannot be deleted.
+  # a lot remains when gviaiext.dll cannot be deleted.
   RMDir /r $0\autoload
   RMDir /r $0\colors
   RMDir /r $0\compiler
@@ -1458,49 +1457,46 @@ Section "un.$(str_unsection_exe)" id_unsection_exe
 
   RMDir /r $INSTDIR\lang
   Delete $INSTDIR\*.exe
-  Delete $INSTDIR\vimtutor.bat
-  Delete $INSTDIR\README.txt
   Delete $INSTDIR\LICENSE.txt
+  Delete $INSTDIR\LICENSE-APACHE.txt
   Delete $INSTDIR\uninstall.txt
 
   ${If} ${Errors}
     MessageBox MB_OK|MB_ICONEXCLAMATION $(str_msg_rm_exe_fail) /SD IDOK
   ${EndIf}
 
-  # Vim launcher
+  # ViAI launcher
   ReadEnvStr $3 "SystemRoot"  ; Normally "C:\WINDOWS"
-  Delete $3\gvim.exe
-  Delete $3\gvimdiff.exe
-  Delete $3\gview.exe
-  Delete $3\evim.exe
-  Delete $3\vim.exe
-  Delete $3\vimdiff.exe
-  Delete $3\view.exe
+  Delete $3\gviai.exe
+  Delete $3\gviaidiff.exe
+  Delete $3\eviai.exe
+  Delete $3\viai.exe
+  Delete $3\viaidiff.exe
 
   # No error message if the "vim92" directory can't be removed, the
-  # gvimext.dll may still be there.
+  # gviaiext.dll may still be there.
   RMDir $0
 SectionEnd
 
-# Remove "vimfiles" directory under the specified directory.
-!macro RemoveVimfiles dir
-  ${If} ${FileExists} ${dir}\_viminfo
-    Delete ${dir}\_viminfo
+# Remove the plugin directory "name" under the specified directory.
+!macro RemoveVimfiles dir name
+  ${If} ${FileExists} ${dir}\_viaiinfo
+    Delete ${dir}\_viaiinfo
   ${EndIf}
-  ${If} ${DirExists} ${dir}\vimfiles
-    RMDir ${dir}\vimfiles\colors
-    RMDir ${dir}\vimfiles\compiler
-    RMDir ${dir}\vimfiles\doc
-    RMDir ${dir}\vimfiles\ftdetect
-    RMDir ${dir}\vimfiles\ftplugin
-    RMDir ${dir}\vimfiles\indent
-    RMDir ${dir}\vimfiles\keymap
-    RMDir ${dir}\vimfiles\plugin
-    RMDir ${dir}\vimfiles\syntax
-    ${If} ${FileExists} ${dir}\vimfiles\.netrwhist*
-      Delete ${dir}\vimfiles\.netrwhist*
+  ${If} ${DirExists} ${dir}\${name}
+    RMDir ${dir}\${name}\colors
+    RMDir ${dir}\${name}\compiler
+    RMDir ${dir}\${name}\doc
+    RMDir ${dir}\${name}\ftdetect
+    RMDir ${dir}\${name}\ftplugin
+    RMDir ${dir}\${name}\indent
+    RMDir ${dir}\${name}\keymap
+    RMDir ${dir}\${name}\plugin
+    RMDir ${dir}\${name}\syntax
+    ${If} ${FileExists} ${dir}\${name}\.netrwhist*
+      Delete ${dir}\${name}\.netrwhist*
     ${EndIf}
-    RMDir ${dir}\vimfiles
+    RMDir ${dir}\${name}
   ${EndIf}
 !macroend
 
@@ -1511,13 +1507,13 @@ SectionGroup "un.$(str_ungroup_plugin)" id_ungroup_plugin
     Pop $0
 
     ${If} $0 != ""
-      !insertmacro RemoveVimfiles $0
+      !insertmacro RemoveVimfiles $0 viaifiles
     ${EndIf}
   SectionEnd
 
   Section "un.$(str_unsection_plugin_vim)" id_unsection_plugin_vim
     # if a plugin dir was created at installation remove it
-    !insertmacro RemoveVimfiles $INSTDIR
+    !insertmacro RemoveVimfiles $INSTDIR vimfiles
   SectionEnd
 SectionGroupEnd
 

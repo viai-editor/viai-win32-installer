@@ -140,9 +140,14 @@ LangString str_desc_plugin          ${LANG_ENGLISH} \
      by dropping a file into a directory."
 
 LangString str_section_plugin_home  ${LANG_ENGLISH} \
-    "Private"
+    "Private (viaifiles)"
 LangString str_desc_plugin_home     ${LANG_ENGLISH} \
-    "Create plugin directories in HOME directory."
+    "Create plugin directories of ViAI (viaifiles) in HOME directory."
+
+LangString str_section_plugin_home_vim ${LANG_ENGLISH} \
+    "Private (vimfiles)"
+LangString str_desc_plugin_home_vim ${LANG_ENGLISH} \
+    "Create plugin directories shared with Vim (vimfiles) in HOME directory."
 
 LangString str_section_plugin_vim   ${LANG_ENGLISH} \
     "Shared"

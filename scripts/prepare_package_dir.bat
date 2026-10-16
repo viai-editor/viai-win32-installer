@@ -34,11 +34,11 @@ copy "%VIMSRC%\src\uninstall.exe" "%DEST%" || exit /b 1
 copy "%DIFFEXE%\diff.exe"     "%DEST%" || exit /b 1
 rem copy "%LUA_DIR%\lua*.dll"   "%DEST%" || exit /b 1
 
-:: Copy Vim launcher
-md "%DEST%\vim-launcher"
-copy "%VIMSRC%\..\vim-launcher\*.exe"     "%DEST%\vim-launcher" || exit /b 1
-copy "%VIMSRC%\..\vim-launcher\*.reg"     "%DEST%\vim-launcher" || exit /b 1
-copy "%VIMSRC%\..\vim-launcher\README.md" "%DEST%\vim-launcher" || exit /b 1
+:: Copy ViAI launcher
+md "%DEST%\viai-launcher"
+copy "%VIMSRC%\..\viai-launcher\*.exe"     "%DEST%\viai-launcher" || exit /b 1
+copy "%VIMSRC%\..\viai-launcher\*.reg"     "%DEST%\viai-launcher" || exit /b 1
+copy "%VIMSRC%\..\viai-launcher\README.md" "%DEST%\viai-launcher" || exit /b 1
 
 :: Copy gettext for (g)vim.exe
 copy %GETTEXT_DIR%\libiconv-2.dll %DEST% || exit /b 1

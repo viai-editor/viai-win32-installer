@@ -1,6 +1,6 @@
 /* vi:set ts=8 sts=4 sw=4 noet:
  *
- * VIM - Vi IMproved	Vim launcher
+ * VIM - Vi IMproved	ViAI launcher
  */
 
 #include <windows.h>
@@ -16,12 +16,12 @@
 #define ASCII_ISALPHA(c) (ASCII_ISUPPER(c) || ASCII_ISLOWER(c))
 
 
-// Get path of (g)vim.exe
+// Get path of (g)viai.exe
     void
 get_vim_path(WCHAR *path)
 {
     DWORD len;
-    const LPCWSTR gvim_key = L"Software\\Vim\\Gvim";
+    const LPCWSTR gvim_key = L"Software\\ViAI\\Gviai";
     const LPCWSTR gvim_val = L"path";
 
     path[0] = L'\0';
@@ -38,8 +38,8 @@ get_vim_path(WCHAR *path)
 	}
     }
 #ifndef FEAT_GUI
-    // Replace "gvim.exe" with "vim.exe"
-    lstrcpyW(PathFindFileNameW(path), L"vim.exe");
+    // Replace "gviai.exe" with "viai.exe"
+    lstrcpyW(PathFindFileNameW(path), L"viai.exe");
 #endif
 }
 
@@ -48,7 +48,7 @@ get_vim_path(WCHAR *path)
 error_msg(const char *msg)
 {
 #ifdef FEAT_GUI
-    MessageBoxA(NULL, msg, "Vim launcher", MB_OK | MB_ICONERROR);
+    MessageBoxA(NULL, msg, "ViAI launcher", MB_OK | MB_ICONERROR);
 #else
     HANDLE hStdErr = GetStdHandle(STD_ERROR_HANDLE);
     DWORD written;
@@ -58,7 +58,7 @@ error_msg(const char *msg)
 }
 
 // Parse executable name
-// E.g. (g)vim(diff), (g)view, e(g)vim
+// E.g. (g)viai(diff), (g)view, e(g)viai
     WCHAR
 parse_exename(LPCWSTR exename)
 {
@@ -71,17 +71,17 @@ parse_exename(LPCWSTR exename)
 	    && (TOLOWER_ASC(p[1]) == L'v'
 		|| TOLOWER_ASC(p[1]) == L'g'))
     {
-	// "evim" or "egvim"
+	// "eviai" or "egviai"
 	return L'y';	// easy mode
     }
 
     if (TOLOWER_ASC(p[0]) == L'g')
 	++p;	// GUI
 
-    if (StrCmpNIW(p, L"vim", 3) == 0)
+    if (StrCmpNIW(p, L"viai", 4) == 0)
     {
-	// "vim"
-	p += 3;
+	// "viai"
+	p += 4;
     }
     else if (StrCmpNIW(p, L"view", 4) == 0)
     {
@@ -150,7 +150,7 @@ launch(void)
     get_vim_path(path);
     if (path[0] == L'\0')
     {
-	error_msg("Vim executable not found.");
+	error_msg("ViAI executable not found.");
 	return 1;
     }
 
@@ -197,7 +197,7 @@ launch(void)
     lstrcpyW(buf + pathlen + 3 + optlen, args);
     //OutputDebugStringW(buf);
 
-    // Execute Vim
+    // Execute ViAI
     STARTUPINFOW si;
     PROCESS_INFORMATION pi;
 
@@ -208,7 +208,7 @@ launch(void)
     LocalFree(buf);
     if (!ret)
     {
-	error_msg("Failed to execute Vim.");
+	error_msg("Failed to execute ViAI.");
 	return 1;
     }
 

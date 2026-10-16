@@ -19,8 +19,8 @@ allowable length of strings.  For example:
 Characters in this case mean characters of the English alphabet.
 
 Once the message translation file is ready, it must be included in the
-"gvim.nsi" file.
-Find the line "# Include support for other languages:" in the file "gvim.nsi"
+"gviai.nsi" file.
+Find the line "# Include support for other languages:" in the file "gviai.nsi"
 and specify the name of the file with your translation, similar to the entries
 already there. File names are specified in alphabetical order.
 
@@ -45,7 +45,7 @@ Please also update the file ".github/MAINTAINERS".
 There are two ways to test the installer in different languages:
 
 1. Find and uncomment the "!define MUI_LANGDLL_ALWAYSSHOW" line in the
-   "gvim.nsi" file and rebuild the installer.
+   "gviai.nsi" file and rebuild the installer.
    Now every time you run it, you will see a dialog box with the possibility to
    select the language of the installer.
 
