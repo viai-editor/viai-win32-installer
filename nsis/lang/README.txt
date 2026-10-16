@@ -1,10 +1,10 @@
-This directory contains a file with text strings for gVim installer.
-It also contains files with translations of the text strings for gVim installer
-into different languages.
+This directory contains a file with text strings for the ViAI installer.
+It also contains files with translations of the text strings for the ViAI
+installer into different languages.
 
 For translators.
 
-If you want to prepare a translation for the gVim installer, use the file
+If you want to prepare a translation for the ViAI installer, use the file
 "english.nsi" as a master file.  See the other translation files in this
 directory.
 Note that in the definition of the MUI_LANGUAGE macro, the name of the language
@@ -24,20 +24,15 @@ Find the line "# Include support for other languages:" in the file "gviai.nsi"
 and specify the name of the file with your translation, similar to the entries
 already there. File names are specified in alphabetical order.
 
-If you do not yet have a translated "LICENSE" file and/or a main "README.txt"
-file, set the following values:
+If you do not yet have a translated "LICENSE" file, set the following value:
 
-for the license file
 LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
 
-for the readme.txt file
-LangString vim_readme_file 0 "README.txt"
-
-Once you have the translations of these files, then set the values for these
-variables similarly to what is done in the other translation files.
-Translation files should be located in the "lang" subdirectory of the vim
-repository. The name of the files is as follows: "README.xx.txt", where xx is
-the language code according to ISO639.
+Once you have the translation of this file, set the value similarly to what is
+done in the other translation files.
+The translated file should be located in the "lang" subdirectory of the ViAI
+repository.  The name of the file is "LICENSE.xx.txt", where xx is the language
+code according to ISO639.
 
 Please also update the file ".github/MAINTAINERS".
 
@@ -49,14 +44,14 @@ There are two ways to test the installer in different languages:
    Now every time you run it, you will see a dialog box with the possibility to
    select the language of the installer.
 
-2. If the Vim editor is already installed in your system, delete the
+2. If ViAI is already installed in your system, delete the
    "Installer Language" parameter in the Windows registry under
-   "HKEY_CURRENT_USER\Software\Vim".
-   Or you can create a file "NoLangInstallerVim.reg" with the following content:
+   "HKEY_CURRENT_USER\Software\ViAI".
+   Or you can create a file "NoLangInstallerViAI.reg" with the following content:
 
 	Windows Registry Editor Version 5.00
 
-	[HKEY_CURRENT_USER\Software\Vim]
+	[HKEY_CURRENT_USER\Software\ViAI]
 	"Installer Language"=-
 
    and apply it by double-clicking on it.
@@ -66,7 +61,7 @@ There are two ways to test the installer in different languages:
 
 The NsisMultiUser plugin
 
-The gVim installer uses the NsisMultiUser plugin, but it may lack some
+The ViAI installer uses the NsisMultiUser plugin, but it may lack some
 translations.
 Please send translations to upstream:
 	https://github.com/Drizin/NsisMultiUser

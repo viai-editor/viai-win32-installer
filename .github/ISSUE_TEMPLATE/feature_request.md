@@ -1,13 +1,12 @@
 ---
 name: Feature request
-about: Suggest an enhancement for Vim installer
+about: Suggest an enhancement for the ViAI installer
 title: ''
 labels: enhancement
 
 ---
 <!--
-If you want to report an issue of Vim itself, please go to the [main repository](https://github.com/vim/vim/issues/new/choose).
-If you want ask a user question about Vim itself, please go to the [vim_use mailinglist](https://groups.google.com/g/vim_use) or use [vi.stackexchange.com](https://vi.stackexchange.com/).
+If you want to report an issue of ViAI itself, please go to the [main repository](https://github.com/viai-editor/viai/issues/new/choose).
 -->
 
 **Is your feature request about something that is currently impossible or hard to do? Please describe the problem.**

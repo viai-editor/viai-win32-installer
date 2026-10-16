@@ -1,17 +1,16 @@
 ---
 name: Bug report
-description: Create a report to help us improve Vim installer.
+description: Create a report to help us improve the ViAI installer.
 labels: [bug]
 
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting issues of Vim installer!
+        Thanks for reporting issues of the ViAI installer!
 
-        If you want to report an issue of Vim itself, please go to the [main repository](https://github.com/vim/vim/issues/new/choose).
-        If you want ask a user question about Vim itself, please go to the [vim_use mailinglist](https://groups.google.com/g/vim_use) or use [vi.stackexchange.com](https://vi.stackexchange.com/).
-        **If you want to report an issue about anti-virus/malware reports, please check the [wiki](https://github.com/vim/vim-win32-installer/wiki#the-installer-contains-a-virustrojanermalware-what-should-i-do) first and report to your anti-virus vendor**.
+        If you want to report an issue of ViAI itself, please go to the [main repository](https://github.com/viai-editor/viai/issues/new/choose).
+        **If you want to report an issue about anti-virus/malware reports, please report to your anti-virus vendor**.
   - type: textarea
     attributes:
       label: Steps to reproduce
@@ -30,9 +29,9 @@ body:
       required: true
   - type: input
     attributes:
-      label: Version of Vim
+      label: Version of ViAI
       description: >
-        Including patch level, use ":version" to see it [e.g. 8.2.1234]
+        Including patch level, use ":version" to see it [e.g. 1.0.0018]
     validations:
       required: true
   - type: textarea
