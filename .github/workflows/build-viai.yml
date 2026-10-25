@@ -143,6 +143,31 @@ jobs:
       with:
         ref: ${{inputs.base_commit}}
 
+    # The "Included patches" workflow of ViAI adds the numbers of merged Vim
+    # patches to src/version.c.  Wait for it, so that master has them.
+    - name: Wait for included patches of ViAI
+      if: github.event_name != 'workflow_dispatch'
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        api=https://api.github.com/repos/viai-editor/viai/actions/workflows/included-patches.yml/runs
+        for i in $(seq 60); do
+          busy=0
+          for status in queued in_progress; do
+            n=$(curl -fsSL -H "Authorization: Bearer $GH_TOKEN" \
+                "$api?branch=master&status=$status&per_page=1" |
+              sed -n 's/^ *"total_count": *\([0-9]*\).*/\1/p')
+            busy=$((busy + n))
+          done
+          if [ $busy -eq 0 ]; then
+            exit 0
+          fi
+          sleep 30
+        done
+        echo ${COL_RED}The included patches of ViAI are still being updated.${COL_RESET}
+        exit 1
+
     - name: Checkout ViAI
       shell: bash
       run: |
@@ -156,6 +181,13 @@ jobs:
         fi
         if [ "${{github.event_name}}" = 'workflow_dispatch' ]; then
           git -C viai checkout "${{inputs.tag}}"
+        else
+          # Numbers of older patches are in src/version.c already, the
+          # shallow history is enough.
+          if ! viai/tools/update-included-patches.sh --check; then
+            echo ${COL_RED}The Vim patches above are not in included_patches[] of ViAI.${COL_RESET}
+            exit 1
+          fi
         fi
         git -C viai log -4 --color=always
 
