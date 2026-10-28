@@ -869,9 +869,7 @@ FunctionEnd
 
 SectionGroup $(str_group_plugin) id_group_plugin
   # Create plugin dir in $HOME
-  Section "$(str_section_plugin_home)" id_section_pluginhome
-    SectionIn 1 3
-
+  Section /o "$(str_section_plugin_home)" id_section_pluginhome
     ReadEnvStr $3 "COMSPEC"
     Call GetHomeDir
     Pop $R0
@@ -880,7 +878,9 @@ SectionGroup $(str_group_plugin) id_group_plugin
   SectionEnd
 
   # Create plugin dir shared with Vim in $HOME
-  Section /o "$(str_section_plugin_home_vim)" id_section_pluginhomevim
+  Section "$(str_section_plugin_home_vim)" id_section_pluginhomevim
+    SectionIn 1 3
+
     ReadEnvStr $3 "COMSPEC"
     Call GetHomeDir
     Pop $R0
