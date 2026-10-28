@@ -1,0 +1,50 @@
+name: Re-run failed builds
+
+# Re-run a failed build once when only the steps that download, test or
+# push have failed: those can fail for reasons outside the sources.
+
+on:
+  workflow_run:
+    workflows: [Build ViAI]
+    types: [completed]
+
+permissions:
+  actions: write
+
+jobs:
+  rerun:
+    if: >-
+      github.repository_owner == 'viai-editor' &&
+      github.event.workflow_run.conclusion == 'failure' &&
+      github.event.workflow_run.run_attempt == 1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Re-run the failed jobs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+        run: |
+          failed=$(gh api --paginate \
+              "repos/$GH_REPO/actions/runs/$RUN_ID/attempts/1/jobs" \
+              --jq '.jobs[].steps[] | select(.conclusion == "failure") | .name')
+          echo "Failed steps:"
+          echo "$failed"
+          if [ -z "$failed" ]; then
+            echo "No failed step is found, nothing is re-run."
+            exit 0
+          fi
+          while IFS= read -r step; do
+            case "$step" in
+              'Update msys2 (1st)' | 'Update msys2 (2nd)' | \
+              'Download dependencies' | \
+              'Test gviai' | 'Test viai' | 'Parallel group' | \
+              'Commit and push')
+                ;;
+              *)
+                echo "\"$step\" is not re-run."
+                exit 0
+                ;;
+            esac
+          done <<< "$failed"
+          gh run rerun "$RUN_ID" --failed
