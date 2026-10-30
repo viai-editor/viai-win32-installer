@@ -412,7 +412,7 @@ jobs:
       shell: msys2 {0}
       run: |
         pacman --noconfirm -Suuy
-        pacman --noconfirm -S --needed gettext pactoys vim
+        pacman --noconfirm -S --needed gettext pactoys
         pacboy --noconfirm -S libiconv:p gettext-runtime:p
 
 #    # See: https://github.com/nelsonjchen/reverse-rdp-windows-github-actions

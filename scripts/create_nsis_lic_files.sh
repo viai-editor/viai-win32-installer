@@ -13,9 +13,9 @@ cd "$VIMSRC/lang"
 rm -f LICENSE.*.nsis.txt
 
 for i in LICENSE.*.txt ../LICENSE; do
-  # Convert to UTF-8 with BOM, CRLF
+  # The files are UTF-8 already, add a BOM and CRLF
   name=${i##*/}
   target=${name%%.txt}.nsis.txt
   echo "Creating ${target}"
-  vim -es -c 'setl bomb ff=dos' -c "wq! ++enc=utf-8 $target" "$i"
+  { printf '\357\273\277'; sed 's/$/\r/' "$i"; } > "$target"
 done
