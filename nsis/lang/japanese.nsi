@@ -31,7 +31,8 @@ LangString ^InstallBtn       ${LANG_JAPANESE} \
 # Translated license file for the license page                            {{{1
 ##############################################################################
 
-LicenseLangString page_lic_file ${LANG_JAPANESE} "${SRC}\lang\LICENSE.ja.nsis.txt"
+LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
+#LicenseLangString page_lic_file ${LANG_JAPANESE} "${SRC}\lang\LICENSE.ja.nsis.txt"
 
 ##############################################################################
 # MUI Configuration Strings                                               {{{1
