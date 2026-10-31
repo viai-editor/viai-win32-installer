@@ -22,8 +22,9 @@ LangString ^UninstallCaption ${LANG_SIMPCHINESE} \
 # Translated license file for the license page                            {{{1
 ##############################################################################
 
-LicenseLangString page_lic_file ${LANG_SIMPCHINESE} \
-        "${SRC}\lang\LICENSE.zh_cn.nsis.txt"
+LicenseLangString page_lic_file 0 "${SRC}\lang\LICENSE.nsis.txt"
+#LicenseLangString page_lic_file ${LANG_SIMPCHINESE} \
+#        "${SRC}\lang\LICENSE.zh_cn.nsis.txt"
 
 ##############################################################################
 # MUI Configuration Strings                                               {{{1
