@@ -204,19 +204,38 @@ jobs:
         cd viai
         git rev-parse HEAD > ../package/artifacts/info/latestrev.txt
         if [ "$(git tag)" = "" ]; then
-          # No new tags.
-          cp ../viaiver.txt ../package/artifacts/info/latesttag.txt
-          exit 0
+          # No new tags, the release is named after the tag in viaiver.txt
+          # with a number appended: v1.0.0047.2, v1.0.0047.3, ...
+          latesttag=$(cat ../viaiver.txt)
+          revision=$(git -C .. ls-remote --tags origin "refs/tags/${latesttag}.*" |
+            awk -v t="refs/tags/${latesttag}." '
+              index($2, t) == 1 {
+                n = substr($2, length(t) + 1)
+                if (n ~ /^[0-9]+$/ && n + 0 > max)
+                  max = n + 0
+              }
+              END { print (max < 2 ? 2 : max + 1) }')
+          releasetag=${latesttag}.${revision}
+        else
+          latesttag=$(git describe --tags --abbrev=0)
+          revision=0
+          releasetag=${latesttag}
         fi
-
-        latesttag=$(git describe --tags --abbrev=0)
         echo $latesttag > ../package/artifacts/info/latesttag.txt
         echo $latesttag > ../viaiver.txt
+        echo $releasetag > ../package/artifacts/info/releasetag.txt
+        echo $revision > ../package/artifacts/info/revision.txt
         oldrev=$(cat ../viairev.txt)
         if git log --format='format:' $oldrev > /dev/null 2>&1; then
           logopt=$oldrev..HEAD
         else
           logopt=--
+        fi
+        # Only a ViAI patch or an imported Vim patch makes a release.
+        if [ "${{ github.event_name }}" = 'workflow_dispatch' ] ||
+            git log --format='%s' $logopt |
+              grep -q -E '^(patch [0-9]|vim-patch:)'; then
+          echo "release=yes" >> $GITHUB_OUTPUT
         fi
         commiturl=${VIMREPO}/commit/
         echo "ChangeLog in Markdown:"
@@ -235,7 +254,7 @@ jobs:
       id: check
       shell: bash
       run: |
-        if git diff --exit-code HEAD viaiver.txt; then
+        if [ "${{ steps.changelog.outputs.release }}" != 'yes' ]; then
           # No updates found.
           echo ${COL_YELLOW}No updates.${COL_RESET}
           if [ "${{ github.event_name }}" = 'pull_request' ]; then
@@ -606,7 +625,15 @@ jobs:
         patchlevel_padded=$(printf '%04d' ${patchlevel})
         echo "PATCHLEVEL_PADDED=${patchlevel_padded}" >> $GITHUB_ENV
 
-        echo "ver=${major}.${minor}.${patchlevel_padded}" >> $GITHUB_OUTPUT
+        # The name of the release without "v", e.g. 1.0.0047.2.
+        if [ -f ../../repo-info/releasetag.txt ]; then
+          releasetag=$(cat ../../repo-info/releasetag.txt)
+          echo "RELEASE_VER=${releasetag#v}" >> $GITHUB_ENV
+          echo "REVISION=$(cat ../../repo-info/revision.txt)" >> $GITHUB_ENV
+        else
+          echo "RELEASE_VER=${major}.${minor}.${patchlevel_padded}" >> $GITHUB_ENV
+          echo "REVISION=0" >> $GITHUB_ENV
+        fi
 
     - name: Copy src directory to src2
       shell: cmd
@@ -782,7 +809,7 @@ jobs:
         (echo INCLUDE_LIBGCC=%INCLUDE_LIBGCC%)>> %GITHUB_ENV%
 
         md artifacts\files
-        set BASENAME=gviai_${{ steps.patchlevel.outputs.ver }}_${{ matrix.arch }}
+        set BASENAME=gviai_%RELEASE_VER%_${{ matrix.arch }}
         cd %PKG%
         7z a -mx=9 -xr@..\..\exclist.txt ..\artifacts\files\%BASENAME%.zip viai || exit 1
         cd ..
@@ -820,7 +847,7 @@ jobs:
         if "${{ matrix.arch }}"=="x64" set WIN64=1
         if "${{ matrix.arch }}"=="arm64" set ARM64=1
 
-        set BASENAME=gviai_${{ steps.patchlevel.outputs.ver }}_${{ matrix.arch }}
+        set BASENAME=gviai_%RELEASE_VER%_${{ matrix.arch }}
 
         set PLUG_NSISMULTIUSER=..\NsisMultiUser
         set PLUG_ENVAR=..\EnVar_plugin
@@ -834,6 +861,7 @@ jobs:
           /DINCLUDE_LIBGCC=%INCLUDE_LIBGCC% ^
           /DWIN64=%WIN64% ^
           /DARM64=%ARM64% ^
+          /DVER_REVISION=%REVISION% ^
           gviai.nsi ^
           /X"OutFile ..\package\artifacts\files\%BASENAME%.exe"
 
@@ -874,7 +902,7 @@ jobs:
     - name: Get changelog
       id: changelog
       run: |
-        latesttag=$(cat repo-info/latesttag.txt)
+        latesttag=$(cat repo-info/releasetag.txt)
         ver=${latesttag#v}
         echo "tag=${latesttag}" >> $GITHUB_OUTPUT
         cp repo-info/latesttag.txt viaiver.txt
@@ -933,11 +961,11 @@ jobs:
         if [ "${{github.event_name}}" = 'workflow_dispatch' ] && [ "${{inputs.base_commit}}" != 'master' ]; then
           git switch -c "work-${{inputs.tag}}"
         fi
-        if git diff --quiet HEAD viaiver.txt; then
+        cp repo-info/latestrev.txt viairev.txt
+        if git diff --quiet HEAD viaiver.txt viairev.txt; then
           echo ${COL_YELLOW}No updates.${COL_RESET}
           exit 1  # This should not happen.
         fi
-        cp repo-info/latestrev.txt viairev.txt
         git config --local user.name "$USER_NAME"
         git config --local user.email "$USER_EMAIL"
         git commit -a \

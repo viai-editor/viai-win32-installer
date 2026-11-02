@@ -87,6 +87,11 @@ Unicode true  ; !include defaults to UTF-8 after Unicode True since 3.0 Alpha 2
 !ifndef PATCHLEVEL
   !define PATCHLEVEL ${VimVer_3}
 !endif
+# The number appended to the name of a release without a new ViAI patch,
+# e.g. 2 for v1.0.0047.2.
+!ifndef VER_REVISION
+  !define VER_REVISION 0
+!endif
 
 # ----------- No configurable settings below this line -----------
 
@@ -180,15 +185,15 @@ SilentInstall normal
 ##########################################################
 # Version resources
 
-VIFileVersion ${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0
-VIProductVersion ${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0
+VIFileVersion ${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.${VER_REVISION}
+VIProductVersion ${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.${VER_REVISION}
 VIAddVersionKey /LANG=0 "ProductName" "${PRODUCT_NAME}"
 VIAddVersionKey /LANG=0 "CompanyName" "${COMPANY_NAME}"
 VIAddVersionKey /LANG=0 "LegalTrademarks" "ViAI"
 VIAddVersionKey /LANG=0 "LegalCopyright"  "Copyright (C) 1996"
 VIAddVersionKey /LANG=0 "FileDescription" "ViAI - Vim Advanced Integrated"
-VIAddVersionKey /LANG=0 "ProductVersion"  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0"
-VIAddVersionKey /LANG=0 "FileVersion"	  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.0"
+VIAddVersionKey /LANG=0 "ProductVersion"  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.${VER_REVISION}"
+VIAddVersionKey /LANG=0 "FileVersion"	  "${VER_MAJOR}.${VER_MINOR}.${PATCHLEVEL}.${VER_REVISION}"
 
 ##########################################################
 # including headers
