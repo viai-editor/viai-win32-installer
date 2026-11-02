@@ -234,7 +234,7 @@ jobs:
         # Only a ViAI patch or an imported Vim patch makes a release.
         if [ "${{ github.event_name }}" = 'workflow_dispatch' ] ||
             git log --format='%s' $logopt |
-              grep -q -E '^(patch [0-9]|vim-patch:)'; then
+              grep -E '^(patch [0-9]|vim-patch:)' > /dev/null; then
           echo "release=yes" >> $GITHUB_OUTPUT
         fi
         commiturl=${VIMREPO}/commit/
