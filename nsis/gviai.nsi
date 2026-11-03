@@ -399,7 +399,7 @@ Function LaunchApplication
     System::Call "User32::SetWindowPos(i, i, i, i, i, i, i) b ($HWNDPARENT, 0, -1000, -1000, 0, 0, ${SWP_NOZORDER}|${SWP_NOSIZE})"
   ${EndIf}
 
-  !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\${PROGEXE}" '-c "help viai"' "" ""
+  !insertmacro UAC_AsUser_ExecShell "" "$INSTDIR\${PROGEXE}" '-c "help viai" -c only' "" ""
 FunctionEnd
 
 ##########################################################
