@@ -12,7 +12,8 @@ automatically.  It is based on
 [Download](https://github.com/viai-editor/viai-win32-installer/releases/latest) and execute the
 most recent `gviai_x.y.pppp_aaa.exe` or `gviai_x.y.pppp.n_aaa.exe` file to
 install ViAI (where `x.y` is the release version, `pppp` is the patch number,
-`n` numbers the later releases that only add Vim patches, starting from 2, and
+`n` numbers the later releases that only add Vim patches or update the
+bundled lsp.vim and vim9ls, starting from 2, and
 `aaa` is the architecture).
 The exe files contain the installer while the .zip files contain an archive of each
 architecture. To install it, extract the archive and update your
