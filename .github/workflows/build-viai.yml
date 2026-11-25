@@ -885,9 +885,6 @@ jobs:
       artifact-metadata: write
       contents: write # to create release
 
-    outputs:
-      tag: ${{ steps.changelog.outputs.tag }}
-
     steps:
     - uses: actions/checkout@v7.0.1
       if: github.event_name != 'workflow_dispatch'
@@ -1003,6 +1000,18 @@ jobs:
       run: |
         TAG=${{ steps.changelog.outputs.tag }}
 
+        # The link opens the post editor of X with this text.
+        text="ViAI: win32-installer ${TAG} has been released.  #ViAI #Vim
+        https://github.com/${{ github.repository }}/releases/tag/${TAG}"
+        intent=https://x.com/intent/post?text=
+        for ((i = 0; i < ${#text}; i++)); do
+          c=${text:i:1}
+          case $c in
+            [A-Za-z0-9.~_-]) intent+=$c ;;
+            *) intent+=$(printf '%%%02X' "'$c") ;;
+          esac
+        done
+
         cat << EOF >> $GITHUB_STEP_SUMMARY
         ## ✅ Windows Build Summary
 
@@ -1014,36 +1023,10 @@ jobs:
         **Release Status:**
         - 🆕 Created a new release: [\`${TAG}\`](https://github.com/${{ github.repository }}/releases/tag/${TAG})
         - 📦 Uploaded artifacts to the release via \`softprops/action-gh-release\`
+        - 📣 [Post the release to X](${intent})
 
         **Security Provenance:**
         - 🔒 Attested x86/x64/arm64 packages using [actions/attest](https://github.com/actions/attest)
         EOF
-
-  post-to-x:
-    runs-on: ubuntu-latest
-    needs: [release]
-    # A failure to post does not make the release fail.
-    continue-on-error: true
-
-    permissions:
-      contents: read
-
-    steps:
-    - uses: actions/checkout@v7.0.1
-
-    - name: Post the release to X
-      env:
-        TAG: ${{ needs.release.outputs.tag }}
-        X_API_KEY: ${{ secrets.X_API_KEY }}
-        X_API_SECRET: ${{ secrets.X_API_SECRET }}
-        X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-        X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-      run: |
-        if [ -z "$X_API_KEY" ]; then
-          echo "${COL_YELLOW}The secrets for X are not set, not posting.${COL_RESET}"
-          exit 0
-        fi
-        python3 scripts/post_to_x.py "ViAI: win32-installer ${TAG} has been released.  #ViAI #Vim
-        https://github.com/${{ github.repository }}/releases/tag/${TAG}"
 
 # vim: ts=2 sw=2 sts=2 et
