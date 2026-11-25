@@ -885,6 +885,9 @@ jobs:
       artifact-metadata: write
       contents: write # to create release
 
+    outputs:
+      tag: ${{ steps.changelog.outputs.tag }}
+
     steps:
     - uses: actions/checkout@v7.0.1
       if: github.event_name != 'workflow_dispatch'
@@ -1028,5 +1031,30 @@ jobs:
         **Security Provenance:**
         - 🔒 Attested x86/x64/arm64 packages using [actions/attest](https://github.com/actions/attest)
         EOF
+
+  post-to-bluesky:
+    runs-on: ubuntu-latest
+    needs: [release]
+    # A failure to post does not make the release fail.
+    continue-on-error: true
+
+    permissions:
+      contents: read
+
+    steps:
+    - uses: actions/checkout@v7.0.1
+
+    - name: Post the release to Bluesky
+      env:
+        TAG: ${{ needs.release.outputs.tag }}
+        BLUESKY_HANDLE: ${{ secrets.BLUESKY_HANDLE }}
+        BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+      run: |
+        if [ -z "$BLUESKY_APP_PASSWORD" ]; then
+          echo "${COL_YELLOW}The secrets for Bluesky are not set, not posting.${COL_RESET}"
+          exit 0
+        fi
+        python3 scripts/post_to_bluesky.py "ViAI: win32-installer ${TAG} has been released.  #ViAI #Vim
+        https://github.com/${{ github.repository }}/releases/tag/${TAG}"
 
 # vim: ts=2 sw=2 sts=2 et
