@@ -115,8 +115,10 @@ env:
 
   # Skip pattern
   # FIXME: Some tests are flaky and often fail.
-  TEST_SKIP_PAT: 'Test_terminal_composing_unicode\|Test_terminal_version'
-  TEST_SKIP_PAT_ARM64: 'Test_terminal_composing_unicode\|Test_terminal_version\|Test_gui_lowlevel_keyevent\|Test_QWERTY_Ctrl_minus\|Test_mswin_event_character_keys\|Test_mswin_event_function_keys\|Test_mswin_event_movement_keys'
+  # Test_list_length_as_index fails since Vim 9.2.1411, remove it when the
+  # fix from Vim is imported.
+  TEST_SKIP_PAT: 'Test_terminal_composing_unicode\|Test_terminal_version\|Test_list_length_as_index'
+  TEST_SKIP_PAT_ARM64: 'Test_terminal_composing_unicode\|Test_terminal_version\|Test_gui_lowlevel_keyevent\|Test_QWERTY_Ctrl_minus\|Test_mswin_event_character_keys\|Test_mswin_event_function_keys\|Test_mswin_event_movement_keys\|Test_list_length_as_index'
 
   # Escape sequences
   COL_RED: "\x1b[31m"
