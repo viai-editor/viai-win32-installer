@@ -21,6 +21,12 @@ on:
         required: true
         type: string
 
+# Runs that may create a release run one at a time, so that a run checks
+# for updates after the release of the run before it.
+concurrency:
+  group: ${{ github.event_name == 'pull_request' && github.run_id || 'release' }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
 
