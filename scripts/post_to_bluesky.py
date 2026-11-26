@@ -89,13 +89,20 @@ def link_card(url, token):
         'description': '',
     }
     if 'og:image' in og:
+        image_url = urllib.parse.urljoin(url, og['og:image'])
         try:
-            image, mime = fetch(urllib.parse.urljoin(url, og['og:image']))
+            image, mime = fetch(image_url)
+        except (OSError, ValueError) as e:
+            print(f'No image for the link card, fetching {image_url}: {e}',
+                  file=sys.stderr)
+        else:
             if len(image) <= MAX_THUMB and mime.startswith('image/'):
-                card['thumb'] = call('com.atproto.repo.uploadBlob', image,
-                                     token, mime)['blob']
-        except (OSError, ValueError, KeyError) as e:
-            print(f'No image for the link card: {e}', file=sys.stderr)
+                try:
+                    card['thumb'] = call('com.atproto.repo.uploadBlob',
+                                         image, token, mime)['blob']
+                except (OSError, ValueError, KeyError) as e:
+                    print('No image for the link card, uploading it to'
+                          f' Bluesky: {e}', file=sys.stderr)
     return {'$type': 'app.bsky.embed.external', 'external': card}
 
 
