@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -22,6 +23,10 @@ PDS = 'https://bsky.social/xrpc/'
 URL_RE = re.compile(r'https?://\S+')
 # The largest image Bluesky takes for a link card.
 MAX_THUMB = 1000000
+# Seconds to wait before each retry of a refused fetch, and the longest
+# wait taken from Retry-After.
+RETRY_WAITS = [10, 20, 30]
+MAX_RETRY_WAIT = 60
 
 
 def call(method, body, token=None, content_type='application/json'):
@@ -39,8 +44,20 @@ def call(method, body, token=None, content_type='application/json'):
 def fetch(url):
     req = urllib.request.Request(url,
                                  headers={'User-Agent': 'post_to_bluesky'})
-    with urllib.request.urlopen(req, timeout=30) as res:
-        return res.read(MAX_THUMB + 1), res.headers.get_content_type()
+    # GitHub may refuse a request with HTTP 429 for a while.
+    for wait in RETRY_WAITS + [None]:
+        try:
+            with urllib.request.urlopen(req, timeout=30) as res:
+                return res.read(MAX_THUMB + 1), res.headers.get_content_type()
+        except urllib.error.HTTPError as e:
+            if wait is None or not (e.code == 429 or e.code >= 500):
+                raise
+            retry_after = e.headers.get('Retry-After', '')
+            if retry_after.isdigit():
+                wait = min(int(retry_after), MAX_RETRY_WAIT)
+            print(f'HTTP {e.code} for {url}, retrying in {wait} seconds',
+                  file=sys.stderr)
+            time.sleep(wait)
 
 
 def facets(text):
