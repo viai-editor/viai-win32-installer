@@ -31,7 +31,6 @@ copy "%VIMSRC%\src\viai.ico"  "%DEST%" || exit /b 1
 copy "%VIMSRC%\src\install.exe" "%DEST%" || exit /b 1
 copy "%VIMSRC%\src\uninstall.exe" "%DEST%" || exit /b 1
 copy "%DIFFEXE%\diff.exe"     "%DEST%" || exit /b 1
-rem copy "%LUA_DIR%\lua*.dll"   "%DEST%" || exit /b 1
 
 :: Copy ViAI launcher
 md "%DEST%\viai-launcher"

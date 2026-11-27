@@ -21,23 +21,14 @@ PATH variable. The installer will do that automatically and provide some
 additional extensions (e.g. Edit with ViAI menu).
 The `gviai..._pdb.7z` file only contains the corresponding pdb files for debugging the binaries.
 
-If you need a dynamic interface to Perl, Python 3, Ruby or Lua, make sure you
-also install the following. ViAI will work
-without it, but some Plugin might need this additional dependency. (e.g.
-[Gundo](https://github.com/sjl/gundo.vim) needs a working Python 3 installation,
-[Command-T](https://github.com/wincent/command-t) needs a working Ruby
-installation and [Neocomplete](https://github.com/Shougo/neocomplete.vim) needs
-a working Lua installation). This means, those interpreters have to be
-installed in addition to ViAI. Without it ViAI won't be able to use that feature!
-You can find those interpreters here:
+Of the language interfaces, these binaries include only the Python 3
+interface. The Lua, MzScheme, Perl, Python 2, Ruby and Tcl interfaces are not
+included.
 
-* [Strawberry Perl](https://strawberryperl.com/) 5.38
-* [LuaBinaries](https://luabinaries.sourceforge.net/download.html) 5.4
-* [Python 3](https://www.python.org/downloads/) 3.8 or later
-* [RubyInstaller](https://rubyinstaller.org/downloads/) 3.4
-
-Make sure that you install the same architecture (32bit/64bit) for those
-libraries that matches your ViAI installation.
+To use the Python 3 interface, install
+[Python 3](https://www.python.org/downloads/) 3.8 or later of the same
+architecture (32bit/64bit) as ViAI. ViAI works without it, but some plugins
+need it (e.g. [Gundo](https://github.com/sjl/gundo.vim)).
 
 For Python 3, ViAI is compiled against Python 3.12 using [Stable
 ABI](https://docs.python.org/3.12/c-api/stable.html), and this allows you to
